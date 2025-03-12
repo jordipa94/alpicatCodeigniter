@@ -7,8 +7,6 @@
 </head>
 <body class="w3-light-grey" style="min-height:100vh; display:flex; flex-direction:column;">
 
-<!-- Aquí iría el contenido de la página -->
-
 <footer class="w3-container w3-gray w3-center w3-padding-16 w3-wide" style="margin-top:auto; width:100%;">
     <p><strong>ALPICAT FC</strong></p>
     <p>
