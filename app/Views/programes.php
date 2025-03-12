@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <h1>Programes</h1>
+    <h1 class="w3-padding">Programes</h1>
     
 </body>
 </html>
