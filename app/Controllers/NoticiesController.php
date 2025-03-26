@@ -9,8 +9,6 @@ class NoticiesController extends BaseController
 {
     public function noticies()
     {
-        echo view("header");
         echo view("noticies");
-        echo view("footer");
     }
 }

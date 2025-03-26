@@ -9,8 +9,6 @@ class ContacteController extends BaseController
 {
     public function contacte()
     {
-        echo view("header");
         echo view("contacte");
-        echo view("footer");
     }
 }

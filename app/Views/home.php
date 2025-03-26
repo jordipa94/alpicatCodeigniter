@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<?php echo $this->extend('plantilla'); ?>
+
+<?php echo $this->section('contingut'); ?>
 <style>
 /* General styles */
 
@@ -156,6 +152,5 @@ footer .social {
             <a href="/noticies" class="w3-button w3-blue w3-round">MÉS NOTÍCIES</a>
         </div>
     </main>
-    
-</body>
-</html>
+
+<?php echo $this->endSection(); ?>

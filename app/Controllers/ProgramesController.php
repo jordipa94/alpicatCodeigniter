@@ -9,8 +9,6 @@ class ProgramesController extends BaseController
 {
     public function programes()
     {
-        echo view("header");
         echo view("programes");
-        echo view("footer");
     }
 }

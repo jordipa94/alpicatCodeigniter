@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?php echo $this->extend('plantilla'); ?>
+
+<?php echo $this->section('contingut'); ?>
+<style>
+.imgNoticia{
+    width: 360px;
+    height: 150px;
+}
+</style>
 
     <h1 class="w3-padding">Noticies</h1>
 
@@ -17,7 +18,7 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3>Notícia 1</h3>
-                    <img src="../images/escut.png" alt="">
+                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <p>Detalls breus de la primera notícia. Pots afegir un text més llarg aquí.</p>
                     <a href="#" class="w3-button w3-blue">Llegir més</a>
                 </div>
@@ -26,7 +27,7 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3>Notícia 2</h3>
-                    <img src="../images/escut.png" alt="">
+                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <p>Detalls breus de la segona notícia. Pots afegir un text més llarg aquí.</p>
                     <a href="#" class="w3-button w3-blue">Llegir més</a>
                 </div>
@@ -36,7 +37,7 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3>Notícia 3</h3>
-                    <img src="../images/escut.png" alt="">
+                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <p>Detalls breus de la tercera notícia. Pots afegir un text més llarg aquí.</p>
                     <a href="#" class="w3-button w3-blue">Llegir més</a>
                 </div>
@@ -75,5 +76,4 @@
 
     </main>
     
-</body>
-</html>
+<?php echo $this->endSection(); ?>
