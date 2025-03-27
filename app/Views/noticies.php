@@ -49,7 +49,7 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3>Notícia 4</h3>
-                    <img src="../images/escut.png" alt="">
+                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <p>Detalls breus de la quarta notícia. Pots afegir un text més llarg aquí.</p>
                     <a href="#" class="w3-button w3-blue">Llegir més</a>
                 </div>
@@ -58,7 +58,7 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3>Notícia 5</h3>
-                    <img src="../images/escut.png" alt="">
+                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <p>Detalls breus de la quinta notícia. Pots afegir un text més llarg aquí.</p>
                     <a href="#" class="w3-button w3-blue">Llegir més</a>
                 </div>
@@ -67,7 +67,7 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3>Notícia 6</h3>
-                    <img src="../images/escut.png" alt="">
+                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <p>Detalls breus de la quinta notícia. Pots afegir un text més llarg aquí.</p>
                     <a href="#" class="w3-button w3-blue">Llegir més</a>
                 </div>

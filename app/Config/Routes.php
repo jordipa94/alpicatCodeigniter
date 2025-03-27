@@ -7,6 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'IndexController::index');
 
+$routes->get('/historia', 'SobreNosaltresController::historia');
+$routes->get('/club', 'SobreNosaltresController::club');
+
 $routes->get('/noticies', 'NoticiesController::noticies');
 
 $routes->get('/programes', 'ProgramesController::programes');

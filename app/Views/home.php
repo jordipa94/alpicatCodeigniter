@@ -130,6 +130,7 @@ footer .social {
             <div class="w3-card w3-padding">
                 <h3>Notícia 1</h3>
                 <p>Detalls breus de la primera notícia.</p>
+                <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                 <a href="#" class="w3-button w3-blue">Llegir més</a>
             </div>
             </div>
@@ -137,6 +138,7 @@ footer .social {
             <div class="w3-card w3-padding">
                 <h3>Notícia 2</h3>
                 <p>Detalls breus de la segona notícia.</p>
+                <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                 <a href="#" class="w3-button w3-blue">Llegir més</a>
             </div>
             </div>
@@ -144,6 +146,7 @@ footer .social {
             <div class="w3-card w3-padding">
                 <h3>Notícia 3</h3>
                 <p>Detalls breus de la tercera notícia.</p>
+                <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                 <a href="#" class="w3-button w3-blue">Llegir més</a>
             </div>
             </div>
