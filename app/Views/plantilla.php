@@ -11,12 +11,10 @@
     display: flex;
     flex-direction: column;
 }
-
   footer {
     margin-top: auto;
     width: 100%;
 }
-
   .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -24,23 +22,23 @@
 <body>
 <header>
   <nav class="w3-bar w3-gray w3-card" style="display: flex; align-items: center; min-height: 60px;">
-    <a href="/" class="w3-bar-item w3-button w3-hover-blue">
+    <a href="/" class="w3-bar-item w3-button w3-gray">
       <img style="width: 45px;" src="<?= base_url('img/alpicat.png') ?>">
     </a>
 
     <!-- Menú desplegable -->
-    <div class="w3-dropdown-hover" style="height: 100%;">
-      <button class="w3-button w3-hover-blue">Sobre Nosaltres</button>
-      <div class="w3-dropdown-content w3-bar-block w3-white">
+    <div class="w3-dropdown-hover">
+      <button class="w3-button w3-gray">Sobre Nosaltres</button>
+      <div class="w3-dropdown-content w3-bar-block w3-gray">
         <a href="/historia" class="w3-bar-item w3-button w3-hover-blue">Història</a>
         <a href="/club" class="w3-bar-item w3-button w3-hover-blue">Club</a>
       </div>
     </div>
 
-    <a href="/noticies" class="w3-bar-item w3-button w3-hover-blue">Noticies</a>
-    <a href="/programes" class="w3-bar-item w3-button w3-hover-blue">Programes</a>
-    <a href="/galeria" class="w3-bar-item w3-button w3-hover-blue">Galeria</a>
-    <a href="/contacte" class="w3-bar-item w3-button w3-hover-blue">Contacte</a>
+    <a href="/noticies" class="w3-bar-item w3-button w3-gray">Noticies</a>
+    <a href="/programes" class="w3-bar-item w3-button w3-gray">Programes</a>
+    <a href="/galeria" class="w3-bar-item w3-button w3-gray">Galeria</a>
+    <a href="/contacte" class="w3-bar-item w3-button w3-gray">Contacte</a>
   </nav>
 </header>
 

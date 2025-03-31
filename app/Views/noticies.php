@@ -1,79 +1,62 @@
 <?php echo $this->extend('plantilla'); ?>
 
 <?php echo $this->section('contingut'); ?>
-<style>
-.imgNoticia{
-    width: 360px;
-    height: 150px;
-}
-</style>
 
-    <h1 class="w3-padding">Noticies</h1>
+<head>
+    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
+</head>
 
-    <main class="w3-container" style="margin-top: 20px;">
-        <h2 class="w3-center">Últimes Notícies</h2>
+<div class="w3-container">
 
-        <div class="w3-row-padding" style="overflow: auto;">
+    <h2>LLISTAT NOTICIES</h2>
 
-            <div class="w3-third w3-margin-bottom">
-                <div class="w3-card w3-padding w3-white">
-                    <h3>Notícia 1</h3>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <p>Detalls breus de la primera notícia. Pots afegir un text més llarg aquí.</p>
-                    <a href="#" class="w3-button w3-blue">Llegir més</a>
+    <div class="w3-container w3-center w3-padding-16">
+        <form action="<?= base_url('searchNoticia') ?>" method="GET" class="w3-center">
+            <div class="w3-row" style="max-width: 400px; margin: auto;">
+                <div class="w3-col s8 m9 l9">
+                    <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
+                        placeholder="Buscar noticies..." class="w3-input w3-border w3-round">
+                </div>
+                <div class="w3-col s4 m3 l3">
+                    <button type="submit" class="w3-button w3-blue w3-round w3-block">Buscar</button>
                 </div>
             </div>
-
-            <div class="w3-third w3-margin-bottom">
-                <div class="w3-card w3-padding w3-white">
-                    <h3>Notícia 2</h3>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <p>Detalls breus de la segona notícia. Pots afegir un text més llarg aquí.</p>
-                    <a href="#" class="w3-button w3-blue">Llegir més</a>
-                </div>
-            </div>
-
-            
-            <div class="w3-third w3-margin-bottom">
-                <div class="w3-card w3-padding w3-white">
-                    <h3>Notícia 3</h3>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <p>Detalls breus de la tercera notícia. Pots afegir un text més llarg aquí.</p>
-                    <a href="#" class="w3-button w3-blue">Llegir més</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="w3-row-padding">
-            
-            <div class="w3-third w3-margin-bottom">
-                <div class="w3-card w3-padding w3-white">
-                    <h3>Notícia 4</h3>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <p>Detalls breus de la quarta notícia. Pots afegir un text més llarg aquí.</p>
-                    <a href="#" class="w3-button w3-blue">Llegir més</a>
-                </div>
-            </div>
-
-            <div class="w3-third w3-margin-bottom">
-                <div class="w3-card w3-padding w3-white">
-                    <h3>Notícia 5</h3>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <p>Detalls breus de la quinta notícia. Pots afegir un text més llarg aquí.</p>
-                    <a href="#" class="w3-button w3-blue">Llegir més</a>
-                </div>
-            </div>
-
-            <div class="w3-third w3-margin-bottom">
-                <div class="w3-card w3-padding w3-white">
-                    <h3>Notícia 6</h3>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <p>Detalls breus de la quinta notícia. Pots afegir un text més llarg aquí.</p>
-                    <a href="#" class="w3-button w3-blue">Llegir més</a>
-                </div>
-            </div>
-        </div>
-
-    </main>
+        </form>
+    </div>
     
+    <table class="w3-table w3-bordered w3-striped w3-card-4">
+        <thead>
+            <tr class="w3-light-grey">
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Contingut</th>
+                <th>URL</th>
+                <th>Data publicacio</th>
+                <th>Opcions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($noticies as $noticia): ?>
+            <tr>
+                <td><?= esc($noticia['id'])?></td>
+                <td><?= esc($noticia['nom'])?></td>
+                <td><?= esc($noticia['contingut'])?></td>
+                <td><?= esc($noticia['url'])?></td>
+                <td><?= esc($noticia['created_at'])?></td>
+                <td>
+                    <button class="w3-button w3-gray"><a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
+                    <button class="w3-button w3-yellow"><a href="<?= base_url('editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
+                    <button class="w3-button w3-red"><a href="<?= base_url('deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <div class="pagination-container">
+        <?= $pager->links() ?>
+    </div>
+
+</div>
+
 <?php echo $this->endSection(); ?>
