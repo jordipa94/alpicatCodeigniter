@@ -126,30 +126,16 @@ footer .social {
     <main class="w3-container" style="margin-top: 20px;">
         <h2 class="w3-center">Últimes Notícies</h2>
         <div class="w3-row-padding">
+        <?php foreach($noticies as $noticia): ?>
             <div class="w3-third w3-margin-bottom">
-            <div class="w3-card w3-padding">
-                <h3>Notícia 1</h3>
-                <p>Detalls breus de la primera notícia.</p>
-                <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                <a href="#" class="w3-button w3-blue">Llegir més</a>
+                <div class="w3-card w3-padding">
+                    <h3><?= esc($noticia['nom'])?></h3>
+                    <p><?= esc($noticia['contingut'])?></p>
+                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
+                    <a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir més</a>
+                </div>
             </div>
-            </div>
-            <div class="w3-third w3-margin-bottom">
-            <div class="w3-card w3-padding">
-                <h3>Notícia 2</h3>
-                <p>Detalls breus de la segona notícia.</p>
-                <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                <a href="#" class="w3-button w3-blue">Llegir més</a>
-            </div>
-            </div>
-            <div class="w3-third w3-margin-bottom">
-            <div class="w3-card w3-padding">
-                <h3>Notícia 3</h3>
-                <p>Detalls breus de la tercera notícia.</p>
-                <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                <a href="#" class="w3-button w3-blue">Llegir més</a>
-            </div>
-            </div>
+        <?php endforeach; ?>
         </div>
         <div class="w3-container w3-center w3-padding moreNews">
             <a href="/noticies" class="w3-button w3-blue w3-round">MÉS NOTÍCIES</a>

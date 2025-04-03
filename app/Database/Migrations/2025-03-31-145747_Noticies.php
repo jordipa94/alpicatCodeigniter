@@ -34,9 +34,15 @@ class Noticies extends Migration
                     'type'         =>  'DATETIME',
                     'null'         =>  true,
                     'default'    =>  null,
+                ],
+                'deleted_at'     =>  [
+                    'type'         =>  'DATETIME',
+                    'null'         =>  true,
+                    'default'    =>  null,
                 ]
         ]);
         $this->forge->addPrimaryKey('id');
+        $this->forge->addKey('deleted_at','id');
         $this->forge->createTable('noticies');
     }
     

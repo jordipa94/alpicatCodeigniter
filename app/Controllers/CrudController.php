@@ -8,19 +8,15 @@ use App\Models\NoticiesModel;
 
 class CrudController extends BaseController
 {
-    public function index()
-    {
-        $noticiesModel = new NoticiesModel();
-
-        $data['noticies'] = $noticiesModel->paginate(5, 'default');
-        $data['pager'] = $noticiesModel->pager;
-
-        echo view('noticies', $data);
-    }
 
     public function viewCrearNoticia()
     {
-        echo view('crudNoticies/crearNoticia');
+        $noticiesModel = new NoticiesModel();
+
+        $data['noticies'] = $noticiesModel->paginate(6, 'default');
+        $data['pager'] = $noticiesModel->pager;
+
+        echo view('crudNoticies/crearNoticia',$data);
     }
     
     public function crearNoticia()
@@ -41,14 +37,14 @@ class CrudController extends BaseController
 
             $model->insert(["nom" => $nom, "contingut" => $contingut,"url" => $url]);
 
-            return redirect()->to('/');
+            return redirect()->to('/crearNoticia');
 
         } else {
             return redirect()->back()->withInput();
         }
     }
 
-    // VIEW PER EDITAR LA NOTICIA
+    // VIEW PER VEURE LA NOTICIA
     public function readNoticia($id)
     {
         $model = new NoticiesModel();
@@ -95,7 +91,7 @@ class CrudController extends BaseController
         ];
 
         if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/'));
+            return redirect()->to(base_url('/crearNoticia'));
         } else {
             return redirect()->to(base_url('editNoticia/').$id);
         }
@@ -127,10 +123,29 @@ class CrudController extends BaseController
                         ->groupEnd();
         }
 
+        $data['noticies'] = $noticiesModel->paginate(6);
+        $data['pager'] = $noticiesModel->pager;
+        $data['keyword'] = $keyword;
+
+        return view('noticies', $data);
+    }
+
+    public function searchNoticiaCrud()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $noticiesModel = new NoticiesModel();
+
+        if ($keyword) {
+            $noticiesModel->groupStart()
+                        ->like('nom', $keyword)
+                        ->orLike('contingut', $keyword)
+                        ->groupEnd();
+        }
+
         $data['noticies'] = $noticiesModel->paginate(5);
         $data['pager'] = $noticiesModel->pager;
         $data['keyword'] = $keyword;
 
-        return view('home', $data);
+        return view('crudNoticies/crearNoticia', $data);
     }
 }

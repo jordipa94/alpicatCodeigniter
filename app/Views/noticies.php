@@ -24,39 +24,25 @@
         </form>
     </div>
     
-    <table class="w3-table w3-bordered w3-striped w3-card-4">
-        <thead>
-            <tr class="w3-light-grey">
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Contingut</th>
-                <th>URL</th>
-                <th>Data publicacio</th>
-                <th>Opcions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($noticies as $noticia): ?>
-            <tr>
-                <td><?= esc($noticia['id'])?></td>
-                <td><?= esc($noticia['nom'])?></td>
-                <td><?= esc($noticia['contingut'])?></td>
-                <td><?= esc($noticia['url'])?></td>
-                <td><?= esc($noticia['created_at'])?></td>
-                <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
-                    <button class="w3-button w3-yellow"><a href="<?= base_url('editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
-                    <button class="w3-button w3-red"><a href="<?= base_url('deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <!-- DIVS AMB NOTICIES -->
 
-    <div class="pagination-container">
-        <?= $pager->links() ?>
+    <?php foreach($noticies as $noticia): ?>
+
+    <div class="w3-third w3-margin-bottom">
+        <div class="w3-card w3-padding w3-white">
+            <h3><?= esc($noticia['nom'])?></h3>
+            <img src="../images/galeria.png" alt="">
+            <p><?= esc($noticia['contingut'])?></p>
+            <a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
+        </div>
     </div>
 
+    <?php endforeach; ?>
+
 </div>
+
+    <div class="pagination-container" style="margin-left:1vw">
+        <?= $pager->links() ?>
+    </div>
 
 <?php echo $this->endSection(); ?>

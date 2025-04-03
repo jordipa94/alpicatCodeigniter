@@ -12,7 +12,8 @@ $routes->get('/', 'IndexController::index');
 $routes->get('/historia', 'SobreNosaltresController::historia');
 $routes->get('/club', 'SobreNosaltresController::club');
 
-$routes->get('/noticies', 'crudController::index');
+$routes->get('/noticies', 'NoticiesController::index');
+$routes->get('/searchNoticia', 'crudController::searchNoticia');
 
 $routes->get('/programes', 'ProgramesController::programes');
 
@@ -27,5 +28,4 @@ $routes->get('/editNoticia/(:num)', 'crudController::editNoticia/$1');
 $routes->post('/updateNoticia/(:num)', 'crudController::updateNoticia/$1');
 $routes->get('/deleteNoticia/(:num)', 'crudController::deleteNoticia/$1');
 $routes->get('/readNoticia/(:num)', 'crudController::readNoticia/$1');
-
-$routes->get('searchNoticia', 'crudController::searchNoticia');
+$routes->get('/searchNoticiaCrud', 'crudController::searchNoticiaCrud');

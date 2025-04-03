@@ -45,9 +45,9 @@
 <?php echo $this->renderSection('contingut'); ?>
 
 <footer class="w3-container w3-gray w3-center w3-padding-16 w3-wide" style="margin-top:auto; width:100%;">
-    <p><strong>ALPICAT FC</strong></p>
+    <p><strong>ALPICAT FC - PRIVAT</strong></p>
     <p>
-        <a href="#" class="w3-button w3-white w3-hover-blue w3-round">Privacitat</a>
+        <a href="/crearNoticia" class="w3-button w3-white w3-hover-blue w3-round">Crear Noticia</a>
         <a href="#" class="w3-button w3-white w3-hover-blue w3-round">Termes</a>
         <a href="#" class="w3-button w3-white w3-hover-blue w3-round">Contacte</a>
     </p>
