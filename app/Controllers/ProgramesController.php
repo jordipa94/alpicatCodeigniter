@@ -14,7 +14,7 @@ class ProgramesController extends BaseController
         echo view("programes");
     }
 
-    public function fcf()
+    public function fcfPrimerEquip()
     {
         // URL de la página
         $url = 'https://www.fcf.cat/classificacio/2425/futbol-11/segona-catalana/grup-5';
@@ -102,27 +102,27 @@ class ProgramesController extends BaseController
                     echo "<td>" . trim($points) . "</td>";
                 
                     // Partits jugats (PJ)
-                    $gamesPlayed = $cells[5]->nodeValue;
+                    $gamesPlayed = $cells[6]->nodeValue;
                     echo "<td>" . trim($gamesPlayed) . "</td>";
                 
                     // Patits guanyats (PG)
-                    $gamesFor = $cells[6]->nodeValue;
+                    $gamesFor = $cells[7]->nodeValue;
                     echo "<td>" . trim($gamesFor) . "</td>";
                 
                     // Partits empatats (PE)
-                    $gamesDrawn = $cells[7]->nodeValue;
+                    $gamesDrawn = $cells[8]->nodeValue;
                     echo "<td>" . trim($gamesDrawn) . "</td>";
 
                     // Partits perduts (PP)
-                    $gamesLost = $cells[8]->nodeValue;
+                    $gamesLost = $cells[9]->nodeValue;
                     echo "<td>" . trim($gamesLost) . "</td>";
                 
                     // Gols a favor (GF)
-                    $goalsFor = $cells[9]->nodeValue;
+                    $goalsFor = $cells[10]->nodeValue;
                     echo "<td>" . trim($goalsFor) . "</td>";
                 
                     // Gols contra (GC)
-                    $goalsAgainst = $cells[10]->nodeValue;
+                    $goalsAgainst = $cells[11]->nodeValue;
                     echo "<td>" . trim($goalsAgainst) . "</td>";
 
                     echo "</tr>";
