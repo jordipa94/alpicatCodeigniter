@@ -146,6 +146,6 @@ class CrudController extends BaseController
         $data['pager'] = $noticiesModel->pager;
         $data['keyword'] = $keyword;
 
-        return view('crudNoticies/crearNoticia', $data);
+        return view('crudNoticies/crearNoticia ',['title' => 'News created successfully'], $data);
     }
 }

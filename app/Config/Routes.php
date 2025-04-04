@@ -35,3 +35,8 @@ $routes->post('/updateNoticia/(:num)', 'crudController::updateNoticia/$1');
 $routes->get('/deleteNoticia/(:num)', 'crudController::deleteNoticia/$1');
 $routes->get('/readNoticia/(:num)', 'crudController::readNoticia/$1');
 $routes->get('/searchNoticiaCrud', 'crudController::searchNoticiaCrud');
+
+//LOGIN ADMIN
+
+//ADMINISTRACION
+$routes->get('/administracio','AdministracioController::index');
