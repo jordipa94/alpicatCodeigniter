@@ -9,16 +9,22 @@ use CodeIgniter\Router\RouteCollection;
 // "RUTA DE LA URL", "FITXER CONTROLLER", "FUNCTION DEL FITXER CONTROLLER".
 $routes->get('/', 'IndexController::index');
 
+//CLUB / PAGES
 $routes->get('/historia', 'SobreNosaltresController::historia');
 $routes->get('/club', 'SobreNosaltresController::club');
 
+//NOTICIES
 $routes->get('/noticies', 'NoticiesController::index');
 $routes->get('/searchNoticia', 'crudController::searchNoticia');
 
+//CLASIFICACIONS
 $routes->get('/programes', 'ProgramesController::programes');
+$routes->get('/fcf', 'ProgramesController::fcf');
 
+//GALERIES
 $routes->get('/galeria', 'GaleriaController::galeria');
 
+//CONTACTE
 $routes->get('/contacte', 'ContacteController::contacte');
 
 //CRUD NOTICIES
