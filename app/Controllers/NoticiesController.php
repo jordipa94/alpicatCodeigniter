@@ -12,7 +12,7 @@ class NoticiesController extends BaseController
     {
         $noticiesModel = new NoticiesModel();
 
-        $data['noticies'] = $noticiesModel->paginate(6, 'default');
+        $data['noticies'] = $noticiesModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
         $data['pager'] = $noticiesModel->pager;
 
         echo view('noticies', $data);
