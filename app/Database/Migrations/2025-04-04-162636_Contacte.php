@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Noticies extends Migration
+class Contacte extends Migration
 {
     public function up()
     {
@@ -13,40 +13,39 @@ class Noticies extends Migration
                         'type'           => 'INT',
                         'auto_increment' => true,
                 ],
-                'nom'          => [
+                'concepte'          => [
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
                 ],
-                'contingut'          => [
+                'missatge'          => [
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
                 ],
-                'url'          => [
+                'telefono'          => [
+                        'type'           => 'VARCHAR',
+                        'constraint'     => '255',
+                ],
+                'correu'          => [
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
                 ],
                 'created_at'      =>  [
-                    'type'         =>  'DATETIME',
-                     'null'         =>  true,
-                     'default'    =>  null,
+                          'type'         =>  'DATETIME',
+                           'null'         =>  true,
+                           'default'    =>  null,
                 ],
                 'updated_at'     =>  [
-                    'type'         =>  'DATETIME',
-                    'null'         =>  true,
-                    'default'    =>  null,
-                ],
-                'deleted_at'     =>  [
-                    'type'         =>  'DATETIME',
-                    'null'         =>  true,
-                    'default'    =>  null,
+                          'type'         =>  'DATETIME',
+                           'null'         =>  true,
+                           'default'    =>  null,
                 ]
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('noticies');
+        $this->forge->createTable('contacte');
     }
-    
+
     public function down()
     {
-        $this->forge->dropTable('noticies');
+            $this->forge->dropTable('contacte');
     }
 }

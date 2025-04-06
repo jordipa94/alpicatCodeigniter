@@ -39,16 +39,25 @@
     <a href="/programes" class="w3-bar-item w3-button w3-gray">Programes</a>
     <a href="/galeria" class="w3-bar-item w3-button w3-gray">Galeria</a>
     <a href="/contacte" class="w3-bar-item w3-button w3-gray">Contacte</a>
+
+    <!-- MENU ADMIN -->
+    <div class="w3-dropdown-hover"style="margin-left: 15vw;">
+      <button class="w3-button w3-gray">ADMIN</button>
+      <div class="w3-dropdown-content w3-bar-block w3-gray">
+        <a href="/crearNoticia" class="w3-bar-item w3-button w3-hover-blue">CRUD NOTICIES</a>
+        <a href="/gestioContacte" class="w3-bar-item w3-button w3-hover-blue">GESTIO CONTACTE</a>
+      </div>
+    </div>
   </nav>
 </header>
 
 <?php echo $this->renderSection('contingut'); ?>
 
-<footer class="w3-container w3-gray w3-center w3-wide" style="margin-top:auto; width:100vw;">
-    <p><strong>ALPICAT FC - PRIVAT</strong></p>
+<footer class="w3-container w3-gray w3-center" style="margin-top:auto; width:100vw;">
+    <p><strong>© 2024 U.E.A. Tots els drets reservats.</strong></p>
     <p>
-        <a href="/crearNoticia" class="w3-button w3-white w3-hover-blue w3-round">Crear Noticia</a>
-        <a href="/fcf" class="w3-button w3-white w3-hover-blue w3-round">FCF</a>
+        <a href="#" class="w3-button w3-white w3-hover-blue w3-round">Privacitat</a>
+        <a href="#" class="w3-button w3-white w3-hover-blue w3-round">Xarxes</a>
         <a href="#" class="w3-button w3-white w3-hover-blue w3-round">Contacte</a>
     </p>
 </footer>

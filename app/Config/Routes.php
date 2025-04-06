@@ -15,7 +15,7 @@ $routes->get('/club', 'SobreNosaltresController::club');
 
 //NOTICIES
 $routes->get('/noticies', 'NoticiesController::index');
-$routes->get('/searchNoticia', 'crudController::searchNoticia');
+$routes->get('/searchNoticia', 'NoticiesController::searchNoticia');
 
 //CLASIFICACIONS
 $routes->get('/programes', 'ProgramesController::programes');
@@ -25,13 +25,16 @@ $routes->get('/fcf', 'ProgramesController::fcfPrimerEquip');
 $routes->get('/galeria', 'GaleriaController::galeria');
 
 //CONTACTE
-$routes->get('/contacte', 'ContacteController::contacte');
+$routes->get('/contacte', 'ContacteController::index');
+$routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
+$routes->get('/gestioContacte', 'ContacteController::gestionarContacte');
+$routes->get('/readContactForm/(:num)', 'ContacteController::readContactForm/$1');
 
 //CRUD NOTICIES
-$routes->get('/crearNoticia', 'crudController::viewCrearNoticia');
-$routes->post('/crearNoticia', 'crudController::crearNoticia');
-$routes->get('/editNoticia/(:num)', 'crudController::editNoticia/$1');
-$routes->post('/updateNoticia/(:num)', 'crudController::updateNoticia/$1');
-$routes->get('/deleteNoticia/(:num)', 'crudController::deleteNoticia/$1');
-$routes->get('/readNoticia/(:num)', 'crudController::readNoticia/$1');
-$routes->get('/searchNoticiaCrud', 'crudController::searchNoticiaCrud');
+$routes->get('/crearNoticia', 'NoticiesController::viewCrearNoticia');
+$routes->post('/crearNoticia', 'NoticiesController::crearNoticia');
+$routes->get('/editNoticia/(:num)', 'NoticiesController::editNoticia/$1');
+$routes->post('/updateNoticia/(:num)', 'NoticiesController::updateNoticia/$1');
+$routes->get('/deleteNoticia/(:num)', 'NoticiesController::deleteNoticia/$1');
+$routes->get('/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
+$routes->get('/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');

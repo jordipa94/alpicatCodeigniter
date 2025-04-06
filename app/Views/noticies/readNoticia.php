@@ -1,4 +1,4 @@
-<?php echo $this->extend('plantilla'); ?>
+<?php echo $this->extend('layouts/plantilla'); ?>
 
 <?php echo $this->section('contingut'); ?>
 

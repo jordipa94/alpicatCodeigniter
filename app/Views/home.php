@@ -1,4 +1,4 @@
-<?php echo $this->extend('plantilla'); ?>
+<?php echo $this->extend('layouts/plantilla'); ?>
 
 <?php echo $this->section('contingut'); ?>
 <style>
@@ -114,7 +114,7 @@ footer .social {
     <div class="welcomeDiv">
         <h2>"BENVINGUTS A U.E.A"</h2>
         <p>*foto nens jugant*</p>
-        <a class="w3-button w3-white w3-hover-green w3-round" href="./pages/log/login.html">INSCRIU-TE ARA</a>
+        <a class="w3-button w3-white w3-hover-green w3-round" href="#">INSCRIU-TE ARA</a>
     </div>
 
     <div class="teamDiv">
