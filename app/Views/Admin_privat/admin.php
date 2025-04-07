@@ -196,7 +196,9 @@
             <ul>
                 <li class="menu-item"><a href="#">anuncios</a>
                     <ul class="submenu">
-                        <li><a href="<?php base_url('/crearNoticia') ?>">apartado para crear noticias o anuncios </a></li>
+                        <li><a href="<?php echo base_url('/crearNoticia') ?>">apartado para crear noticias o anuncios </a>
+                    
+                    </li>
                     </ul>
                 </li>
                 <li class="menu-item"><a href="#">contatct</a>
@@ -245,33 +247,44 @@
         <div class="header">
             <h2>Team Dashboard</h2>
             <div class="user-info">
-                <img src="https://via.placeholder.com/40" alt="User">
+                <img src="https://via.placeholder.com/40" alt="$User_name">
                 <span>Admin</span>
             </div>
         </div>
         
         <div class="stats-cards">
             <div class="card">
-                <h3>Total Players</h3>
+                <h3><a href="<?php echo base_url('/noticies'); ?>">Total noticias</a></h3>
                 <p>45</p>
             </div>
             <div class="card">
-                <h3>Active Training</h3>
-                <p>12</p>
+                <h3>Active noticias</h3>
+                <p>$num noticias
+                <?php
+                ?>
+                
+                </p>
             </div>
             <div class="card">
-                <h3>Upcoming Games</h3>
-                <p>3</p>
+                <h3>noticas borradas</h3>
+                <p>$num_deleted_at</p>
             </div>
             <div class="card">
-                <h3>Injuries</h3>
+                <h3>Admins</h3>
                 <p>2</p>
             </div>
         </div>
         
         <div class="main-card">
-            <h2>Team Performance Overview</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+            <h2>Noticias Overview</h2>
+<div class="w3-third w3-margin-bottom">
+    <div class="w3-card w3-padding w3-white">
+        <img src="../images/galeria.png" alt="">
+    </div>
+</div>
+
+
+</div>  
         </div>
     </div>
 </body>

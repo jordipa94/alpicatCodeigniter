@@ -37,6 +37,10 @@ $routes->get('/readNoticia/(:num)', 'crudController::readNoticia/$1');
 $routes->get('/searchNoticiaCrud', 'crudController::searchNoticiaCrud');
 
 //LOGIN ADMIN
+$routes->get('/administracio_log','AdministracioController::login_dashboard');
+$routes->post('/administracio_log/(:num)','AdministracioController::login_dashboard/$1');
+$routes->get('/administracio_log_dark','AdministracioController::login_dashboard_dark');
+$routes->post('/administracio_log_post','AdministracioController::login_post');
 
 //ADMINISTRACION
 $routes->get('/administracio','AdministracioController::index');

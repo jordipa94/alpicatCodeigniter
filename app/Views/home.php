@@ -114,11 +114,12 @@ footer .social {
     <div class="welcomeDiv">
         <h2>"BENVINGUTS A U.E.A"</h2>
         <p>*foto nens jugant*</p>
-        <a class="w3-button w3-white w3-hover-green w3-round" href="./pages/log/login.html">INSCRIU-TE ARA</a>
+        <a class="w3-button w3-white w3-hover-green w3-round" href="<?php echo base_url('administracio_log');?>">INSCRIU-TE ARA</a>
     </div>
 
     <div class="teamDiv">
         <h2>UNEIX-TE AL NOSTRE EQUIP</h2>
+        <a href="<?php echo base_url('administracio') ?>">Administracion</a>
         <p>ENTRENEM FUTURS CAMPIONS</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nisi sit perferendis, sunt commodi eum et fugiat ipsa mollitia adipisci modi laudantium quam inventore quibusdam accusantium quas amet labore exercitationem.</p>
     </div>

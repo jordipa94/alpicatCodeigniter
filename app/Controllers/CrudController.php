@@ -58,6 +58,7 @@ class CrudController extends BaseController
     }
 
     // VIEW PER EDITAR LA NOTICIA
+
     public function editNoticia($id)
     {
         $model = new NoticiesModel();
@@ -66,7 +67,7 @@ class CrudController extends BaseController
         if (!$noticia) {
             return redirect()->to(base_url('editNoticia/').$id);
         }
-
+        
         return view('crudNoticies/editNoticia', ['noticia' => $noticia]);
     }
 
