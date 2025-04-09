@@ -201,9 +201,16 @@
                     </li>
                     </ul>
                 </li>
-                <li class="menu-item"><a href="#">contatct</a>
+                <li class="menu-item"><a href="#">Contacts</a>
                     <ul class="submenu">
-                        <li><a href="#">Contact , lo que se guarda en la tabla contactos </a></li>
+                        <li><a href="#">Administrar Contacts</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="#">Usuaris disponibles</a>
+                    <ul class="submenu">
+                        <li><a href="<?php echo base_url('administracio_users') ?>">Administrar Usuaris </a>
+                    
+                    </li>
                     </ul>
                 </li>
             </ul>

@@ -41,6 +41,12 @@ $routes->get('/administracio_log','AdministracioController::login_dashboard');
 $routes->post('/administracio_log/(:num)','AdministracioController::login_dashboard/$1');
 $routes->get('/administracio_log_dark','AdministracioController::login_dashboard_dark');
 $routes->post('/administracio_log_post','AdministracioController::login_post');
-
+//REGISTRACION ADMIN
+$routes->get('/registrar','AdministracioController::Registrar');
+$routes->post('/registrar_post','AdministracioController::Registrar_post');
 //ADMINISTRACION
 $routes->get('/administracio','AdministracioController::index');
+//ADMINISTRACION USERS
+$routes->get('/administracio_users','AdministracioController::users_Admin');
+//BUSCADOR USER 
+$routes->get('/searchUser','AdministracioController::searchUser');

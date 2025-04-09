@@ -11,6 +11,8 @@ class CrudController extends BaseController
 
     public function viewCrearNoticia()
     {
+
+        
         $noticiesModel = new NoticiesModel();
 
         $data['noticies'] = $noticiesModel->paginate(6, 'default');
@@ -135,7 +137,7 @@ class CrudController extends BaseController
     {
         $keyword = $this->request->getGet('keyword');
         $noticiesModel = new NoticiesModel();
-
+        
         if ($keyword) {
             $noticiesModel->groupStart()
                         ->like('nom', $keyword)
