@@ -18,6 +18,7 @@ class NoticiesController extends BaseController
         echo view('noticies/noticies', $data);
     }
 
+    //BUSCADOR DE NOTICIES
     public function searchNoticia()
     {
         $keyword = $this->request->getGet('keyword');
@@ -37,6 +38,7 @@ class NoticiesController extends BaseController
         return view('noticies/noticies', $data);
     }
 
+    // VIEW PER CREAR NOTICIES
     public function viewCrearNoticia()
     {
         $noticiesModel = new NoticiesModel();
@@ -47,6 +49,7 @@ class NoticiesController extends BaseController
         echo view('noticies/crearNoticia',$data);
     }
     
+    // POST PER CREAR NOTICIES DES DEL CRUD
     public function crearNoticia()
     {
         
@@ -125,6 +128,7 @@ class NoticiesController extends BaseController
         }
     }
 
+    // ELIMINAR NOTICIA
     public function deleteNoticia($id)
     {
         $noticiesModel = new NoticiesModel();
@@ -139,6 +143,40 @@ class NoticiesController extends BaseController
         return redirect()->back()->with('success', 'Notícia eliminada correctament.');
     }
 
+    public function recycleBinNoticia()
+    {
+        $noticiesModel = new NoticiesModel();
+        $data['noticies'] = $noticiesModel->onlyDeleted()->paginate(6, 'default');
+        $data['pager'] = $noticiesModel->pager;
+        
+        return view('noticies/papeleraNoticies', $data);
+    }
+
+    // RESTAURAR NOTICIA DE LA PAPELERA
+    public function restaurarNoticia($id = null)
+    {
+    $noticiesModel = new NoticiesModel();
+
+    $noticia = $noticiesModel->withDeleted()->find($id);
+
+    if ($noticia['deleted_at'] !== null) {
+        // Aquí utilitzem update() però assegurem que hi ha dades a modificar
+
+        $data = [
+            'deleted_at' => null,
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        $noticiesModel->update($id, $data);
+        
+
+        return redirect()->to('/papeleraNoticies');
+    }
+
+    return redirect()->to('/papeleraNoticies');
+    }
+
+    // BUSCADOR DE NOTICIES DES DEL CRUD
     public function searchNoticiaCrud()
     {
         $keyword = $this->request->getGet('keyword');

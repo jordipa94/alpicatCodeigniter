@@ -36,5 +36,7 @@ $routes->post('/crearNoticia', 'NoticiesController::crearNoticia');
 $routes->get('/editNoticia/(:num)', 'NoticiesController::editNoticia/$1');
 $routes->post('/updateNoticia/(:num)', 'NoticiesController::updateNoticia/$1');
 $routes->get('/deleteNoticia/(:num)', 'NoticiesController::deleteNoticia/$1');
+$routes->get('/papeleraNoticies', 'NoticiesController::recycleBinNoticia');
+$routes->get('/restaurarNoticia/(:num)', 'NoticiesController::restaurarNoticia/$1');
 $routes->get('/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
 $routes->get('/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');

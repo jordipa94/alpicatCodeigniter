@@ -45,6 +45,7 @@
       <button class="w3-button w3-gray">ADMIN</button>
       <div class="w3-dropdown-content w3-bar-block w3-gray">
         <a href="/crearNoticia" class="w3-bar-item w3-button w3-hover-blue">CRUD NOTICIES</a>
+        <a href="/papeleraNoticies" class="w3-bar-item w3-button w3-hover-blue">PAPELERA NOTICIES</a>
         <a href="/gestioContacte" class="w3-bar-item w3-button w3-hover-blue">GESTIO CONTACTE</a>
       </div>
     </div>
