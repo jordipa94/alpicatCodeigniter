@@ -26,18 +26,38 @@
     
     <!-- DIVS AMB NOTICIES -->
 
-    <?php 
-     foreach($users as $user): ?>
 
-    <div class="w3-third w3-margin-bottom">
-        <div class="w3-card w3-padding w3-white">
-            <h3><?= esc($user['User_name'])?></h3>
-            <br>
-            <p><?= esc($user['User_name'])?></p>
-        </div>
-    </div>
+     <table class="w3-table w3-bordered w3-striped w3-card-4">
+     <thead>
+         <tr class="w3-light-grey">
+             <th>ID</th>
+             <th>Nom</th>
+             <th>Nom</th>
+             <th>Email</th>
+             <th>Password</th>
+             <th>Opcions</th>
+         </tr>
+     </thead>
+     <tbody>
+         <?php foreach($users as $user): ?>
+         <tr>
+             <td><?= esc($user['id_usr'])?></td>
+             <td><?= esc($user['User_name'])?></td>
+             <td><?= esc($user['User_name'])?></td>
+             <td><?= esc($user['User_email'])?></td>
+             <td><?= esc($user['User_password'])?></td>
+             <td>
+                 <button class="w3-button w3-gray"><a href="">Veure</a></button>
+                 <button class="w3-button w3-yellow"><a href="">Editar</a></button>
+                 <button class="w3-button w3-red"><a href="<?= base_url('deleteUser/' . esc($user['id_usr'])) ?>">Eliminar</a></button>
+             </td>
+         </tr>
+         <?php endforeach; ?>
+     </tbody>
+ </table>
 
-    <?php endforeach; ?>
+
+    
 
 </div>
 

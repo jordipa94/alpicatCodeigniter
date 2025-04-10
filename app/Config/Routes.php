@@ -50,3 +50,5 @@ $routes->get('/administracio','AdministracioController::index');
 $routes->get('/administracio_users','AdministracioController::users_Admin');
 //BUSCADOR USER 
 $routes->get('/searchUser','AdministracioController::searchUser');
+//CRUD USERS
+$routes->get('/deleteUser/(:num)', 'AdministracioController::deleteUser/$1');

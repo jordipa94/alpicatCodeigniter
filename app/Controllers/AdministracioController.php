@@ -27,7 +27,7 @@ class AdministracioController extends BaseController
         $UersModel = new \App\Models\UsersModel();
         $data['users']= $UersModel->paginate(6,'default');
         $data['pager'] = $UersModel->pager;
-        
+
         $user = $UersModel->findall();
 
         echo view('Admin_privat/admin_users',$data);
@@ -35,11 +35,16 @@ class AdministracioController extends BaseController
     }
     //delete user
     public function deleteUser($id){
-        $UersModel = new \App\Models\UsersModel();
+        $UsersModel = new \App\Models\UsersModel();
         
-        $UersModel->delete($id);
+        $user = $UsersModel->find($id);
+        if (!$user) {
+            return redirect()->back()->with('error', 'Notícia no trobada.');
+        }
 
-        return redirect()->to('/administracio_users');
+        $UsersModel->delete($id);
+
+        return redirect()->to('/administracio_users')->with('Eliminado','Has eliminado correctamente el usuario ');
     }
 
     public function Registrar(){
