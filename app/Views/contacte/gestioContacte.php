@@ -9,6 +9,18 @@
     <div class="w3-padding">
 
     <h1>Gestio de Contacte</h1>
+    
+    <div style="max-width:200px">
+        <form action="<?= base_url('gestioContacte/filtrar') ?>" method="get" id="filtrarForm">
+            <label for="categoria">Filtrar per Categoria</label>
+            <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom" onchange="document.getElementById('filtrarForm').submit()">
+                <option value="" <?= (empty($categoria)) ? 'selected' : '' ?> >Totes les Categories</option>
+                <option value="VETERANS" <?= isset($categoria) && $categoria == 'VETERANS' ? 'selected' : '' ?>>VETERANS</option>
+                <option value="JUVENIL" <?= isset($categoria) && $categoria == 'JUVENIL' ? 'selected' : '' ?>>JUVENIL</option>
+                <option value="INFANTIL" <?= isset($categoria) && $categoria == 'INFANTIL' ? 'selected' : '' ?>>INFANTIL</option>
+            </select>
+        </form>
+    </div>
 
         <table class="w3-table w3-bordered w3-striped w3-card-4">
             <thead>
@@ -18,6 +30,7 @@
                     <th>Missatge</th>
                     <th>Telefono</th>
                     <th>Correu</th>
+                    <th>Categoria</th>
                     <th>Data de creacio</th>
                     <th>Opcions</th>
                 </tr>
@@ -30,6 +43,7 @@
                     <td><?= esc($missatge['missatge'])?></td>
                     <td><?= esc($missatge['telefono'])?></td>
                     <td><?= esc($missatge['correu'])?></td>
+                    <td><?= esc($missatge['categoria'])?></td>
                     <td><?= esc($missatge['created_at'])?></td>
                     <td>
                         <button class="w3-button w3-gray"><a href="<?= base_url('readContactForm/' . esc($missatge['id'])) ?>">Veure</a></button>

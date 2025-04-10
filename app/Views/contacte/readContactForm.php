@@ -18,6 +18,8 @@
 
         <p class="w3-text-dark-grey">CORREU: <?= esc($missatge['correu']) ?></p>
 
+        <p class="w3-text-dark-grey">DATA CREACIÓ: <?= esc($missatge['created_at']) ?></p>
+
     </div>
 
 </div>

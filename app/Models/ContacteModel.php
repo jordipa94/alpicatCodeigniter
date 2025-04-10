@@ -12,7 +12,7 @@ class ContacteModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['concepte','missatge','telefono','correu'];
+    protected $allowedFields    = ['concepte','missatge','telefono','correu','categoria'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

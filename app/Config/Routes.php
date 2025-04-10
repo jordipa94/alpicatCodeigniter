@@ -28,6 +28,7 @@ $routes->get('/galeria', 'GaleriaController::galeria');
 $routes->get('/contacte', 'ContacteController::index');
 $routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
 $routes->get('/gestioContacte', 'ContacteController::gestionarContacte');
+$routes->get('/gestioContacte/filtrar', 'ContacteController::filtrar');
 $routes->get('/readContactForm/(:num)', 'ContacteController::readContactForm/$1');
 
 //CRUD NOTICIES

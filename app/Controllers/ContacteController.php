@@ -19,11 +19,44 @@ class ContacteController extends BaseController
         $model = new ContacteModel();
 
         $validationRules = [
-            'concepte' => 'required|max_length[255]',
-            'missatge' => 'required',
-            'telefono' => 'required',
-            'correu' => 'required',
-        ];
+            'concepte' => [
+                'label' => 'Concepte',
+                'rules' => 'required|max_length[255]',
+                'errors' => [
+                    'required' => 'El camp {field} és obligatori.',
+                    'max_length' => 'El {field} no pot tenir més de {param} caràcters.'
+                ]
+            ],
+            'missatge' => [
+                'label' => 'Missatge',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'El camp {field} és obligatori.'
+                ]
+            ],
+            'telefono' => [
+                'label' => 'Telèfon',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'El camp {field} és obligatori.'
+                ]
+            ],
+            'correu' => [
+                'label' => 'Correu electrònic',
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => 'El camp {field} és obligatori.',
+                    'valid_email' => 'El {field} no és vàlid.'
+                ]
+            ],
+            'categoria' => [
+                'label' => 'Categoria',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Selecciona una {field}.'
+                ]
+            ],
+        ];        
 
         if ($this->validate($validationRules)) {
 
@@ -31,28 +64,45 @@ class ContacteController extends BaseController
             $missatge = $this->request->getPost('missatge');
             $telefono = $this->request->getPost('telefono');
             $correu = $this->request->getPost('correu');
+            $categoria = $this->request->getPost('categoria');
 
             $model->insert(["concepte" => $concepte, "missatge" => $missatge,
-                "telefono" => $telefono, "correu" => $correu]);
+                "telefono" => $telefono, "correu" => $correu,"categoria" => $categoria]);
 
             return redirect()->to('/contacte')->with('success', 'Missatge enviat correctament!');
 
         } else {
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
         
     }
 
     public function gestionarContacte()
     {
+    $contacteModel = new ContacteModel();
 
-        $contacteModel = new ContacteModel();
+    $categoria = $this->request->getGet('categoria');
 
-        $data['missatges'] = $contacteModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
-        $data['pager'] = $contacteModel->pager;
+    if (!empty($categoria)) {
+        $data['missatges'] = $contacteModel
+            ->where('categoria', $categoria)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(6, 'default');
+    } else {
+        $data['missatges'] = $contacteModel
+            ->orderBy('created_at', 'DESC')
+            ->paginate(6, 'default');
+    }
 
-        echo view('/contacte/gestioContacte', $data);
+    $data['pager'] = $contacteModel->pager;
+    $data['categoria'] = $categoria;
 
+    echo view('/contacte/gestioContacte', $data);
+    }
+
+    public function filtrar()
+    {
+        return $this->gestionarContacte();
     }
 
     public function readContactForm($id)

@@ -29,6 +29,10 @@ class Contacte extends Migration
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
                 ],
+                'categoria'          => [
+                        'type'           => 'VARCHAR',
+                        'constraint'     => '255',
+                ],
                 'created_at'      =>  [
                           'type'         =>  'DATETIME',
                            'null'         =>  true,

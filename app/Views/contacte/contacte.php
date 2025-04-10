@@ -8,18 +8,44 @@
     <div class="w3-row">
         <div class="w3-col l6 m6 s12 w3-border-right">
             <div class="w3-padding">
+
+                <?php if (session()->has('errors')): ?>
+                    <div class="w3-panel w3-red">
+                        <ul>
+                            <?php foreach (session('errors') as $error): ?>
+                                <li><?= esc($error) ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (session()->getFlashdata('success')): ?>
+                    <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
+                        <?= session('success') ?>
+                    </div>
+                <?php endif; ?>
+
                 <form action="enviarFormulariContacte" method="post" class="w3-container">
                     <label for="concepte" class="w3-text-black">CONCEPTE</label>
-                    <input id="concepte" name="concepte" type="text" class="w3-input w3-border w3-margin-bottom">
+                    <input id="concepte" name="concepte" type="text" value="<?= old('concepte') ?>" class="w3-input w3-border w3-margin-bottom">
 
                     <label for="missatge" class="w3-text-black">MISSATGE</label>
-                    <textarea id="missatge" name="missatge" class="w3-input w3-border w3-margin-bottom"></textarea>
+                    <textarea id="missatge" name="missatge" class="w3-input w3-border w3-margin-bottom"><?= old('missatge') ?></textarea>
 
                     <label for="telefono" class="w3-text-black">TELEFONO</label>
-                    <input id="telefono" name="telefono" class="w3-input w3-border w3-margin-bottom"></input>
+                    <input id="telefono" name="telefono" value="<?= old('telefono') ?>" class="w3-input w3-border w3-margin-bottom"></input>
 
                     <label for="correu" class="w3-text-black">CORREU</label>
-                    <input id="correu" name="correu" class="w3-input w3-border w3-margin-bottom"></input>
+                    <input id="correu" name="correu" value="<?= old('correu') ?>" class="w3-input w3-border w3-margin-bottom"></input>
+
+                    <!-- Dropdown Categoria -->
+                    <label for="categoria" class="w3-text-black">CATEGORIA</label>
+                    <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom">
+                        <option value="" disabled selected>Selecciona una opció</option>
+                        <option value="VETERANS">VETERANS</option>
+                        <option value="JUVENIL">JUVENIL</option>
+                        <option value="INFANTIL">INFANTIL</option>
+                    </select>
 
                     <button type="submit" class="w3-button w3-blue">ENVIAR</button>
                 </form>
