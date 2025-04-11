@@ -28,7 +28,7 @@
 
     <!-- Menú desplegable -->
     <div class="w3-dropdown-hover">
-      <button class="w3-button w3-gray">Sobre Nosaltres</button>
+      <button class="w3-button w3-gray">Sobre Nosaltres <span style="font-size:20px">&#9662;</span></button>
       <div class="w3-dropdown-content w3-bar-block w3-gray">
         <a href="/historia" class="w3-bar-item w3-button w3-hover-blue">Història</a>
         <a href="/club" class="w3-bar-item w3-button w3-hover-blue">Club</a>
@@ -42,7 +42,7 @@
 
     <!-- MENU ADMIN -->
     <div class="w3-dropdown-hover"style="margin-left: 15vw;">
-      <button class="w3-button w3-gray">ADMIN</button>
+      <button class="w3-button w3-gray">ADMIN <span style="font-size:20px">&#9662;</span></button>
       <div class="w3-dropdown-content w3-bar-block w3-gray">
         <a href="/crearNoticia" class="w3-bar-item w3-button w3-hover-blue">CRUD NOTICIES</a>
         <a href="/papeleraNoticies" class="w3-bar-item w3-button w3-hover-blue">PAPELERA NOTICIES</a>

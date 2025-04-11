@@ -8,11 +8,13 @@ use App\Models\ContacteModel;
 
 class ContacteController extends BaseController
 {
+    //VISTA DE CONTACTE
     public function index()
     {
         echo view("contacte/contacte");
     }
 
+    //ENVIAR FORMULARI DE CONTACTE
     public function enviarFormulariContacte()
     {
 
@@ -69,7 +71,7 @@ class ContacteController extends BaseController
             $model->insert(["concepte" => $concepte, "missatge" => $missatge,
                 "telefono" => $telefono, "correu" => $correu,"categoria" => $categoria]);
 
-            return redirect()->to('/contacte')->with('success', 'Missatge enviat correctament!');
+            return redirect()->back()->with('success', 'Missatge enviat correctament!');
 
         } else {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
@@ -77,6 +79,7 @@ class ContacteController extends BaseController
         
     }
 
+    //VISTA GESTIONAR CONTACTE
     public function gestionarContacte()
     {
     $contacteModel = new ContacteModel();
@@ -100,11 +103,13 @@ class ContacteController extends BaseController
     echo view('/contacte/gestioContacte', $data);
     }
 
+    //FILTRAR CONTACTE PER CATEGORIA
     public function filtrar()
     {
         return $this->gestionarContacte();
     }
 
+    //READ CONTACTE
     public function readContactForm($id)
     {
         $contacteModel = new ContacteModel();
@@ -114,5 +119,4 @@ class ContacteController extends BaseController
         echo view('/contacte/readContactForm', $data);
 
     }
-
 }

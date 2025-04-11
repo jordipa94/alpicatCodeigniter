@@ -64,11 +64,11 @@ class NoticiesController extends BaseController
 
             $nom = $this->request->getPost('nom');
             $contingut = $this->request->getPost('contingut');
-            $url = url_title($nom);
+            $url = base_url('readNoticia/' . $id);
 
             $model->insert(["nom" => $nom, "contingut" => $contingut,"url" => $url]);
 
-            return redirect()->to('/crearNoticia');
+            return redirect()->back()->with('success', 'Notícia creada correctament.');
 
         } else {
             return redirect()->back()->withInput();
@@ -115,14 +115,19 @@ class NoticiesController extends BaseController
             return redirect()->to(base_url('editNoticia/').$id)->withInput();
         }
 
+        $nom = $this->request->getPost('nom');
+        $contingut = $this->request->getPost('contingut');
+
+        $url = base_url('readNoticia/' . $id);
+
         $data = [
-            'nom' => $this->request->getPost('nom'),
-            'contingut' => $this->request->getPost('contingut'),
-            'url'=> $this->request->getPost('nom'),
+            'nom' => $nom,
+            'contingut' => $contingut,
+            'url' => $url,
         ];
 
         if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/crearNoticia'));
+            return redirect()->to(base_url('/crearNoticia'))->with('success', 'Notícia editada correctament.');
         } else {
             return redirect()->to(base_url('editNoticia/').$id);
         }
@@ -160,7 +165,6 @@ class NoticiesController extends BaseController
     $noticia = $noticiesModel->withDeleted()->find($id);
 
     if ($noticia['deleted_at'] !== null) {
-        // Aquí utilitzem update() però assegurem que hi ha dades a modificar
 
         $data = [
             'deleted_at' => null,
@@ -168,9 +172,8 @@ class NoticiesController extends BaseController
         ];
 
         $noticiesModel->update($id, $data);
-        
 
-        return redirect()->to('/papeleraNoticies');
+        return redirect()->back()->with('success', 'Notícia restaurada correctament.');
     }
 
     return redirect()->to('/papeleraNoticies');

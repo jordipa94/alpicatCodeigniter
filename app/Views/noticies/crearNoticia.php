@@ -10,6 +10,13 @@
 
     <h2>CREAR NOTICIA</h2>
 
+    <?php if (session()->getFlashdata('success')): ?>
+        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
+            <?= session('success') ?>
+        </div>
+    <?php endif; ?>
+
+    <!-- FORMULARI PER CREAR UNA NOVA NOTICIA -->
     <form action="crearNoticia" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
         
         <label for="nom" class="w3-text-dark-grey">Nom</label>
@@ -23,6 +30,7 @@
         </div>
     </form>
 
+    <!-- BUSCADOR DE NOTICIES CRUD -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('searchNoticiaCrud') ?>" method="GET" class="w3-center">
             <div class="w3-row" style="max-width: 400px; margin: auto;">
@@ -52,8 +60,8 @@
             <?php foreach($noticies as $noticia): ?>
             <tr>
                 <td><?= esc($noticia['id'])?></td>
-                <td><?= esc($noticia['nom'])?></td>
-                <td><?= esc($noticia['contingut'])?></td>
+                <td><?= character_limiter($noticia['nom'], 20) ?></td>
+                <td><?= character_limiter($noticia['contingut'], 50) ?></td>
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['created_at'])?></td>
                 <td>

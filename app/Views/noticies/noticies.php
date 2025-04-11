@@ -10,6 +10,7 @@
 
     <h2>LLISTAT NOTICIES</h2>
 
+    <!-- BUSCADOR DE NOTICIES -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('searchNoticia') ?>" method="GET" class="w3-center">
             <div class="w3-row" style="max-width: 400px; margin: auto;">
@@ -25,19 +26,20 @@
     </div>
     
     <!-- DIVS AMB NOTICIES -->
+    <div class="w3-row-padding">
+        <?php foreach($noticies as $noticia): ?>
 
-    <?php foreach($noticies as $noticia): ?>
-
-    <div class="w3-third w3-margin-bottom">
-        <div class="w3-card w3-padding w3-white">
-            <h3><?= esc($noticia['nom'])?></h3>
-            <img src="../images/galeria.png" alt="">
-            <p><?= esc($noticia['contingut'])?></p>
-            <a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
+        <div class="w3-third w3-margin-bottom">
+            <div class="w3-card w3-padding w3-white">
+                <h3><?= esc($noticia['nom'])?></h3>
+                <img src="../images/galeria.png" alt="">
+                <p><?= esc($noticia['contingut'])?></p>
+                <a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
+            </div>
         </div>
-    </div>
 
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
 
 </div>
 

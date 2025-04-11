@@ -10,7 +10,7 @@
 
     <div class="w3-card-4 w3-round w3-light-grey w3-padding">
 
-        <h2 class="w3-text-dark-grey"><?= esc($missatge['concepte']) ?></h2>
+        <h2 class="w3-text-dark-grey"><?= esc($missatge['concepte']) ?> - <?= esc($missatge['categoria']) ?></h2>
 
         <p class="w3-text-dark-grey">MISSATGE: <?= esc($missatge['missatge']) ?></p>
 
