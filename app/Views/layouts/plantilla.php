@@ -5,18 +5,18 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
-  footer {
-    margin-top: auto;
-    width: 100%;
+footer {
+  margin-top: auto;
+  width: 100%;
 }
-  .dropdown:hover .dropdown-content {
-    display: block;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 </style>
 <body>

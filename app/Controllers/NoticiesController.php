@@ -52,7 +52,7 @@ class NoticiesController extends BaseController
     // POST PER CREAR NOTICIES DES DEL CRUD
     public function crearNoticia()
     {
-        
+
         $model = new NoticiesModel();
 
         $validationRules = [
@@ -64,9 +64,15 @@ class NoticiesController extends BaseController
 
             $nom = $this->request->getPost('nom');
             $contingut = $this->request->getPost('contingut');
-            $url = base_url('readNoticia/' . $id);
 
-            $model->insert(["nom" => $nom, "contingut" => $contingut,"url" => $url]);
+            $id = $model->insert([
+                "nom" => $nom,
+                "contingut" => $contingut,
+            ]);
+            
+            $model->update($id, [
+                'url' => base_url('readNoticia/' . $id),
+            ]);
 
             return redirect()->back()->with('success', 'Notícia creada correctament.');
 

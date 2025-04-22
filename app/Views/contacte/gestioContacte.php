@@ -40,7 +40,7 @@
             <?php foreach($missatges as $missatge): ?>
             <tr>
                 <td><?= esc($missatge['id'])?></td>
-                <td><?= character_limiter($missatge['missatge'], 20) ?></td>
+                <td><?= character_limiter($missatge['concepte'], 20) ?></td>
                 <td><?= character_limiter($missatge['missatge'], 40) ?></td>
                 <td><?= esc($missatge['telefono'])?></td>
                 <td><?= esc($missatge['correu'])?></td>
