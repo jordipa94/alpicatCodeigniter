@@ -2,6 +2,12 @@
 
 <?php echo $this->section('contingut'); ?>
 
-    <h1 class="w3-padding">Programes</h1>
+<div class="w3-container w3-padding">
+
+    <h1>Programes</h1>
+
+    <a href="/classificacioPrimerEquip">Classificació Primer Equip</a>
+
+</div>
     
 <?php echo $this->endSection(); ?>

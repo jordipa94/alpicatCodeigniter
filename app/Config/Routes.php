@@ -19,7 +19,7 @@ $routes->get('/searchNoticia', 'NoticiesController::searchNoticia');
 
 //CLASIFICACIONS
 $routes->get('/programes', 'ProgramesController::programes');
-$routes->get('/fcf', 'ProgramesController::fcfPrimerEquip');
+$routes->get('/classificacioPrimerEquip', 'ProgramesController::fcfPrimerEquip');
 
 //GALERIES
 $routes->get('/galeria', 'GaleriaController::galeria');
