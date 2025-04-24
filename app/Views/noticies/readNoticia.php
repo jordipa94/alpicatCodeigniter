@@ -15,7 +15,7 @@
         <p class="w3-text-dark-grey"><?= esc($noticia['contingut']) ?></p>
 
     </div>
-
+   
 </div>
 
 <?php echo $this->endSection(); ?>
