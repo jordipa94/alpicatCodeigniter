@@ -47,8 +47,8 @@
              <td><?= esc($user['User_email'])?></td>
              <td><?= esc($user['User_password'])?></td>
              <td>
-                 <button class="w3-button w3-gray"><a href="">Veure</a></button>
-                 <button class="w3-button w3-yellow"><a href="">Editar</a></button>
+                 <button class="w3-button w3-gray"><a href="<?= base_url('Ver_users/'.esc($user['id_usr'])) ?>">Veure</a></button>
+                 <button class="w3-button w3-yellow"><a href="<?= base_url('Ver_users/'.esc($user['id_usr'])) ?>">Editar</a></button>
                  <button class="w3-button w3-red"><a href="<?= base_url('deleteUser/' . esc($user['id_usr'])) ?>">Eliminar</a></button>
              </td>
          </tr>

@@ -273,9 +273,27 @@
                 </p>
             </div>
             <div class="card">
-                <h3>noticas borradas</h3>
+                <h3>noticas</h3>
                 <p>$num_deleted_at</p>
             </div>
+        
+            <div class="card">
+                <h3>noticias </h3>
+                <p>Option Categoria</p>
+            </div>
+            <div class="card">
+                <h3>Contacts </h3>
+                <p>Option Categoria</p>
+            </div>
+            <div class="card">
+                <h3>Galeria </h3>
+                <p>Option Categoria</p>
+            </div>
+            <div class="card">
+                <h3>Programes Alpicat </h3>
+                <p>Option Categoria</p>
+            </div>
+
             <div class="card">
                 <h3>Admins</h3>
                 <p>2</p>

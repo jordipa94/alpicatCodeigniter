@@ -33,6 +33,17 @@ class AdministracioController extends BaseController
         echo view('Admin_privat/admin_users',$data);
     
     }
+    //ver User
+    public function readUser($id){
+        $UsersModel = new \App\Models\UsersModel();
+        $user = $UsersModel->find($id);
+        
+        if (!$user) {
+            return redirect()->to(base_url('/administracio_users'));
+        }
+
+        return view('Admin_privat/User_read', ['user' => $user]);
+    }
     //delete user
     public function deleteUser($id){
         $UsersModel = new \App\Models\UsersModel();
@@ -54,10 +65,24 @@ class AdministracioController extends BaseController
     }
     //Registrar User
     public function Registrar_post(){
-        
-        return view('Admin_privat/Regitrar');
 
+        $UsersModel = new \App\Models\UsersModel();
+        $data = [
+            'User_name' => $this->request->getPost('User_name'),
+            'User_email' => $this->request->getPost('User_email'),
+            'User_password' => password_hash($this->request->getPost('User_password'), PASSWORD_DEFAULT),
+            'VUser_password' => password_hash($this->request->getPost('VUser_password'), PASSWORD_DEFAULT),
+        ];
+        
+       // redirect()->to('/login_dashboard')->with('success','Señor '.$data['User_name'] .' Eres uno del equipo Alpicat , ya puedes hacer Login y Administrar la pagina web.');
+        $UsersModel->insert($data);
+        return redirect()->to('/administracio')->with('success','Señor '.$data['User_name'] .' Eres uno del equipo Alpicat , ya puedes hacer Login y Administrar la pagina web.');
     }
+
+
+
+
+
     //Search User 
     public function searchUser()
     {
@@ -76,6 +101,34 @@ class AdministracioController extends BaseController
 
         return view('Admin_privat/admin_users', $data);
     }
+    //Calenario 
+    public function calendar()
+    {
+        return view('/Admin_privat/Calendario/calendario');
+    }
+/*
+    public function loadEvents()
+    {
+        $eventModel = new \EventModel();
+        $events = $eventModel->findAll();
+        return $this->response->setJSON($events);
+    }
+*/
+/*
+    public function addEvent()
+    {
+        $eventModel = new EventModel();
+
+        $data = [
+            'title' => $this->request->getPost('title'),
+            'start' => $this->request->getPost('start'),
+            'end'   => $this->request->getPost('end'),
+        ];
+
+        $eventModel->insert($data);
+        return $this->response->setJSON(['status' => 'Event Added']);
+    }
+*/
 
 
 }
