@@ -76,7 +76,7 @@ class AdministracioController extends BaseController
         
        // redirect()->to('/login_dashboard')->with('success','Señor '.$data['User_name'] .' Eres uno del equipo Alpicat , ya puedes hacer Login y Administrar la pagina web.');
         $UsersModel->insert($data);
-        return redirect()->to('/administracio')->with('success','Señor '.$data['User_name'] .' Eres uno del equipo Alpicat , ya puedes hacer Login y Administrar la pagina web.');
+        return redirect()->to('/admin')->with('success','Señor '.$data['User_name'] .' Eres uno del equipo Alpicat , ya puedes hacer Login y Administrar la pagina web.');
     }
 
 

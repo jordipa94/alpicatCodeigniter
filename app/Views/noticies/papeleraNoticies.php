@@ -1,4 +1,4 @@
-<?php echo $this->extend('layouts/plantilla'); ?>
+<?php echo $this->extend('layouts/dashboard'); ?>
 
 <?php echo $this->section('contingut'); ?>
 
@@ -36,7 +36,7 @@
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['deleted_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('restaurarNoticia/' . esc($noticia['id'])) ?>">Restaurar Noticia</a></button>
+                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/restaurarNoticia/' . esc($noticia['id'])) ?>">Restaurar Noticia</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>

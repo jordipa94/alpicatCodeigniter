@@ -119,7 +119,7 @@ footer .social {
 
     <div class="teamDiv">
         <h2>UNEIX-TE AL NOSTRE EQUIP</h2>
-        <a href="<?php echo base_url('administracio') ?>">Administracion</a>
+        <a href="<?php echo base_url('admin') ?>">Administracion</a>
         <p>ENTRENEM FUTURS CAMPIONS</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nisi sit perferendis, sunt commodi eum et fugiat ipsa mollitia adipisci modi laudantium quam inventore quibusdam accusantium quas amet labore exercitationem.</p>
     </div>
@@ -130,10 +130,10 @@ footer .social {
         <?php foreach($noticies as $noticia): ?>
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding">
-                    <h3><?= esc($noticia['nom'])?></h3>
-                    <p><?= esc($noticia['contingut'])?></p>
+                    <h3><?= character_limiter($noticia['nom'], 30) ?></h3>
+                    <p><?= character_limiter($noticia['contingut'], 50) ?></p>
                     <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir més</a>
+                    <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir més</a>
                 </div>
             </div>
         <?php endforeach; ?>

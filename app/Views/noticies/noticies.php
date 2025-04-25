@@ -31,10 +31,10 @@
 
         <div class="w3-third w3-margin-bottom">
             <div class="w3-card w3-padding w3-white">
-                <h3><?= esc($noticia['nom'])?></h3>
+                <h3><?= character_limiter($noticia['nom'], 20) ?></h3>
                 <img src="../images/galeria.png" alt="">
-                <p><?= esc($noticia['contingut'])?></p>
-                <a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
+                <p><?= character_limiter($noticia['contingut'], 50) ?></p>
+                <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
             </div>
         </div>
 

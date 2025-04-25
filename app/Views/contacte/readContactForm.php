@@ -1,10 +1,10 @@
-<?php echo $this->extend('layouts/plantilla'); ?>
+<?php echo $this->extend('layouts/dashboard'); ?>
 
 <?php echo $this->section('contingut'); ?>
 
 <div class="w3-container">
 
-    <button class="w3-button w3-blue w3-margin-top"><a href="<?= base_url('/gestioContacte') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-blue w3-margin-top"><a href="<?= base_url('/admin/gestionarContacte') ?>">Tornar a inici</a></button>
 
     <h2 class="w3-text-blue">Formulari <?= esc($missatge['id']) ?></h2>
 

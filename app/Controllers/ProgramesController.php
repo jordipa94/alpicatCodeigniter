@@ -16,7 +16,7 @@ class ProgramesController extends BaseController
     
     
     public function fcfPrimerEquip()
-{
+    {
     $url = 'https://www.fcf.cat/classificacio/2425/futbol-11/segona-catalana/grup-5';
 
     function filterCellsByClass($cells, $classToAvoid) {
@@ -74,7 +74,7 @@ class ProgramesController extends BaseController
             }
         }
     }
-    return view('programes/fcfPrimerEquip', ['clasificacio' => $clasificacio]);
-}
+        return view('programes/fcfPrimerEquip', ['clasificacio' => $clasificacio]);
+    }
 
 }

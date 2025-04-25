@@ -27,20 +27,20 @@ $routes->get('/galeria', 'GaleriaController::galeria');
 //CONTACTE
 $routes->get('/contacte', 'ContacteController::index');
 $routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
-$routes->get('/gestioContacte', 'ContacteController::gestionarContacte');
-$routes->get('/gestioContacte/filtrar', 'ContacteController::filtrar');
-$routes->get('/readContactForm/(:num)', 'ContacteController::readContactForm/$1');
+$routes->get('/admin/gestionarContacte', 'ContacteController::gestionarContacte');
+$routes->get('/admin/gestionarContacte/filtrar', 'ContacteController::filtrar');
+$routes->get('/admin/readContactForm/(:num)', 'ContacteController::readContactForm/$1');
 
 //CRUD NOTICIES
-$routes->get('/crearNoticia', 'NoticiesController::viewCrearNoticia');
-$routes->post('/crearNoticia', 'NoticiesController::crearNoticia');
-$routes->get('/editNoticia/(:num)', 'NoticiesController::editNoticia/$1');
-$routes->post('/updateNoticia/(:num)', 'NoticiesController::updateNoticia/$1');
-$routes->get('/deleteNoticia/(:num)', 'NoticiesController::deleteNoticia/$1');
-$routes->get('/papeleraNoticies', 'NoticiesController::recycleBinNoticia');
-$routes->get('/restaurarNoticia/(:num)', 'NoticiesController::restaurarNoticia/$1');
-$routes->get('/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
-$routes->get('/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');
+$routes->get('/admin/crearNoticia', 'NoticiesController::viewCrearNoticia');
+$routes->post('/admin/crearNoticia', 'NoticiesController::crearNoticia');
+$routes->get('/admin/editNoticia/(:num)', 'NoticiesController::editNoticia/$1');
+$routes->post('/admin/updateNoticia/(:num)', 'NoticiesController::updateNoticia/$1');
+$routes->get('/admin/deleteNoticia/(:num)', 'NoticiesController::deleteNoticia/$1');
+$routes->get('/admin/papeleraNoticies', 'NoticiesController::recycleBinNoticia');
+$routes->get('/admin/restaurarNoticia/(:num)', 'NoticiesController::restaurarNoticia/$1');
+$routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
+$routes->get('/admin/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');
 
 //LOGIN ADMIN
 $routes->get('/administracio_log','AdministracioController::login_dashboard');
@@ -51,7 +51,7 @@ $routes->post('/administracio_log_post','AdministracioController::login_post');
 $routes->get('/registrar','AdministracioController::Registrar');
 $routes->post('/registrar_post','AdministracioController::Registrar_post');
 //ADMINISTRACION
-$routes->get('/administracio','AdministracioController::index');
+$routes->get('/admin','AdministracioController::index');
 //ADMINISTRACION USERS
 $routes->get('/administracio_users','AdministracioController::users_Admin');
 //CRUS USERS

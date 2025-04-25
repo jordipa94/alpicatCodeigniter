@@ -1,4 +1,4 @@
-<?php echo $this->extend('layouts/plantilla'); ?>
+<?php echo $this->extend('layouts/dashboard'); ?>
 
 <?php echo $this->section('contingut'); ?>
 
@@ -8,7 +8,7 @@
 
 <div class="w3-padding">
 
-    <h2>CREAR NOTICIA</h2>
+    <h1>Crear Noticia</h1>
 
     <?php if (session()->getFlashdata('success')): ?>
         <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
@@ -32,7 +32,7 @@
 
     <!-- BUSCADOR DE NOTICIES CRUD -->
     <div class="w3-container w3-center w3-padding-16">
-        <form action="<?= base_url('searchNoticiaCrud') ?>" method="GET" class="w3-center">
+        <form action="<?= base_url('/admin/searchNoticiaCrud') ?>" method="GET" class="w3-center">
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -61,13 +61,13 @@
             <tr>
                 <td><?= esc($noticia['id'])?></td>
                 <td><?= character_limiter($noticia['nom'], 20) ?></td>
-                <td><?= character_limiter($noticia['contingut'], 50) ?></td>
+                <td><?= character_limiter($noticia['contingut'], 40) ?></td>
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['created_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
-                    <button class="w3-button w3-yellow"><a href="<?= base_url('editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
-                    <button class="w3-button w3-red"><a href="<?= base_url('deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
+                    <button class="w3-button w3-gray"><a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
+                    <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
+                    <button class="w3-button w3-red"><a href="<?= base_url('admin/deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -133,7 +133,7 @@ class NoticiesController extends BaseController
         ];
 
         if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/crearNoticia'))->with('success', 'Notícia editada correctament.');
+            return redirect()->to(base_url('/admin/crearNoticia'))->with('success', 'Notícia editada correctament.');
         } else {
             return redirect()->to(base_url('editNoticia/').$id);
         }
