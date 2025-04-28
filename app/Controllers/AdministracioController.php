@@ -66,6 +66,7 @@ class AdministracioController extends BaseController
     //Registrar User
     public function Registrar_post(){
 
+        
         $UsersModel = new \App\Models\UsersModel();
         $data = [
             'User_name' => $this->request->getPost('User_name'),
@@ -80,10 +81,6 @@ class AdministracioController extends BaseController
     }
 
 
-
-
-
-    //Search User 
     public function searchUser()
     {
         $keyword = $this->request->getGet('keyword');
@@ -101,6 +98,7 @@ class AdministracioController extends BaseController
 
         return view('Admin_privat/admin_users', $data);
     }
+
     //Calenario 
     public function calendar()
     {
