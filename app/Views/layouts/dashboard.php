@@ -208,6 +208,20 @@
     <div class="divider"></div>
 
     <div class="menu-section">
+    <h3>Galeria</h3>
+
+<ul>
+
+    <li class="menu-item"><a href="<?php echo base_url('/galeria') ?>">Gestionar Galeria</a></li>
+
+</ul>
+<h3>Usuaris</h3>
+
+<ul>
+
+    <li class="menu-item"><a href="<?php echo base_url('/administracio_users') ?>">Gestionar Usuaris</a></li>
+
+</ul> 
 
         <h3>Contacte</h3>
 
@@ -216,7 +230,7 @@
             <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>">Gestionar Contacte</a></li>
 
         </ul>
-
+    
     </div>
 
     <div class="divider"></div>
