@@ -4,7 +4,7 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-blue w3-margin-top"><a href="<?= base_url('/admin/crearNoticia') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-blue w3-margin-top"><a href="<?= base_url('/admin/noticies/llistatNoticies') ?>">Tornar a inici</a></button>
 
     <h2>EDITAR NOTICIA</h2>
 
@@ -15,7 +15,7 @@
     <?php endif; ?>
 
     <div class="w3-padding">
-        <form action="<?= base_url('admin/updateNoticia/'.$noticia['id']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
+        <form action="<?= base_url('admin/noticies/updateNoticia/'.$noticia['id']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
 
             <label for="nom" class="w3-text-dark-grey">Nom</label>
             <input type="text" id="nombre" name="nom" class="w3-input w3-border w3-round" value="<?= esc($noticia['nom']) ?>" required>
