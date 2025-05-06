@@ -220,15 +220,17 @@
     </div>
 
     <div class="divider"></div>
-    
+
     <div class="menu-section">
-        <h3>Categorias</h3>
+
+        <h3>Configuracio</h3>
+
         <ul>
-            <li class="menu-item"><a href="#">1er</a></li>
-            <li class="menu-item"><a href="#">2sec</a></li>
-            <li class="menu-item"><a href="#">3er</a></li>
-            <li class="menu-item"><a href="#">4cua</a></li>
+
+            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarConfig') ?>">Gestionar Configuracio</a></li>
+
         </ul>
+
     </div>
     
 </div>

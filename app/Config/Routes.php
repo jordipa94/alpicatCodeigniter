@@ -29,7 +29,7 @@ $routes->get('/contacte', 'ContacteController::index');
 $routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
 $routes->get('/admin/gestionarContacte', 'ContacteController::gestionarContacte');
 $routes->get('/admin/gestionarContacte/filtrar', 'ContacteController::filtrar');
-$routes->get('/admin/readContactForm/(:num)', 'ContacteController::readContactForm/$1');
+$routes->get('/admin/gestionarContacte/readContactForm/(:num)', 'ContacteController::readContactForm/$1');
 
 //CRUD NOTICIES
 $routes->get('/admin/crearNoticia', 'NoticiesController::viewCrearNoticia');
@@ -41,6 +41,9 @@ $routes->get('/admin/papeleraNoticies', 'NoticiesController::recycleBinNoticia')
 $routes->get('/admin/restaurarNoticia/(:num)', 'NoticiesController::restaurarNoticia/$1');
 $routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
 $routes->get('/admin/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');
+
+//CONFIGURACIO
+$routes->get('/admin/gestionarConfig', 'ConfigController::index');
 
 //LOGIN ADMIN
 $routes->get('/administracio_log','AdministracioController::login_dashboard');

@@ -214,6 +214,9 @@
         <br>
         <!-- Formulario de login -->
         <form action="#" method="POST">
+
+            <?= csrf_field(); ?>
+
             <div class="form-group">
                 <input type="text" class="input-field" placeholder="Usuario" required />
             </div>

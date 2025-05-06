@@ -18,6 +18,8 @@
 
     <!-- FORMULARI PER CREAR UNA NOVA NOTICIA -->
     <form action="crearNoticia" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
+
+        <?= csrf_field(); ?>
         
         <label for="nom" class="w3-text-dark-grey">Nom</label>
         <input type="text" id="nombre" name="nom" class="w3-input w3-border w3-round" required>
@@ -33,6 +35,9 @@
     <!-- BUSCADOR DE NOTICIES CRUD -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('/admin/searchNoticiaCrud') ?>" method="GET" class="w3-center">
+
+            <?= csrf_field(); ?>
+
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -60,8 +65,8 @@
             <?php foreach($noticies as $noticia): ?>
             <tr>
                 <td><?= esc($noticia['id'])?></td>
-                <td><?= character_limiter($noticia['nom'], 20) ?></td>
-                <td><?= character_limiter($noticia['contingut'], 40) ?></td>
+                <td><?= substr($noticia['nom'], 0, 20) . '...' ?></td>
+                <td><?= substr($noticia['contingut'], 0, 40) . '...' ?></td>
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['created_at'])?></td>
                 <td>

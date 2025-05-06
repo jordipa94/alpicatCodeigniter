@@ -17,6 +17,8 @@
     <div class="w3-padding">
         <form action="<?= base_url('admin/updateNoticia/'.$noticia['id']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
 
+            <?= csrf_field(); ?>
+
             <label for="nom" class="w3-text-dark-grey">Nom</label>
             <input type="text" id="nombre" name="nom" class="w3-input w3-border w3-round" value="<?= esc($noticia['nom']) ?>" required>
             

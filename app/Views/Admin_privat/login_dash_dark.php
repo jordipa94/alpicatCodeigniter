@@ -238,6 +238,9 @@ body {
         <br>
         <!-- Formulario de login -->
         <form action="<?php base_url('/administracio_log_post'); ?>" method="POST">
+
+            <?= csrf_field(); ?>
+
             <div class="form-group">
                 <input type="text" class="input-field" placeholder="Usuario" required />
             </div>

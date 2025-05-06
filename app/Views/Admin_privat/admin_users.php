@@ -12,6 +12,9 @@
 
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('searchUser') ?>" method="GET" class="w3-center">
+
+            <?= csrf_field(); ?>
+
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 

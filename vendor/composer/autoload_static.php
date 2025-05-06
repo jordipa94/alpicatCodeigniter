@@ -17,6 +17,10 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         array (
             'Tests\\Support\\' => 14,
         ),
+        'S' => 
+        array (
+            'SIENSIS\\CICMDTools\\' => 19,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
@@ -26,6 +30,10 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'L' => 
         array (
             'Laminas\\Escaper\\' => 16,
+        ),
+        'I' => 
+        array (
+            'Ifsnop\\' => 7,
         ),
         'F' => 
         array (
@@ -51,6 +59,10 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         array (
             0 => __DIR__ . '/../..' . '/tests/_support',
         ),
+        'SIENSIS\\CICMDTools\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/siensis/cicmdtools/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
@@ -66,6 +78,10 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'Laminas\\Escaper\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
+        ),
+        'Ifsnop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop',
         ),
         'Faker\\' => 
         array (
@@ -100,8 +116,19 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
     );
 
     public static $classMap = array (
+        'App\\Controllers\\AdministracioController' => __DIR__ . '/../..' . '/app/Controllers/AdministracioController.php',
         'App\\Controllers\\BaseController' => __DIR__ . '/../..' . '/app/Controllers/BaseController.php',
-        'App\\Controllers\\Home' => __DIR__ . '/../..' . '/app/Controllers/Home.php',
+        'App\\Controllers\\ContacteController' => __DIR__ . '/../..' . '/app/Controllers/ContacteController.php',
+        'App\\Controllers\\GaleriaController' => __DIR__ . '/../..' . '/app/Controllers/GaleriaController.php',
+        'App\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Controllers/IndexController.php',
+        'App\\Controllers\\NoticiesController' => __DIR__ . '/../..' . '/app/Controllers/NoticiesController.php',
+        'App\\Controllers\\ProgramesController' => __DIR__ . '/../..' . '/app/Controllers/ProgramesController.php',
+        'App\\Controllers\\SobreNosaltresController' => __DIR__ . '/../..' . '/app/Controllers/SobreNosaltresController.php',
+        'App\\Database\\Seeds\\SeederNoticies' => __DIR__ . '/../..' . '/app/Database/Seeds/SeederNoticies.php',
+        'App\\Models\\ContacteModel' => __DIR__ . '/../..' . '/app/Models/ContacteModel.php',
+        'App\\Models\\MenuModel' => __DIR__ . '/../..' . '/app/Models/MenuModel.php',
+        'App\\Models\\NoticiesModel' => __DIR__ . '/../..' . '/app/Models/NoticiesModel.php',
+        'App\\Models\\UsersModel' => __DIR__ . '/../..' . '/app/Models/UsersModel.php',
         'CodeIgniter\\API\\ResponseTrait' => __DIR__ . '/..' . '/codeigniter4/framework/system/API/ResponseTrait.php',
         'CodeIgniter\\Autoloader\\Autoloader' => __DIR__ . '/..' . '/codeigniter4/framework/system/Autoloader/Autoloader.php',
         'CodeIgniter\\Autoloader\\FileLocator' => __DIR__ . '/..' . '/codeigniter4/framework/system/Autoloader/FileLocator.php',
@@ -1076,6 +1103,7 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'Faker\\Provider\\zh_TW\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/zh_TW/Text.php',
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/ValidGenerator.php',
+        'Ifsnop\\Mysqldump\\Mysqldump' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
         'Laminas\\Escaper\\Escaper' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Escaper.php',
         'Laminas\\Escaper\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Exception/ExceptionInterface.php',
         'Laminas\\Escaper\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/laminas/laminas-escaper/src/Exception/InvalidArgumentException.php',
@@ -2318,6 +2346,15 @@ class ComposerStaticInit657ac079313fab046eb8c29fe1d6992b
         'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/src/LoggerInterface.php',
         'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/src/LoggerTrait.php',
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/src/NullLogger.php',
+        'SIENSIS\\CICMDTools\\Commands\\Crypt' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Commands/Crypt.php',
+        'SIENSIS\\CICMDTools\\Commands\\Decrypt' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Commands/Decrypt.php',
+        'SIENSIS\\CICMDTools\\Commands\\GenerateModel' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Commands/GenerateModel.php',
+        'SIENSIS\\CICMDTools\\Commands\\Mysqldump' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Commands/Mysqldump.php',
+        'SIENSIS\\CICMDTools\\Commands\\RebootDB' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Commands/RebootDB.php',
+        'SIENSIS\\CICMDTools\\Commands\\Zip' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Commands/Zip.php',
+        'SIENSIS\\CICMDTools\\Libraries\\Debugger' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Libraries/Debugger.php',
+        'SIENSIS\\CICMDTools\\Libraries\\FileKit' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Libraries/FileKit.php',
+        'SIENSIS\\CICMDTools\\Libraries\\GeneratorTrait' => __DIR__ . '/..' . '/siensis/cicmdtools/src/Libraries/GeneratorTrait.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
         'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',

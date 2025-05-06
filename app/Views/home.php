@@ -2,88 +2,6 @@
 
 <?php echo $this->section('contingut'); ?>
 <style>
-/* General styles */
-
-.menu {
-    display: flex;
-    gap: 15px;
-}
-
-.menu a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.menu a:hover {
-    background-color: #555;
-}
-
-.menu .dropdown {
-    position: relative;
-}
-
-.menu .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    top: 40px;
-    left: 0;
-    min-width: 150px;
-    z-index: 1000;
-}
-
-.menu .dropdown-content a {
-    display: block;
-    padding: 10px;
-}
-
-.menu .dropdown-content a:hover {
-    background-color: #555;
-}
-
-.menu .dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Responsive Menu */
-.hamburger {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.menu-responsive {
-    display: none;
-    flex-direction: column;
-    background-color: #333;
-    width: 100%;
-}
-
-.menu-responsive a {
-    padding: 10px;
-    text-align: center;
-}
-
-.menu-responsive .dropdown-content {
-    position: static;
-}
-
-@media (max-width: 768px) {
-    .menu {
-    display: none;
-    }
-
-    .hamburger {
-    display: block;
-    }
-
-    .menu-responsive {
-    display: flex;
-    }
-}
-
 .welcomeDiv, .teamDiv {
     text-align: center;
     padding: 30px;
@@ -98,15 +16,17 @@
     background-color: rgb(33, 124, 33);
 }
 
-footer {
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 15px;
+.imgNoticia {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-footer .social {
-    display: inline-block;
-    margin-left: 10px;
+.w3-row-padding {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 </style>
 <body>
@@ -130,8 +50,8 @@ footer .social {
         <?php foreach($noticies as $noticia): ?>
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding">
-                    <h3><?= character_limiter($noticia['nom'], 30) ?></h3>
-                    <p><?= character_limiter($noticia['contingut'], 50) ?></p>
+                    <h3><?= substr($noticia['nom'], 0, 30) . '...' ?></h3>
+                    <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
                     <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir més</a>
                 </div>

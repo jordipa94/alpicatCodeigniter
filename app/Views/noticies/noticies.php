@@ -13,6 +13,9 @@
     <!-- BUSCADOR DE NOTICIES -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('searchNoticia') ?>" method="GET" class="w3-center">
+
+            <?= csrf_field(); ?>
+
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -31,9 +34,9 @@
 
         <div class="w3-third w3-margin-bottom">
             <div class="w3-card w3-padding w3-white">
-                <h3><?= character_limiter($noticia['nom'], 20) ?></h3>
+                <h3><?= substr($noticia['nom'], 0, 20) . '...' ?></h3>
                 <img src="../images/galeria.png" alt="">
-                <p><?= character_limiter($noticia['contingut'], 50) ?></p>
+                <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
                 <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
             </div>
         </div>

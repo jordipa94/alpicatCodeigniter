@@ -6,84 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .w3-theme {
-      color: #fff !important;
-      background-color: #2e8b57 !important;
-    }
-
-    .w3-theme-dark {
-      background-color: #1e5c3a !important;
-    }
-
-    .w3-theme-light {
-      background-color: #f5f5f5 !important;
-    }
-
-    .w3-theme-accent {
-      background-color: #e63946 !important;
-    }
-
-    .w3-theme-text {
-      color: #2e8b57 !important;
-    }
-
-    .w3-theme-accent-text {
-      color: #e63946 !important;
-    }
-
-    .w3-hover-theme:hover {
-      background-color: #1e5c3a !important;
-      color: white !important;
-    }
-
-    .w3-hover-accent:hover {
-      background-color: #c1121f !important;
-      color: white !important;
-    }
-
-    .main-content {
-      flex: 1;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      min-width: 160px;
-      z-index: 1;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .logo {
-      height: 50px;
-      transition: transform 0.3s;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 992px) {
-      .w3-dropdown-hover {
-        width: 100%;
-        text-align: left;
-      }
-
-      .dropdown-content {
-        position: static;
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="<?= base_url('css/plantilla.css') ?>">
 </head>
 <body class="w3-light-grey">
 
@@ -91,12 +14,12 @@
   <div class="w3-bar w3-theme w3-card" style="display: flex; align-items: center; justify-content: space-between;">
 
     <!-- Logo -->
-    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-theme">
+    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-theme w3-right">
       <img src="<?= base_url('img/alpicat.png') ?>" class="logo" alt="Logo">
       <span class="w3-hide-small"><b>ALPICAT FC</b></span>
     </a>
 
-    <!-- Enllaços alineats a l'esquerra -->
+    <!-- LINKS PC -->
     <div class="w3-hide-small" style="display: flex; flex: 1; justify-content: flex-start;">
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-padding-large w3-theme w3-hover-theme">
@@ -133,12 +56,12 @@
 </div>
 
 <!-- Menú per a dispositius mòbils -->
-<div id="mobileMenu" class="w3-bar-block w3-theme w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <div class="w3-dropdown-hover">
-    <button class="w3-button w3-padding-large w3-block w3-left-align w3-theme w3-hover-theme">
+<div id="mobileMenu" class="w3-bar-block w3-theme w3-hide w3-hide-large w3-hide-medium w3-top w3-right" style="margin-top: 70px;">
+  <div>
+    <button onclick="toggleSubmenu()" class="w3-button w3-padding-large w3-block w3-left-align w3-theme w3-hover-theme">
       <i class="fa fa-info-circle"></i> Sobre Nosaltres <i class="fa fa-caret-down"></i>
     </button>
-    <div class="w3-dropdown-content w3-bar-block w3-theme-light">
+    <div id="submenu" class="w3-bar-block w3-gray w3-hide">
       <a href="/historia" class="w3-bar-item w3-button">
         <i class="fa fa-history"></i> Història
       </a>
@@ -190,7 +113,7 @@
     <div class="w3-third">
       <h3 class="w3-border-bottom w3-border-white">Administració</h3>
       <a href="/admin/crearNoticia" class="w3-button w3-block w3-margin-bottom w3-theme-accent w3-hover-accent"><i class="fa fa-plus"></i> Crear Notícia</a>
-      <a href="/fcf" class="w3-button w3-block w3-margin-bottom w3-white w3-hover-theme"><i class="fa fa-external-link-alt"></i> FCF</a>
+      <a href="#" class="w3-button w3-block w3-margin-bottom w3-white w3-hover-theme"><i class="fa fa-external-link-alt"></i> FCF</a>
       <a href="#" class="w3-button w3-block w3-white w3-hover-theme"><i class="fa fa-envelope"></i> Contacte Admin</a>
     </div>
   </div>
@@ -206,6 +129,15 @@ function toggleMobileMenu() {
     x.className += " w3-show";
   } else {
     x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+function toggleSubmenu() {
+  var submenu = document.getElementById("submenu");
+  if (submenu.classList.contains("w3-hide")) {
+    submenu.classList.remove("w3-hide");
+  } else {
+    submenu.classList.add("w3-hide");
   }
 }
 </script>

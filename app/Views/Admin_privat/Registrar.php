@@ -213,6 +213,9 @@
         <br>
         <!-- Formulario de login -->
         <form action="<?php echo base_url('registrar_post') ?>" method="POST">
+
+            <?= csrf_field(); ?>
+
             <div class="form-group">
                 <input type="text" class="input-field" id="Usuario_name" placeholder="Usuario_name" required />
             </div>

@@ -10,9 +10,12 @@
 
     <h1>Gestio de Contacte</h1>
     
-   <!-- FILTRAR PER CATEGORIA --> 
+    <!-- FILTRAR PER CATEGORIA --> 
     <div style="max-width:200px">
         <form action="<?= base_url('/admin/gestionarContacte/filtrar') ?>" method="get" id="filtrarForm">
+
+            <?= csrf_field(); ?>
+
             <label for="categoria">Filtrar per Categoria</label>
             <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom" onchange="document.getElementById('filtrarForm').submit()">
                 <option value="" <?= (empty($categoria)) ? 'selected' : '' ?> >Totes les Categories</option>
@@ -40,14 +43,14 @@
             <?php foreach($missatges as $missatge): ?>
             <tr>
                 <td><?= esc($missatge['id'])?></td>
-                <td><?= character_limiter($missatge['concepte'], 20) ?></td>
-                <td><?= character_limiter($missatge['missatge'], 40) ?></td>
+                <td><?= substr($missatge['concepte'], 0, 20) . '...' ?></td>
+                <td><?= substr($missatge['missatge'], 0, 40) . '...' ?></td>
                 <td><?= esc($missatge['telefono'])?></td>
                 <td><?= esc($missatge['correu'])?></td>
                 <td><?= esc($missatge['categoria'])?></td>
                 <td><?= esc($missatge['created_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/readContactForm/' . esc($missatge['id'])) ?>">Veure</a></button>
+                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/gestionarContacte/readContactForm/' . esc($missatge['id'])) ?>">Veure</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>

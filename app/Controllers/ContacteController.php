@@ -5,13 +5,23 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\ContacteModel;
+use App\Models\ConfigModel;
 
 class ContacteController extends BaseController
 {
     //VISTA DE CONTACTE
     public function index()
     {
-        echo view("contacte/contacte");
+        $config = new ConfigModel();
+
+        $data = [
+            'telefon' => $config->where('clau', 'telefon')->first()['valor'] ?? '',
+            'mail' => $config->where('clau', 'mail')->first()['valor'] ?? '',
+            'direction'  => $config->where('clau', 'direccio')->first()['valor'] ?? '',
+            'googleMaps'  => $config->where('clau', 'googleMaps')->first()['valor'] ?? '',
+        ];
+
+        return view('contacte/contacte', $data);
     }
 
     //ENVIAR FORMULARI DE CONTACTE
@@ -82,25 +92,25 @@ class ContacteController extends BaseController
     //VISTA GESTIONAR CONTACTE
     public function gestionarContacte()
     {
-    $contacteModel = new ContacteModel();
+        $contacteModel = new ContacteModel();
 
-    $categoria = $this->request->getGet('categoria');
+        $categoria = $this->request->getGet('categoria');
 
-    if (!empty($categoria)) {
-        $data['missatges'] = $contacteModel
-            ->where('categoria', $categoria)
-            ->orderBy('created_at', 'DESC')
-            ->paginate(6, 'default');
-    } else {
-        $data['missatges'] = $contacteModel
-            ->orderBy('created_at', 'DESC')
-            ->paginate(6, 'default');
-    }
+        if (!empty($categoria)) {
+            $data['missatges'] = $contacteModel
+                ->where('categoria', $categoria)
+                ->orderBy('created_at', 'DESC')
+                ->paginate(6, 'default');
+        } else {
+            $data['missatges'] = $contacteModel
+                ->orderBy('created_at', 'DESC')
+                ->paginate(6, 'default');
+        }
 
-    $data['pager'] = $contacteModel->pager;
-    $data['categoria'] = $categoria;
+        $data['pager'] = $contacteModel->pager;
+        $data['categoria'] = $categoria;
 
-    echo view('/contacte/gestioContacte', $data);
+        echo view('/contacte/gestioContacte', $data);
     }
 
     //FILTRAR CONTACTE PER CATEGORIA
