@@ -16,7 +16,6 @@ return array(
     'App\\Controllers\\SobreNosaltresController' => $baseDir . '/app/Controllers/SobreNosaltresController.php',
     'App\\Database\\Seeds\\SeederNoticies' => $baseDir . '/app/Database/Seeds/SeederNoticies.php',
     'App\\Models\\ContacteModel' => $baseDir . '/app/Models/ContacteModel.php',
-    'App\\Models\\MenuModel' => $baseDir . '/app/Models/MenuModel.php',
     'App\\Models\\NoticiesModel' => $baseDir . '/app/Models/NoticiesModel.php',
     'App\\Models\\UsersModel' => $baseDir . '/app/Models/UsersModel.php',
     'CodeIgniter\\API\\ResponseTrait' => $vendorDir . '/codeigniter4/framework/system/API/ResponseTrait.php',

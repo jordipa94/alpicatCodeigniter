@@ -6,36 +6,12 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <h2>Crear Noticia</h2>
-
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
-            <?= session('success') ?>
-        </div>
-    <?php endif; ?>
-
-    <!-- FORMULARI PER CREAR UNA NOVA NOTICIA -->
-    <form action="crearNoticia" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
-
-        <?= csrf_field(); ?>
-        
-        <label for="nom" class="w3-text-dark-grey">Nom</label>
-        <input type="text" id="nombre" name="nom" class="w3-input w3-border w3-round" required>
-
-        <label for="contingut" class="w3-text-dark-grey w3-margin-top">Contingut</label>
-        <textarea id="contingut" name="contingut" class="w3-input w3-border w3-round" rows="4" required></textarea>
-
-        <div class="w3-margin-top">
-            <button type="submit" class="w3-button w3-blue w3-round">CREAR NOTICIA</button>
-        </div>
-    </form>
+    <h2>GESTIONAR NOTICIES</h2>
 
     <!-- BUSCADOR DE NOTICIES CRUD -->
     <div class="w3-container w3-center w3-padding-16">
-        <form action="<?= base_url('/admin/searchNoticiaCrud') ?>" method="GET" class="w3-center">
-
+        <form action="<?= base_url('/admin/noticies/searchNoticiaCrud') ?>" method="GET" class="w3-center">
             <?= csrf_field(); ?>
-
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -63,14 +39,14 @@
             <?php foreach($noticies as $noticia): ?>
             <tr>
                 <td><?= esc($noticia['id'])?></td>
-                <td><?= substr($noticia['nom'], 0, 20) . '...' ?></td>
-                <td><?= substr($noticia['contingut'], 0, 40) . '...' ?></td>
+                <td><?= character_limiter($noticia['nom'], 20) ?></td>
+                <td><?= character_limiter($noticia['contingut'], 30) ?></td>
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['created_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
-                    <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
-                    <button class="w3-button w3-red"><a href="<?= base_url('admin/deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
+                    <button class="w3-button w3-gray"><a style="text-decoration: none;" href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
+                    <button class="w3-button w3-yellow"><a style="text-decoration: none;" href="<?= base_url('/admin/noticies/editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
+                    <button class="w3-button w3-red"><a style="text-decoration: none;" href="<?= base_url('/admin/noticies/deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -80,7 +56,5 @@
     <div class="pagination-container">
         <?= $pager->links() ?>
     </div>
-
-</div>
 
 <?php echo $this->endSection(); ?>

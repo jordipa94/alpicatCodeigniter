@@ -18,6 +18,17 @@ class NoticiesController extends BaseController
         echo view('noticies/noticies', $data);
     }
 
+    // VIEW PER CREAR NOTICIES
+    public function viewLlistatNoticies()
+    {
+        $noticiesModel = new NoticiesModel();
+
+        $data['noticies'] = $noticiesModel->paginate(6, 'default');
+        $data['pager'] = $noticiesModel->pager;
+
+        echo view('noticies/llistatNoticies',$data);
+    }
+
     //BUSCADOR DE NOTICIES
     public function searchNoticia()
     {
@@ -71,7 +82,7 @@ class NoticiesController extends BaseController
             ]);
             
             $model->update($id, [
-                'url' => base_url('readNoticia/' . $id),
+                'url' => base_url('noticies/readNoticia/' . $id),
             ]);
 
             return redirect()->back()->with('success', 'Notícia creada correctament.');
@@ -124,7 +135,7 @@ class NoticiesController extends BaseController
         $nom = $this->request->getPost('nom');
         $contingut = $this->request->getPost('contingut');
 
-        $url = base_url('readNoticia/' . $id);
+        $url = base_url('noticies/readNoticia/' . $id);
 
         $data = [
             'nom' => $nom,
@@ -133,7 +144,7 @@ class NoticiesController extends BaseController
         ];
 
         if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/admin/crearNoticia'))->with('success', 'Notícia editada correctament.');
+            return redirect()->to(base_url('/admin/noticies/llistatNoticies'))->with('success', 'Notícia editada correctament.');
         } else {
             return redirect()->to(base_url('editNoticia/').$id);
         }
@@ -202,7 +213,7 @@ class NoticiesController extends BaseController
         $data['pager'] = $noticiesModel->pager;
         $data['keyword'] = $keyword;
 
-        return view('noticies/crearNoticia', $data);
+        return view('noticies/llistatNoticies', $data);
     }
     
 }

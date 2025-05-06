@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-<div class="w3-container">
-
     <h1>Papelera</h1>
 
     <?php if (session()->getFlashdata('success')): ?>
@@ -36,14 +34,12 @@
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['deleted_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/restaurarNoticia/' . esc($noticia['id'])) ?>">Restaurar Noticia</a></button>
+                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/noticies/restaurarNoticia/' . esc($noticia['id'])) ?>">Restaurar Noticia</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-
-    </div>
 
     <div class="pagination-container" style="margin-left:1vw">
         <?= $pager->links() ?>

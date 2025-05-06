@@ -187,20 +187,15 @@
     <div class="logo">
         <a href="/admin" style="text-decoration: none;font-family: 'Arial', sans-serif !important;"><h1>Administracion</h1></a>
     </div>
-    
-    <div class="search-box">
-        <input type="text" placeholder="Search...">
-    </div>
 
     <div class="menu-section">
 
         <h3>Noticies</h3>
 
         <ul>
-
-            <li class="menu-item"><a href="<?php echo base_url('/admin/crearNoticia') ?>">CRUD Noticies</a></li>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/papeleraNoticies') ?>">Papelera Noticies</a></li>
-
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/crearNoticia') ?>">Crear Noticies</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/llistatNoticies') ?>">CRUD Noticies</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/papeleraNoticies') ?>">Papelera Noticies</a></li>
         </ul>
 
     </div>
@@ -219,7 +214,22 @@
 
     </div>
 
+    <div class="menu-section">
+        <?php $session = session(); ?>
+        <?php if ($session->get('logged_in')): ?>
+            <div style="padding: 0 20px; font-size: 14px; color: var(--accent-color); margin-top: 20px;">
+                <p><strong>Usuari:</strong> <?= esc($session->get('username')) ?></p>
+                <p><strong>Rol:</strong> <?= esc($session->get('role')) ?></p>
+            </div>
+        <?php endif; ?>
+    </div>
+
     <div class="divider"></div>
+
+    <div class="logo">
+        <a href="/" style="text-decoration: none;font-family: 'Arial', sans-serif !important;"><h1>Tornar a inici</h1></a>
+        <div class="divider"></div>
+        <a href="/logout" style="text-decoration: none;font-family: 'Arial', sans-serif !important;"><h1>Logout</h1></a>
 
     <div class="menu-section">
 

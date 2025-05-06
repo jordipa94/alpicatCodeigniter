@@ -32,39 +32,19 @@ $routes->get('/admin/gestionarContacte/filtrar', 'ContacteController::filtrar');
 $routes->get('/admin/gestionarContacte/readContactForm/(:num)', 'ContacteController::readContactForm/$1');
 
 //CRUD NOTICIES
-$routes->get('/admin/crearNoticia', 'NoticiesController::viewCrearNoticia');
-$routes->post('/admin/crearNoticia', 'NoticiesController::crearNoticia');
-$routes->get('/admin/editNoticia/(:num)', 'NoticiesController::editNoticia/$1');
-$routes->post('/admin/updateNoticia/(:num)', 'NoticiesController::updateNoticia/$1');
-$routes->get('/admin/deleteNoticia/(:num)', 'NoticiesController::deleteNoticia/$1');
-$routes->get('/admin/papeleraNoticies', 'NoticiesController::recycleBinNoticia');
-$routes->get('/admin/restaurarNoticia/(:num)', 'NoticiesController::restaurarNoticia/$1');
+$routes->get('admin/noticies/llistatNoticies', 'NoticiesController::viewLlistatNoticies');
+$routes->get('/admin/noticies/crearNoticia', 'NoticiesController::viewCrearNoticia');
+$routes->post('/admin/noticies/crearNoticia', 'NoticiesController::crearNoticia');
+$routes->get('/admin/noticies/editNoticia/(:num)', 'NoticiesController::editNoticia/$1');
+$routes->post('/admin/noticies/updateNoticia/(:num)', 'NoticiesController::updateNoticia/$1');
+$routes->get('/admin/noticies/deleteNoticia/(:num)', 'NoticiesController::deleteNoticia/$1');
+$routes->get('/admin/noticies/papeleraNoticies', 'NoticiesController::recycleBinNoticia');
+$routes->get('/admin/noticies/restaurarNoticia/(:num)', 'NoticiesController::restaurarNoticia/$1');
 $routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
-$routes->get('/admin/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');
+$routes->get('/admin/noticies/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');
 
 //CONFIGURACIO
 $routes->get('/admin/gestionarConfig', 'ConfigController::index');
 
-//LOGIN ADMIN
-$routes->get('/administracio_log','AdministracioController::login_dashboard');
-$routes->post('/administracio_log/(:num)','AdministracioController::login_dashboard/$1');
-$routes->get('/administracio_log_dark','AdministracioController::login_dashboard_dark');
-$routes->post('/administracio_log_post','AdministracioController::login_post');
-//REGISTRACION ADMIN
-$routes->get('/registrar','AdministracioController::Registrar');
-$routes->post('/registrar_post','AdministracioController::Registrar_post');
-//ADMINISTRACION
-$routes->get('/admin','AdministracioController::index');
-//ADMINISTRACION USERS
-$routes->get('/administracio_users','AdministracioController::users_Admin');
-//CRUS USERS
-$routes->get('/Ver_users/(:num)', 'AdministracioController::readUser/$1');
-//BUSCADOR USER 
-$routes->get('/searchUser','AdministracioController::searchUser');
-//CRUD USERS
-$routes->get('/deleteUser/(:num)', 'AdministracioController::deleteUser/$1');
-//CALENDARIO 
-
-$routes->get('/calendar', 'AdministracioController::calendar');
-$routes->get('/calendar/loadEvents', 'AdministracioController::loadEvents');
-$routes->post('/calendar/addEvent', 'AdministracioController::addEvent');
+//ADMIN
+$routes->get('/admin', 'AuthController::index',/*['filter'=>'login:admin,administrador']*/);
