@@ -30,6 +30,9 @@ class LoginFilter implements FilterInterface
                 return redirect()->to(base_url('/'));
             }
         } else {
+            // Convertir $arguments en un array si es una cadena
+            $arguments = is_array($arguments) ? $arguments : [$arguments];
+            
             if (!in_array(session()->get('role'), $arguments)) {
                 session()->setFlashdata('error', 'No tens permisos per accedir a aquesta pagina.');
                 return redirect()->back();

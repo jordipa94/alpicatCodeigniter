@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <h2>GESTIONAR NOTICIES</h2>
+    <h1>GESTIONAR NOTICIES</h1>
 
     <!-- BUSCADOR DE NOTICIES CRUD -->
     <div class="w3-container w3-center w3-padding-16">
@@ -44,9 +44,9 @@
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['created_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a style="text-decoration: none;" href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
-                    <button class="w3-button w3-yellow"><a style="text-decoration: none;" href="<?= base_url('/admin/noticies/editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
-                    <button class="w3-button w3-red"><a style="text-decoration: none;" href="<?= base_url('/admin/noticies/deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
+                    <button class="w3-button w3-gray"><a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">Veure</a></button>
+                    <button class="w3-button w3-yellow"><a href="<?= base_url('/admin/noticies/editNoticia/' . esc($noticia['id'])) ?>">Editar</a></button>
+                    <button class="w3-button w3-red"><a href="<?= base_url('/admin/noticies/deleteNoticia/' . esc($noticia['id'])) ?>">Eliminar</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>

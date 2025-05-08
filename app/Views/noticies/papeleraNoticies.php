@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <h1>Papelera</h1>
+    <h1>PAPELERA NOTICIES</h1>
 
     <?php if (session()->getFlashdata('success')): ?>
         <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">

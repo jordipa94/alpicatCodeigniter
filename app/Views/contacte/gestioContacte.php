@@ -6,9 +6,7 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <div class="w3-padding">
-
-    <h1>Gestio de Contacte</h1>
+    <h1>GESTIO DE CONTACTE</h1>
     
     <!-- FILTRAR PER CATEGORIA --> 
     <div style="max-width:200px">
@@ -60,7 +58,5 @@
         <div class="pagination-container">
             <?= $pager->links() ?>
         </div>
-
-    </div>
 
 <?php echo $this->endSection(); ?>

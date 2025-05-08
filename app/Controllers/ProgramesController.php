@@ -9,11 +9,10 @@ use DOMXPath;
 
 class ProgramesController extends BaseController
 {
-    public function programes()
+    public function index()
     {
         echo view("programes");
     }
-    
     
     public function fcfPrimerEquip()
     {

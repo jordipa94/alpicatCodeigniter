@@ -9,6 +9,7 @@
 }
 
 .welcomeDiv {
+    margin-top: 35px;
     background-color: green;
 }
 
