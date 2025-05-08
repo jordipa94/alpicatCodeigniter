@@ -2,7 +2,7 @@
 
 <?php echo $this->section('contingut'); ?>
 
-    <div class="w3-card-4 w3-light-grey w3-margin-top" style="max-width:600px; margin:auto;">
+    <div class="w3-card-4 w3-light-grey" style="max-width:600px; margin: 100px auto;">
     
         <div class="w3-container w3-red w3-center">
             <h2>Login</h2>
@@ -22,10 +22,17 @@
                 <input class="w3-input" type="password" name="password" required>
             </p>
 
-            <p>
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="w3-panel w3-red w3-padding w3-round w3-margin-bottom w3-center">
+                    <?= session('error') ?>
+                </div>
+            <?php endif; ?>
+
+            <p class="w3-center">
                 <button class="w3-button w3-red w3-margin-bottom" type="submit">Login</button>
             </p>
         </form>
+
     </div>
 
 <?php echo $this->endSection(); ?>

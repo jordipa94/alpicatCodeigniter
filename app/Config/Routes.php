@@ -21,15 +21,15 @@ $routes->get('/searchNoticia', 'NoticiesController::searchNoticia');
 $routes->get('/programes', 'ProgramesController::index');
 $routes->get('/programes/viewClassification/(:num)', 'ProgramesController::viewClassification/$1');
 
-$routes->get('/admin/programes/llistatClassificacions', 'ProgramesController::viewLlistatClassificacio',['filter'=>'login:admin,administrador']); //
-$routes->get('/admin/programes/crearClassificacio', 'ProgramesController::viewCrearClassificacio',['filter'=>'login:admin,administrador']); //
-$routes->post('/admin/programes/crearClassificacio', 'ProgramesController::crearClassificacio',['filter'=>'login:admin,administrador']); //
+$routes->get('/admin/programes/llistatClassificacions', 'ProgramesController::viewLlistatClassificacio',['filter'=>'login:admin,administrador']);
+$routes->get('/admin/programes/crearClassificacio', 'ProgramesController::viewCrearClassificacio',['filter'=>'login:admin,administrador']);
+$routes->post('/admin/programes/crearClassificacio', 'ProgramesController::crearClassificacio',['filter'=>'login:admin,administrador']);
 $routes->get('/admin/programes/editClassificacio/(:num)', 'ProgramesController::editClassificacio/$1',['filter'=>'login:admin,administrador']);
 $routes->post('/admin/programes/updateClassificacio/(:num)', 'ProgramesController::updateClassificacio/$1',['filter'=>'login:admin,administrador']);
 $routes->get('/admin/programes/deleteClassificacio/(:num)', 'ProgramesController::deleteClassificacio/$1',['filter'=>'login:admin,administrador']);
 $routes->get('/admin/programes/papeleraClassificacions', 'ProgramesController::recycleBinClassificacio',['filter'=>'login:admin,administrador']);
 $routes->get('/admin/programes/restaurarClassificacio/(:num)', 'ProgramesController::restaurarClassificacio/$1',['filter'=>'login:admin,administrador']);
-$routes->get('/admin/programes/searchClassificacio', 'ProgramesController::searchClassificacio',['filter'=>'login:admin,administrador']); //
+$routes->get('/admin/programes/searchClassificacio', 'ProgramesController::searchClassificacio',['filter'=>'login:admin,administrador']);
 
 //PROVA CLASSIFICACIO
 $routes->get('/classificacioPrimerEquip', 'ProgramesController::fcfPrimerEquip');

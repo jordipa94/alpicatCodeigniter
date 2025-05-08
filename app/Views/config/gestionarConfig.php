@@ -48,8 +48,7 @@
                 <td><?= substr($config['valor'], 0, 40) . '...' ?></td>
                 <td><?= esc($config['created_at'])?></td>
                 <td>
-                    <button onclick="document.getElementById('modal-<?= esc($config['id']) ?>').style.display='block'" 
-                            class="w3-button w3-gray">Veure</button>
+                    <button onclick="document.getElementById('modal-<?= esc($config['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
                     <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editConfig/' . esc($config['id'])) ?>">Editar</a></button>
                 </td>
             </tr>

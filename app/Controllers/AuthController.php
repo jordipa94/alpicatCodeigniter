@@ -24,13 +24,13 @@ class AuthController extends BaseController
             'count_contacte' => $contacteModel->countAll(),
         ];
         
-        return view('Admin_privat/admin', $data);
+        return view('admin/admin', $data);
 
     }
 
     public function showRegisterForm()
     {
-        return view('Admin_privat/register');
+        return view('admin/register');
     }
 
     public function registerUser()
@@ -68,7 +68,7 @@ class AuthController extends BaseController
 
     public function showLoginForm()
     {
-        return view('Admin_privat/login');
+        return view('admin/login');
     }
 
     public function login()
@@ -96,7 +96,7 @@ class AuthController extends BaseController
 
                 return redirect()->to('/')->with('success', 'Has iniciat sessio correctament!');
             } else {
-                return redirect()->back()->with('error', 'Contrasenya incorrecta.');
+                return redirect()->back()->with('error', 'Contrasenya o usuari incorrectes.');
             }
         } else {
             return redirect()->back()->with('error', 'Usuari no trobat.');
