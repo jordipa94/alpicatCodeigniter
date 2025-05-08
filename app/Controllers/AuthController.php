@@ -33,7 +33,7 @@ class AuthController extends BaseController
         return view('Admin_privat/register');
     }
 
-    public function register()
+    public function registerUser()
     {
         helper(['form']);
     

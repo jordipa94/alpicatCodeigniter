@@ -109,6 +109,27 @@
   <a href="/contacte" class="w3-bar-item w3-button w3-padding-large w3-text-white w3-hover-red" style="background-color: #000000 !important;">
     <i class="fa fa-envelope"></i> Contacte
   </a>
+  <div class="w3-dropdown-hover" style="margin-left: auto;">
+    <button class="w3-button w3-text-white w3-padding-large w3-hover-text-red" style="background-color: #000000 !important;">
+      <i class="fa fa-user-circle"></i> Usuari <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="w3-dropdown-content w3-bar-block w3-card-4" style="background-color:rgb(65, 65, 65) !important;">
+      <?php $session = session(); ?>
+      <?php if ($session->get('logged_in')): ?>
+        
+        <a href="/logout" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color:rgb(65, 65, 65) !important;">
+          <i class="fa fa-sign-in-alt"></i> Logout
+        </a>
+
+      <?php else: ?>
+
+        <a href="/login" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color:rgb(65, 65, 65) !important;">
+          <i class="fa fa-sign-in-alt"></i> Login
+        </a>
+
+      <?php endif; ?>
+    </div>
+  </div>
 </div>
 
 <div class="main-content w3-container w3-padding-64">

@@ -25,18 +25,23 @@ class LoginFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if ($arguments == null) {
-            if (!session()->get('loggedIn')) {
-                return redirect()->to(base_url('/'));
-            }
-        } else {
-            // Convertir $arguments en un array si es una cadena
-            $arguments = is_array($arguments) ? $arguments : [$arguments];
-            
-            if (!in_array(session()->get('role'), $arguments)) {
-                session()->setFlashdata('error', 'No tens permisos per accedir a aquesta pagina.');
-                return redirect()->back();
-            }
+        $session = session();
+        
+        // VERIFICAR SI EL USUARI ESTA LOGUEAT
+        if (!$session->has('logged_in') || !$session->get('logged_in')) {
+            return redirect()->to('/login')->with('error', 'Per favor, inicia sessió primer.');
+        }
+        
+        // SI EL FILTER ESTA BUIT NO CAL ROL
+        if (empty($arguments)) {
+            return;
+        }
+
+        $userRole = $session->get('role');
+        
+        // VERIFICAR ROL DEL USUARI I DEL FILTER
+        if (!in_array($userRole, $arguments)) {
+            return redirect()->back()->with('error', 'No tens permisos per accedir a aquesta pàgina.');
         }
     }
 

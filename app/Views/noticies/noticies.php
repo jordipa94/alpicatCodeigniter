@@ -8,7 +8,7 @@
 
 <div class="w3-container">
 
-    <h2>LLISTAT NOTICIES</h2>
+    <h2>LLISTAT NOTÍCIES</h2>
 
     <!-- BUSCADOR DE NOTICIES -->
     <div class="w3-container w3-center w3-padding-16">
@@ -22,7 +22,7 @@
                         placeholder="Buscar noticies..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-blue w3-round w3-block">Buscar</button>
+                    <button type="submit" class="w3-button w3-red w3-round w3-block">Buscar</button>
                 </div>
             </div>
         </form>
@@ -37,11 +37,12 @@
                 <h3><?= substr($noticia['nom'], 0, 20) . '...' ?></h3>
                 <img src="../images/galeria.png" alt="">
                 <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
-                <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
+                <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-red">Llegir Noticia</a>
             </div>
         </div>
 
         <?php endforeach; ?>
+        
     </div>
 
 </div>

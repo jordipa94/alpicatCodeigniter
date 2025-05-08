@@ -4,7 +4,7 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-blue w3-margin-top"><a href="<?= base_url('/admin/gestionarContacte') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/gestionarContacte') ?>">Tornar a inici</a></button>
 
     <h2 class="w3-text-blue">Formulari <?= esc($missatge['id']) ?></h2>
 

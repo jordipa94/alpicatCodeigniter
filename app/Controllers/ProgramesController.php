@@ -6,12 +6,181 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use DOMDocument;
 use DOMXPath;
+use App\Models\ClassificationModel;
 
 class ProgramesController extends BaseController
 {
     public function index()
     {
-        echo view("programes");
+        $classificationModel = new ClassificationModel();
+
+        $data['classifications'] = $classificationModel->orderBy('created_at', 'DESC')->paginate(9, 'default');
+        $data['pager'] = $classificationModel->pager;
+
+        echo view('programes/programes', $data);
+    }
+
+    public function viewClassification($id)
+    {
+
+    }
+
+    // VIEW PER CREAR CLASSIFICACIONS
+    public function viewCrearClassificacio()
+    {
+        $classificationModel = new ClassificationModel();
+
+        $data['classifications'] = $classificationModel->paginate(6, 'default');
+        $data['pager'] = $classificationModel->pager;
+
+        echo view('programes/crearClassificacio',$data);
+    }
+
+    // POST PER CREAR CLASSIFICACIONS DES DEL CRUD
+    public function crearClassificacio()
+    {
+
+        $model = new ClassificationModel();
+
+        $validationRules = [
+            'nom' => 'required|max_length[128]',
+            'url' => 'required',
+        ];
+
+        if ($this->validate($validationRules)) {
+
+            $nom = $this->request->getPost('nom');
+            $url = $this->request->getPost('url');
+
+            $id = $model->insert([
+                "nom" => $nom,
+                "url" => $url,
+            ]);
+
+            return redirect()->back()->with('success', 'Classificació creada correctament.');
+
+        } else {
+            return redirect()->back()->withInput();
+        }
+    }
+
+    // VIEW PER CREAR CLASSIFICACIONS
+    public function viewLlistatClassificacio()
+    {
+        $classificationModel = new ClassificationModel();
+
+        $data['classifications'] = $classificationModel->paginate(6, 'default');
+        $data['pager'] = $classificationModel->pager;
+
+        echo view('programes/llistatClassifications',$data);
+    }
+    
+    //BUSCADOR DE CLASSIFICACIONS
+    public function searchClassificacio()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $classificationModel = new ClassificationModel();
+
+        if ($keyword) {
+            $classificationModel->groupStart()
+                        ->like('nom', $keyword)
+                        ->orLike('url', $keyword)
+                        ->groupEnd();
+        }
+
+        $data['classifications'] = $classificationModel->paginate(6);
+        $data['pager'] = $classificationModel->pager;
+        $data['keyword'] = $keyword;
+
+        return view('programes/llistatClassifications', $data);
+    }
+
+    // VIEW PER EDITAR LA CLASSIFICACIO
+    public function editClassificacio($id)
+    {
+        $model = new ClassificationModel();
+        $classification = $model->find($id);
+    
+        if (!$classification) {
+            return redirect()->to(base_url('editClassificacio/').$id);
+        }
+
+        return view('programes/editClassificacio', ['classification' => $classification]);
+    }
+
+    // POST PER FER UPDATE DE LA CLASSIFICACIO DESDE EDIT CLASSIFICACIO
+    public function updateClassificacio($id)
+    {
+        $model = new ClassificationModel();
+
+        $validationRules = [
+            'nom' => 'required|max_length[128]',
+            'url' => 'required',
+        ];
+
+        if (!$this->validate($validationRules)) {
+            return redirect()->to(base_url('editClassificacio/').$id)->withInput();
+        }
+
+        $nom = $this->request->getPost('nom');
+        $url = $this->request->getPost('url');
+
+        $data = [
+            'nom' => $nom,
+            'url' => $url,
+        ];
+
+        if ($model->update($id, $data)) {
+            return redirect()->to(base_url('/admin/programes/llistatClassificacions'))->with('success', 'Classificació editada correctament.');
+        } else {
+            return redirect()->to(base_url('editClassificacio/').$id);
+        }
+    }
+
+    // ELIMINAR CLASSIFICACIO
+    public function deleteClassificacio($id)
+    {
+        $classificationModel = new ClassificationModel();
+        
+        $classification = $classificationModel->find($id);
+        if (!$classification) {
+            return redirect()->back()->with('error', 'Classificació no trobada.');
+        }
+        
+        $classificationModel->delete($id);
+        
+        return redirect()->back()->with('success', 'Classificació eliminada correctament.');
+    }
+
+    public function recycleBinClassificacio()
+    {
+        $classificationModel = new ClassificationModel();
+        $data['classifications'] = $classificationModel->onlyDeleted()->paginate(6, 'default');
+        $data['pager'] = $classificationModel->pager;
+        
+        return view('programes/papeleraClassifications', $data);
+    }
+
+    // RESTAURAR CLASSIFICACIO DE LA PAPELERA
+    public function restaurarClassificacio($id = null)
+    {
+    $classificationModel = new ClassificationModel();
+
+    $classification = $classificationModel->withDeleted()->find($id);
+
+    if ($classification['deleted_at'] !== null) {
+
+        $data = [
+            'deleted_at' => null,
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        $classificationModel->update($id, $data);
+
+        return redirect()->back()->with('success', 'Classificació restaurada correctament.');
+    }
+
+    return redirect()->to('/papeleraClassifications');
     }
     
     public function fcfPrimerEquip()

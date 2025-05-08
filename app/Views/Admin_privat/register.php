@@ -1,14 +1,24 @@
-<?php echo $this->extend('layouts/plantilla'); ?>
+<?php echo $this->extend('layouts/dashboard'); ?>
 
 <?php echo $this->section('contingut'); ?>
 
-    <div class="w3-card-4 w3-light-grey w3-margin-top" style="max-width:600px; margin:auto;">
     
-        <div class="w3-container w3-blue w3-center">
-            <h2>Formulari de Registre</h2>
-        </div>
 
-        <form class="w3-container" action="<?= site_url('/register') ?>" method="post">
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
+                <?= session('success') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="w3-panel w3-red w3-padding w3-round w3-margin-bottom">
+                <?= session('error') ?>
+            </div>
+        <?php endif; ?>
+
+        <h1>REGISTRAR USUARI</h1>
+
+        <form class="w3-card-4 w3-padding w3-round w3-light-grey" action="<?= site_url('admin/registerUser') ?>" method="post">
 
             <?= csrf_field(); ?>
 
@@ -36,11 +46,9 @@
             <input type="hidden" name="role" value="visitant">
 
             <p>
-                <button class="w3-button w3-green w3-margin-bottom" type="submit">Registrar</button>
+                <button style="margin-top:1%;" class="w3-button w3-red w3-margin-bottom" type="submit">Registrar</button>
             </p>
 
         </form>
-
-    </div>
 
 <?php echo $this->endSection(); ?>

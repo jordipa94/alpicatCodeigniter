@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <h1>PAPELERA NOTÍCIES</h1>
+    <h1>PAPELERA CLASSIFICACIONS</h1>
 
     <?php if (session()->getFlashdata('success')): ?>
         <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
@@ -19,22 +19,20 @@
             <tr class="w3-light-grey">
                 <th>ID</th>
                 <th>Nom</th>
-                <th>Contingut</th>
                 <th>URL</th>
                 <th>Data eliminacio</th>
                 <th>Opcions</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($noticies as $noticia): ?>
+            <?php foreach($classifications as $classification): ?>
             <tr>
-                <td><?= esc($noticia['id'])?></td>
-                <td><?= esc($noticia['nom'])?></td>
-                <td><?= esc($noticia['contingut'])?></td>
-                <td><?= esc($noticia['url'])?></td>
-                <td><?= esc($noticia['deleted_at'])?></td>
+                <td><?= esc($classification['id'])?></td>
+                <td><?= esc($classification['nom'])?></td>
+                <td><?= esc($classification['url'])?></td>
+                <td><?= esc($classification['deleted_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/noticies/restaurarNoticia/' . esc($noticia['id'])) ?>">Restaurar Noticia</a></button>
+                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/programes/restaurarClassificacio/' . esc($classification['id'])) ?>">Restaurar Classificació</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>

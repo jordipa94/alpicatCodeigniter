@@ -35,7 +35,7 @@
     <div class="welcomeDiv">
         <h2>"BENVINGUTS A U.E.A"</h2>
         <p>*foto nens jugant*</p>
-        <a class="w3-button w3-white w3-hover-green w3-round" href="<?php echo base_url('administracio_log');?>">INSCRIU-TE ARA</a>
+        <a class="w3-button w3-white w3-hover-green w3-round" href="#">INSCRIU-TE ARA</a>
     </div>
 
     <div class="teamDiv">
@@ -53,14 +53,14 @@
                 <div class="w3-card w3-padding">
                     <h3><?= substr($noticia['nom'], 0, 30) . '...' ?></h3>
                     <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir més</a>
+                    <img class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                    <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-red">Llegir més</a>
                 </div>
             </div>
         <?php endforeach; ?>
         </div>
         <div class="w3-container w3-center w3-padding moreNews">
-            <a href="/noticies" class="w3-button w3-blue w3-round">MÉS NOTÍCIES</a>
+            <a href="/noticies" class="w3-button w3-red w3-round">MÉS NOTÍCIES</a>
         </div>
     </main>
 

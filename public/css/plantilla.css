@@ -4,6 +4,10 @@ body {
   min-height: 100vh;
 }
 
+.w3-red{
+  background-color: #C10C18 !important;
+}
+
 .w3-theme {
   color: #fff !important;
   background-color: #000000 !important;

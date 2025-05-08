@@ -4,7 +4,7 @@
 
     <div class="w3-card-4 w3-light-grey w3-margin-top" style="max-width:600px; margin:auto;">
     
-        <div class="w3-container w3-blue w3-center">
+        <div class="w3-container w3-red w3-center">
             <h2>Login</h2>
         </div>
 
@@ -23,7 +23,7 @@
             </p>
 
             <p>
-                <button class="w3-button w3-green w3-margin-bottom" type="submit">Login</button>
+                <button class="w3-button w3-red w3-margin-bottom" type="submit">Login</button>
             </p>
         </form>
     </div>

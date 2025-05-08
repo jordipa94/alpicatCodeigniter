@@ -18,11 +18,11 @@
 }
 
 .pagination .active a {
-    background-color: #007bff;
+    background-color: #C10C18;
     color: white;
 }
 
 .pagination li a:hover {
-    background-color: #007bff;
+    background-color: #C10C18;
     color: white;
 }

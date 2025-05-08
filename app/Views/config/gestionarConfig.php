@@ -24,7 +24,7 @@
                         placeholder="Buscar clau..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-blue w3-round w3-block">Buscar</button>
+                    <button type="submit" class="w3-button w3-red w3-round w3-block">Buscar</button>
                 </div>
             </div>
         </form>

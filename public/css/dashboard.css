@@ -16,8 +16,11 @@
 
 body {
     display: flex;
+    height: 100vh;
     min-height: 100vh;
     background-color: var(--light-color);
+    margin: 0;
+    overflow: hidden;
 }
 
 a{
@@ -26,7 +29,10 @@ a{
 
 /* Sidebar - Estilo Alpicat FC */
 .sidebar {
-    width: 280px;
+    width: 16vw;
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
     background-color: var(--secondary-color);
     color: white;
     padding: 20px 0;
@@ -119,6 +125,8 @@ a{
 
 /* Main Content */
 .main-content {
+    flex: 1;
+    overflow-y: auto;
     flex: 1;
     background-color: var(--light-color);
 }

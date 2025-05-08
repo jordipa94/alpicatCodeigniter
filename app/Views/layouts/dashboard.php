@@ -19,11 +19,22 @@
     </div>
 
     <div class="menu-section">
-        <h3>Noticies</h3>
+        <h3>Notícies</h3>
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/crearNoticia') ?>">Crear Noticies</a></li>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/llistatNoticies') ?>">CRUD Noticies</a></li>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/papeleraNoticies') ?>">Papelera Noticies</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/crearNoticia') ?>">Crear Notícies</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/llistatNoticies') ?>">CRUD Notícies</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/papeleraNoticies') ?>">Papelera Notícies</a></li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="menu-section">
+        <h3>Classificació</h3>
+        <ul>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/programes/crearClassificacio') ?>">Crear classificació</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/programes/llistatClassificacions') ?>">CRUD classificació</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/programes/papeleraClassificacions') ?>">Papelera classificacións</a></li>
         </ul>
     </div>
 
@@ -39,9 +50,11 @@
     <div class="divider"></div>
 
     <div class="menu-section">
-        <h3>Contacte</h3>
+        <h3>Usuaris</h3>
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>">Gestionar Contacte</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/registerUser') ?>">Registra Usuari</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/users') ?>">Gestionar Usuaris</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/users/papeleraUsers') ?>">Papelera Usuaris</a></li>
         </ul>
     </div>
 
@@ -52,18 +65,6 @@
         <ul>
             <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarConfig') ?>">Gestionar Configuracio</a></li>
         </ul>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="menu-section">
-        <?php $session = session(); ?>
-        <?php if ($session->get('logged_in')): ?>
-            <div style="padding: 0 20px; font-size: 14px; color: var(--primary-color); margin-top: 20px;">
-                <p><strong>Usuari:</strong> <?= esc($session->get('username')) ?></p>
-                <p><strong>Rol:</strong> <?= esc($session->get('role')) ?></p>
-            </div>
-        <?php endif; ?>
     </div>
 
     <div class="divider"></div>

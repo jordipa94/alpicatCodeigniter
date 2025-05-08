@@ -7,8 +7,16 @@
         <div class="header">
             <h1>DASHBOARD</h1>
             <div class="user-info">
-                <img src="https://via.placeholder.com/40" alt="$User_name">
-                <span>Admin</span>
+
+                <?php $session = session(); ?>
+
+                <?php if ($session->get('logged_in')): ?>
+                    <div style="padding: 0 20px; font-size: 14px; margin-top: 20px;">
+                        <p><strong>Usuari:</strong> <?= esc($session->get('username')) ?></p>
+                        <p><strong>Rol:</strong> <?= esc($session->get('role')) ?></p>
+                    </div>
+                <?php endif; ?>
+
             </div>
         </div>
         
