@@ -6,14 +6,16 @@
 
     <h1>Programes</h1>
 
-    <a href="/classificacioPrimerEquip">Classificació Primer Equip</a>
-
     <!-- DIVS AMB NOTICIES -->
     <div class="w3-row-padding">
         <?php foreach($classifications as $classification): ?>
 
-            <h3><?= esc($classification['nom'])?></h3>
-            <a href="<?= base_url('programes/viewClassification/' . esc($classification['id'])) ?>" class="w3-button w3-red">Veure Classificació</a>
+            <div class="w3-third w3-margin-bottom">
+                <div class="w3-card w3-padding w3-white">
+                    <h3><?= esc($classification['competitionName'])?></h3>
+                    <a href="<?= base_url('programes/viewClassification/' . esc($classification['id'])) ?>" class="w3-button w3-red">Veure Classificació</a>
+                </div>
+            </div>
 
         <?php endforeach; ?>
         

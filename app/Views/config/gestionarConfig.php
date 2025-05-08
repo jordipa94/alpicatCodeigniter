@@ -8,12 +8,6 @@
 
     <h1>GESTIONAR CONFIGURACIO</h1>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
-            <?= session('success') ?>
-        </div>
-    <?php endif; ?>
-
     <!-- BUSCADOR DE NOTICIES CRUD -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('/admin/searchConfig') ?>" method="GET" class="w3-center">

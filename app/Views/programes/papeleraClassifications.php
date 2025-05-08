@@ -8,12 +8,6 @@
 
     <h1>PAPELERA CLASSIFICACIONS</h1>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
-            <?= session('success') ?>
-        </div>
-    <?php endif; ?>
-
     <table class="w3-table w3-bordered w3-striped w3-card-4">
         <thead>
             <tr class="w3-light-grey">
@@ -28,7 +22,7 @@
             <?php foreach($classifications as $classification): ?>
             <tr>
                 <td><?= esc($classification['id'])?></td>
-                <td><?= esc($classification['nom'])?></td>
+                <td><?= esc($classification['competitionName'])?></td>
                 <td><?= esc($classification['url'])?></td>
                 <td><?= esc($classification['deleted_at'])?></td>
                 <td>

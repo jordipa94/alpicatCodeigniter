@@ -14,15 +14,10 @@ class ProgramesController extends BaseController
     {
         $classificationModel = new ClassificationModel();
 
-        $data['classifications'] = $classificationModel->orderBy('created_at', 'DESC')->paginate(9, 'default');
+        $data['classifications'] = $classificationModel->findAll();
         $data['pager'] = $classificationModel->pager;
 
         echo view('programes/programes', $data);
-    }
-
-    public function viewClassification($id)
-    {
-
     }
 
     // VIEW PER CREAR CLASSIFICACIONS
@@ -43,17 +38,17 @@ class ProgramesController extends BaseController
         $model = new ClassificationModel();
 
         $validationRules = [
-            'nom' => 'required|max_length[128]',
+            'competitionName' => 'required|max_length[128]',
             'url' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
 
-            $nom = $this->request->getPost('nom');
+            $competitionName = $this->request->getPost('competitionName');
             $url = $this->request->getPost('url');
 
             $id = $model->insert([
-                "nom" => $nom,
+                "competitionName" => $competitionName,
                 "url" => $url,
             ]);
 
@@ -83,7 +78,7 @@ class ProgramesController extends BaseController
 
         if ($keyword) {
             $classificationModel->groupStart()
-                        ->like('nom', $keyword)
+                        ->like('competitionName', $keyword)
                         ->orLike('url', $keyword)
                         ->groupEnd();
         }
@@ -114,7 +109,7 @@ class ProgramesController extends BaseController
         $model = new ClassificationModel();
 
         $validationRules = [
-            'nom' => 'required|max_length[128]',
+            'competitionName' => 'required|max_length[128]',
             'url' => 'required',
         ];
 
@@ -122,11 +117,11 @@ class ProgramesController extends BaseController
             return redirect()->to(base_url('editClassificacio/').$id)->withInput();
         }
 
-        $nom = $this->request->getPost('nom');
+        $competitionName = $this->request->getPost('competitionName');
         $url = $this->request->getPost('url');
 
         $data = [
-            'nom' => $nom,
+            'competitionName' => $competitionName,
             'url' => $url,
         ];
 
@@ -183,66 +178,87 @@ class ProgramesController extends BaseController
     return redirect()->to('/papeleraClassifications');
     }
     
-    public function fcfPrimerEquip()
+    public function viewClassification($id)
     {
-    $url = 'https://www.fcf.cat/classificacio/2425/futbol-11/segona-catalana/grup-5';
+        // Crear el modelo directamente sin constructor
+        $classificationModel = new ClassificationModel();
+        $competition = $classificationModel->getUrlById($id);
 
-    function filterCellsByClass($cells, $classToAvoid) {
-        $filteredCells = [];
+        if (!$competition) {
+            return "URL no encontrada en la base de datos.";
+        }
 
-        foreach ($cells as $cell) {
-            $classAttribute = $cell->getAttribute('class');
-            if (strpos($classAttribute, $classToAvoid) === false) {
-                $filteredCells[] = $cell;
+        $url = $competition['url'];
+        $competitionName = $competition['competitionName'];
+
+        // Obtener la clasificación desde la URL
+        $clasificacio = $this->obtenerClasificacionDesdeURL($url);
+
+        return view('programes/viewClassification', [
+            'clasificacio' => $clasificacio,
+            'competitionName' => $competitionName
+        ]);
+    }
+
+    private function obtenerClasificacionDesdeURL($url)
+    {
+        function filterCellsByClass($cells, $classToAvoid) {
+            $filteredCells = [];
+
+            foreach ($cells as $cell) {
+                $classAttribute = $cell->getAttribute('class');
+                if (strpos($classAttribute, $classToAvoid) === false) {
+                    $filteredCells[] = $cell;
+                }
+            }
+
+            return $filteredCells;
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $html = curl_exec($ch);
+        curl_close($ch);
+
+        $dom = new \DOMDocument();
+        @$dom->loadHTML($html);
+        $xpath = new \DOMXPath($dom);
+        $table = $xpath->query("//table[contains(@class, 'fcftable-e')]")->item(0);
+
+        $clasificacio = [];
+
+        if ($table) {
+            foreach ($table->getElementsByTagName('tr') as $index => $row) {
+                if ($index === 0 || $index === 1) {
+                    continue;
+                }
+
+                $cells = $row->getElementsByTagName('td');
+                $cells = filterCellsByClass($cells, 'detallada');
+
+                if (count($cells) > 0) {
+                    $logoImg = $cells[1]->getElementsByTagName('img')->item(0);
+                    $logo = $logoImg ? $logoImg->getAttribute('src') : null;
+
+                    $clasificacio[] = [
+                        'posicio' => trim($cells[0]->nodeValue),
+                        'logo' => $logo,
+                        'equip' => trim($cells[2]->nodeValue),
+                        'punts' => trim($cells[3]->nodeValue),
+                        'pj' => trim($cells[6]->nodeValue),
+                        'pg' => trim($cells[7]->nodeValue),
+                        'pe' => trim($cells[8]->nodeValue),
+                        'pp' => trim($cells[9]->nodeValue),
+                        'gf' => trim($cells[10]->nodeValue),
+                        'gc' => trim($cells[11]->nodeValue),
+                    ];
+                }
             }
         }
 
-        return $filteredCells;
-    }
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    $html = curl_exec($ch);
-    curl_close($ch);
-
-    $dom = new \DOMDocument();
-    @$dom->loadHTML($html);
-    $xpath = new \DOMXPath($dom);
-    $table = $xpath->query("//table[contains(@class, 'fcftable-e')]")->item(0);
-
-    $clasificacio = [];
-
-    if ($table) {
-        foreach ($table->getElementsByTagName('tr') as $index => $row) {
-            if ($index === 0 || $index === 1) {
-                continue;
-            }
-
-            $cells = $row->getElementsByTagName('td');
-            $cells = filterCellsByClass($cells, 'detallada');
-
-            if (count($cells) > 0) {
-                $logoImg = $cells[1]->getElementsByTagName('img')->item(0);
-                $logo = $logoImg ? $logoImg->getAttribute('src') : null;
-
-                $clasificacio[] = [
-                    'posicio' => trim($cells[0]->nodeValue),
-                    'logo' => $logo,
-                    'equip' => trim($cells[2]->nodeValue),
-                    'punts' => trim($cells[3]->nodeValue),
-                    'pj' => trim($cells[6]->nodeValue),
-                    'pg' => trim($cells[7]->nodeValue),
-                    'pe' => trim($cells[8]->nodeValue),
-                    'pp' => trim($cells[9]->nodeValue),
-                    'gf' => trim($cells[10]->nodeValue),
-                    'gc' => trim($cells[11]->nodeValue),
-                ];
-            }
-        }
-    }
-        return view('programes/fcfPrimerEquip', ['clasificacio' => $clasificacio]);
+        return $clasificacio;
     }
 
 }

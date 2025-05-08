@@ -80,10 +80,24 @@
     </div>
 </div>
 
-<!-- Main Content -->
-<div class="main-content w3-container">
-    <?php echo $this->renderSection('contingut'); ?>
-</div>
+    <!-- Main Content -->
+    <div class="main-content w3-container">
+
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
+                <?= session('success') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="w3-panel w3-red w3-padding w3-round w3-margin-bottom w3-center">
+                <?= session('error') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php echo $this->renderSection('contingut'); ?>
+        
+    </div>
 
 </body>
 </html>

@@ -8,12 +8,6 @@
 
     <h1>CREAR NOTÍCIA</h1>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
-            <?= session('success') ?>
-        </div>
-    <?php endif; ?>
-
     <!-- FORMULARI PER CREAR UNA NOVA NOTICIA -->
     <form action="crearNoticia" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
 

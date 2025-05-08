@@ -20,10 +20,10 @@ class UserSeeder extends Seeder
         ]);
 
         $this->db->table('users')->insert([
-            'username'     => 'administrador',
+            'username'     => 'gestor',
             'password'     => password_hash('1234', PASSWORD_DEFAULT),
-            'full_name'    => 'administrador',
-            'role'         => 'administrador',
+            'full_name'    => 'gestor',
+            'role'         => 'gestor',
             'created_at'   => date('Y-m-d H:i:s'),
             'updated_at'   => date('Y-m-d H:i:s'),
         ]);

@@ -20,7 +20,7 @@
             <select id="role" name="role" class="w3-select w3-border w3-margin-bottom" required>
                 <option value="" disabled>Selecciona una opcio</option>
                 <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>ADMIN</option>
-                <option value="administrador" <?= $user['role'] === 'administrador' ? 'selected' : '' ?>>ADMINISTRADOR "GESTIO USUARIS"</option>
+                <option value="gestor" <?= $user['role'] === 'gestor' ? 'selected' : '' ?>>GESTOR "GESTIO USUARIS"</option>
             </select>
 
             <label for="password" class="w3-text-dark-grey w3-margin-top">Nova contrasenya (opcional)</label>

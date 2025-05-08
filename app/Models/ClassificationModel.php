@@ -12,7 +12,7 @@ class ClassificationModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nom', 'url', 'created_at', 'updated_at','deleted_at'];
+    protected $allowedFields    = ['competitionName', 'url', 'created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -44,14 +44,9 @@ class ClassificationModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function obtenerPorNombre($nom)
+    public function getUrlById($id)
     {
-        return $this->where('nom', $nom)->first();
-    }
-
-    public function obtenerTodas()
-    {
-        return $this->findAll();
+        return $this->where('id', $id)->first();
     }
 
 }

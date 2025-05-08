@@ -13,7 +13,7 @@ class Classification extends Migration
                         'type'           => 'INT',
                         'auto_increment' => true,
                 ],
-                'nom'          => [
+                'competitionName'          => [
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
                 ],

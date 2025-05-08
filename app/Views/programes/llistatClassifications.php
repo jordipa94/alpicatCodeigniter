@@ -38,7 +38,7 @@
             <?php foreach($classifications as $classification): ?>
             <tr>
                 <td><?= esc($classification['id'])?></td>
-                <td><?= character_limiter($classification['nom'], 20) ?></td>
+                <td><?= character_limiter($classification['competitionName'], 20) ?></td>
                 <td><?= character_limiter($classification['url'], 30) ?></td>
                 <td><?= esc($classification['created_at'])?></td>
                 <td>
@@ -69,7 +69,7 @@
                 
                 <div class="w3-row w3-section">
                     <div class="w3-col s4"><strong>Nom:</strong></div>
-                    <div class="w3-col s8"><?= esc($classification['nom']) ?></div>
+                    <div class="w3-col s8"><?= esc($classification['competitionName']) ?></div>
                 </div>
                 
                 <div class="w3-row w3-section">
