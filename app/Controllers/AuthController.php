@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\UserModel;
 use App\Models\NoticiesModel;
 use App\Models\ContacteModel;
+use App\Models\ClassificationModel;
 
 class AuthController extends BaseController
 {
@@ -17,11 +18,13 @@ class AuthController extends BaseController
         $userModel = new UserModel();
         $noticiesModel = new NoticiesModel();
         $contacteModel = new ContacteModel();
+        $classificationModel = new ClassificationModel();
 
         $data = [
             'count_usuaris' => $userModel->countAll(),
             'count_noticies' => $noticiesModel->countAll(),
             'count_contacte' => $contacteModel->countAll(),
+            'count_classifications' => $classificationModel->countAll(),
         ];
         
         return view('admin/admin', $data);
@@ -94,7 +97,7 @@ class AuthController extends BaseController
                 ];
                 $session->set($sessionData);
 
-                return redirect()->to('/')->with('success', 'Has iniciat sessio correctament!');
+                return redirect()->to('/admin')->with('success', 'Has iniciat sessio correctament!');
             } else {
                 return redirect()->back()->with('error', 'Contrasenya o usuari incorrectes.');
             }

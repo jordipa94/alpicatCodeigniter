@@ -59,6 +59,10 @@
         <div class="w3-dropdown-content w3-bar-block w3-card-4" style="background-color: #000000 !important;">
           <?php $session = session(); ?>
           <?php if ($session->get('logged_in')): ?>
+
+            <a href="/admin" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color: #000000 !important;">
+              <i class="fa fa-info-circle"></i> Admin
+            </a>
             
             <a href="/logout" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color: #000000 !important;">
               <i class="fa fa-sign-in-alt"></i> Logout
@@ -116,6 +120,10 @@
     <div class="w3-dropdown-content w3-bar-block w3-card-4" style="background-color:rgb(65, 65, 65) !important;">
       <?php $session = session(); ?>
       <?php if ($session->get('logged_in')): ?>
+
+        <a href="/admin" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color: #000000 !important;">
+          <i class="fa fa-info-circle"></i> Admin
+        </a>
         
         <a href="/logout" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color:rgb(65, 65, 65) !important;">
           <i class="fa fa-sign-in-alt"></i> Logout

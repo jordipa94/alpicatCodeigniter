@@ -40,7 +40,6 @@
 
     <div class="teamDiv">
         <h2>UNEIX-TE AL NOSTRE EQUIP</h2>
-        <a href="<?php echo base_url('admin') ?>">Administracion</a>
         <p>ENTRENEM FUTURS CAMPIONS</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nisi sit perferendis, sunt commodi eum et fugiat ipsa mollitia adipisci modi laudantium quam inventore quibusdam accusantium quas amet labore exercitationem.</p>
     </div>

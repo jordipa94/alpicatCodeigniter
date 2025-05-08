@@ -29,7 +29,7 @@ class LoginFilter implements FilterInterface
         
         // VERIFICAR SI EL USUARI ESTA LOGUEAT
         if (!$session->has('logged_in') || !$session->get('logged_in')) {
-            return redirect()->to('/login')->with('error', 'Per favor, inicia sessió primer.');
+            return redirect()->to('/login')->with('error', 'Inicia sessió per accedir a aquesta pàgina.');
         }
         
         // SI EL FILTER ESTA BUIT NO CAL ROL

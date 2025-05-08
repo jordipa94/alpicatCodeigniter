@@ -22,15 +22,22 @@
         
         <div class="stats-cards">
             <div class="card">
-                <h3><a href="<?php echo base_url('/noticies'); ?>">Total noticias</a></h3>
+                <h3><a href="<?php echo base_url('/admin/noticies/llistatNoticies'); ?>"> <i class="fa fa-newspaper"></i> Total noticias</a></h3>
                 <p><?= esc($count_noticies) ?></p>
             </div>
         </div>
 
         <div class="stats-cards">
             <div class="card">
-                <h3><a href="<?php echo base_url('/admin/gestionarContacte'); ?>">Total contactes pendents</a></h3>
+                <h3><a href="<?php echo base_url('/admin/gestionarContacte'); ?>"> <i class="fa fa-envelope"></i>  Total contactes pendents</a></h3>
                 <p><?= esc($count_contacte) ?></p>
+            </div>
+        </div>
+
+        <div class="stats-cards">
+            <div class="card">
+                <h3><a href="<?php echo base_url('/admin/programes/llistatClassificacions'); ?>"> <i class="fa fa-calendar-alt"></i> Total classificacions</a></h3>
+                <p><?= esc($count_classifications) ?></p>
             </div>
         </div>
 
