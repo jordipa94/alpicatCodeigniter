@@ -27,7 +27,6 @@
     <table class="w3-table w3-bordered w3-striped w3-card-4">
         <thead>
             <tr class="w3-light-grey">
-                <th>ID</th>
                 <th>Clau</th>
                 <th>Valor</th>
                 <th>Data Creacio</th>
@@ -37,7 +36,6 @@
         <tbody>
             <?php foreach($configs as $config): ?>
             <tr>
-                <td><?= esc($config['id'])?></td>
                 <td><?= esc($config['clau'])?></td>
                 <td><?= substr($config['valor'], 0, 40) . '...' ?></td>
                 <td><?= esc($config['created_at'])?></td>

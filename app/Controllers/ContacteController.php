@@ -120,15 +120,5 @@ class ContacteController extends BaseController
     {
         return $this->gestionarContacte();
     }
-
-    //READ CONTACTE
-    public function readContactForm($id)
-    {
-        $contacteModel = new ContacteModel();
-
-        $data['missatge'] = $contacteModel->find($id);
-
-        echo view('/contacte/readContactForm', $data);
-
-    }
+    
 }

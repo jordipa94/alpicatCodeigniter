@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
+    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/noticies/llistatNoticies') ?>">Tornar a inici</a></button>
+
     <h1>CREAR NOTÍCIA</h1>
 
     <!-- FORMULARI PER CREAR UNA NOVA NOTICIA -->

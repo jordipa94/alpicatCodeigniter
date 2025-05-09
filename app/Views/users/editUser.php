@@ -2,6 +2,8 @@
 
 <?php echo $this->section('contingut'); ?>
 
+    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
+
     <h2>EDITAR USUARI <?= esc($user['id'])?> </h2>
 
     <div class="w3-padding">

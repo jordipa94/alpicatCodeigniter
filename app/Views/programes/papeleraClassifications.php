@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
+    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/programes/llistatClassificacions') ?>">Tornar a inici</a></button>
+
     <h1>PAPELERA CLASSIFICACIONS</h1>
 
     <table class="w3-table w3-bordered w3-striped w3-card-4">
         <thead>
             <tr class="w3-light-grey">
-                <th>ID</th>
                 <th>Nom</th>
                 <th>URL</th>
                 <th>Data eliminacio</th>
@@ -21,7 +22,6 @@
         <tbody>
             <?php foreach($classifications as $classification): ?>
             <tr>
-                <td><?= esc($classification['id'])?></td>
                 <td><?= esc($classification['competitionName'])?></td>
                 <td><?= esc($classification['url'])?></td>
                 <td><?= esc($classification['deleted_at'])?></td>

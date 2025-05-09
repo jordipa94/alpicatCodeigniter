@@ -16,6 +16,8 @@
             </div>
         <?php endif; ?>
 
+        <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
+
         <h1>REGISTRAR USUARI</h1>
 
         <form class="w3-card-4 w3-padding w3-round w3-light-grey" action="<?= site_url('admin/registerUser') ?>" method="post">

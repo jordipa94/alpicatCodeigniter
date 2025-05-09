@@ -141,6 +141,24 @@ class UsersController extends BaseController
         return redirect()->to('/papeleraUsers');
     }
 
-    
+    public function searchUser()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $UserModel = new UserModel();
+
+        if ($keyword) {
+            $UserModel->groupStart()
+                        ->like('username', $keyword)
+                        ->orLike('full_name', $keyword)
+                        ->orLike('role', $keyword)
+                        ->groupEnd();
+        }
+
+        $data['users'] = $UserModel->paginate(6);
+        $data['pager'] = $UserModel->pager;
+        $data['keyword'] = $keyword;
+
+        return view('users/users', $data);
+    }
 
 }

@@ -39,7 +39,6 @@ $routes->get('/contacte', 'ContacteController::index');
 $routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
 $routes->get('/admin/gestionarContacte', 'ContacteController::gestionarContacte',['filter'=>'login:admin,gestor']);
 $routes->get('/admin/gestionarContacte/filtrar', 'ContacteController::filtrar',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/gestionarContacte/readContactForm/(:num)', 'ContacteController::readContactForm/$1',['filter'=>'login:admin,gestor']);
 
 //CRUD NOTICIES
 $routes->get('/admin/noticies/llistatNoticies', 'NoticiesController::viewLlistatNoticies',['filter'=>'login:admin,gestor']);
@@ -54,14 +53,15 @@ $routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1'
 $routes->get('/admin/noticies/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud',['filter'=>'login:admin,gestor']);
 
 //USUARIS
-$routes->get('admin/registerUser', 'AuthController::showRegisterForm',['filter'=>'login:gestor']);
-$routes->post('admin/registerUser', 'AuthController::registerUser',['filter'=>'login:gestor']);
+$routes->get('admin/users/registerUser', 'AuthController::showRegisterForm',['filter'=>'login:gestor']);
+$routes->post('admin/users/registerUser', 'AuthController::registerUser',['filter'=>'login:gestor']);
 $routes->get('admin/users', 'UsersController::index',['filter'=>'login:gestor']);
 $routes->get('admin/users/editUser/(:num)', 'UsersController::editUser/$1',['filter'=>'login:gestor']);
 $routes->post('admin/users/updateUser/(:num)', 'UsersController::updateUser/$1',['filter'=>'login:gestor']);
 $routes->get('admin/users/deleteUser/(:num)', 'UsersController::deleteUser/$1',['filter'=>'login:gestor']);
 $routes->get('admin/users/papeleraUsers', 'UsersController::recycleBinUsers',['filter'=>'login:gestor']);
 $routes->get('admin/users/restaurarUser/(:num)', 'UsersController::restaurarUser/$1',['filter'=>'login:gestor']);
+$routes->get('/admin/users/searchUser', 'UsersController::searchUser',['filter'=>'login:admin,gestor']);
 
 //CONFIGURACIO
 $routes->get('/admin/gestionarConfig', 'ConfigController::index',['filter'=>'login:admin,gestor']);

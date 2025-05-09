@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
+    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
+
     <h1>PAPELERA USUARIS</h1>
 
     <table class="w3-table w3-bordered w3-striped w3-card-4">
         <thead>
             <tr class="w3-light-grey">
-                <th>ID</th>
                 <th>Username</th>
                 <th>Nom Complet</th>
                 <th>Role</th>
@@ -22,7 +23,6 @@
         <tbody>
             <?php foreach($users as $user): ?>
             <tr>
-                <td><?= esc($user['id'])?></td>
                 <td><?= character_limiter($user['username'], 20) ?></td>
                 <td><?= character_limiter($user['full_name'], 50) ?></td>
                 <td><?= esc($user['role'])?></td>

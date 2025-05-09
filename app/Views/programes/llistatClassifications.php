@@ -9,25 +9,33 @@
     <h1>GESTIONAR CLASSIFICACIONS</h1>
 
     <!-- BUSCADOR DE NOTICIES CRUD -->
-    <div class="w3-container w3-center w3-padding-16">
-        <form action="<?= base_url('/admin/programes/searchClassificacio') ?>" method="GET" class="w3-center">
+    <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="w3-col s2 m1 l1">
+            <button class="w3-button w3-red w3-round">
+                <a href="<?php echo base_url('/admin/programes/crearClassificacio') ?>"><i class="fa fa-plus"></i> Crear Classificació</a>
+            </button>
+        </div>
+        <form action="<?= base_url('/admin/programes/searchClassificacio') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
             <?= csrf_field(); ?>
-            <div class="w3-row" style="max-width: 400px; margin: auto;">
+            <div class="w3-row" style="max-width: 400px; width: 80%;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
                         placeholder="Buscar classificacions..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-red w3-round w3-block">Buscar</button>
+                    <button type="submit" class="w3-button w3-red w3-round w3-block"><i class="fa fa-search"></i> Buscar</button>
                 </div>
             </div>
         </form>
+        <!-- PAPELERA -->
+        <button class="w3-button w3-red w3-round">
+            <a href="<?php echo base_url('/admin/programes/papeleraClassificacions') ?>"><i class="fa fa-trash"></i> Papelera</a>
+        </button>
     </div>
 
     <table class="w3-table w3-bordered w3-striped w3-card-4">
         <thead>
             <tr class="w3-light-grey">
-                <th>ID</th>
                 <th>Nom</th>
                 <th>URL</th>
                 <th>Data publicacio</th>
@@ -37,7 +45,6 @@
         <tbody>
             <?php foreach($classifications as $classification): ?>
             <tr>
-                <td><?= esc($classification['id'])?></td>
                 <td><?= character_limiter($classification['competitionName'], 20) ?></td>
                 <td><?= character_limiter($classification['url'], 30) ?></td>
                 <td><?= esc($classification['created_at'])?></td>
