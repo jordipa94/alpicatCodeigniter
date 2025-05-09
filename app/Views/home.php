@@ -123,7 +123,15 @@ footer .social {
         <p>ENTRENEM FUTURS CAMPIONS</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nisi sit perferendis, sunt commodi eum et fugiat ipsa mollitia adipisci modi laudantium quam inventore quibusdam accusantium quas amet labore exercitationem.</p>
     </div>
+    <div class="w3-container" style="margin-top: 20px;">
+    <div class="w3-row-padding">
 
+<!-- 
+    Calendario 
+-->
+
+    </div>
+    </div>
     <main class="w3-container" style="margin-top: 20px;">
         <h2 class="w3-center">Últimes Notícies</h2>
         <div class="w3-row-padding">
@@ -135,6 +143,7 @@ footer .social {
                     <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
                     <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir més</a>
                 </div>
+                
             </div>
         <?php endforeach; ?>
         </div>

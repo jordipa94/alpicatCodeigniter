@@ -19,7 +19,7 @@
                             <h3><?= esc($galeria['nom_galeria']) ?></h3>
                             <img src="<?= base_url('uploads/' . esc($galeria['imatge_galeria'])) ?>" alt="" style="width:100%">
                             <p><?= esc($galeria['descripcio_galeria']) ?></p>
-                            <a href="<?= base_url('readGaleria/' . $galeria['id']) ?>" class="w3-button w3-blue">Obrir galeria</a>
+                            <a href="<?= base_url('galeria/readGaleria/' .esc($galeria['id_galeria'])) ?>" class="w3-button w3-blue">Obrir galeria</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

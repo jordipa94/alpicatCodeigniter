@@ -15,7 +15,7 @@ class GaleriaController extends BaseController
         $data['galeries'] = $galeriaModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
         $data['pager'] = $galeriaModel->pager;
 
-        return view('galeria', $data);
+        return view('galeria/gestiogaleria', $data);
     }
 
     public function searchGaleria()
@@ -34,12 +34,16 @@ class GaleriaController extends BaseController
         $data['pager'] = $galeriaModel->pager;
         $data['keyword'] = $keyword;
 
-        return view('galeria/index', $data);
+        return view('galeria/galeria', $data);
     }
 
     public function viewCrearGaleria()
-    {
-        return view('galeria/crearGaleria');
+    {   
+        $galeriaModel = new GaleriaModel();
+        $data['galeries'] = $galeriaModel->paginate(6, 'default');
+        $data['pager'] = $galeriaModel->pager;
+
+        return view('galeria/crearGaleria',$data);
     }
 
     public function crearGaleria()
