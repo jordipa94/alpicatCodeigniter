@@ -10,12 +10,12 @@
 
     <!-- BUSCADOR DE CLASSIFICACIONS -->
     <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
+
         <!-- CREAR CLASSIFICACIONS -->
-        <div class="w3-col s2 m1 l1">
-            <button class="w3-button w3-round custom-button">
-                <a href="<?php echo base_url('/admin/programes/crearClassificacio') ?>"><i class="fa fa-plus"></i> Crear Classificació</a>
-            </button>
-        </div>
+        <button class="w3-button w3-round custom-button">
+            <a href="<?php echo base_url('/admin/programes/crearClassificacio') ?>"><i class="fa fa-plus"></i> Crear Classificació</a>
+        </button>
+
         <!-- BUSCAR CLASSIFICACIONS -->
         <form action="<?= base_url('/admin/programes/searchClassificacio') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
             <?= csrf_field(); ?>
@@ -29,6 +29,7 @@
                 </div>
             </div>
         </form>
+        
         <!-- PAPELERA CLASSIFICACIONS -->
         <button class="w3-button w3-round custom-button">
             <a href="<?php echo base_url('/admin/programes/papeleraClassificacions') ?>"><i class="fa fa-trash"></i> Papelera</a>

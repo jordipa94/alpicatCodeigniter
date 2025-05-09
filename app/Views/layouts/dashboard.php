@@ -13,28 +13,37 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
+
+    <div id="iconResponsive" class="menu-section">
+        <ul>
+            <li class="menu-item"><a href="<?php echo base_url('/admin') ?>"> <i id="iconResponsive" class="fa fa-home"></i><span> ALPICAT FC</span></a></li>
+        </ul>
+    </div>
+
     <div class="logo">
+
         <a href="/admin" style="font-family: 'Arial', sans-serif !important;">
-            <h1 style="font-size:32px;">ALPICAT FC</h1>
-            <small>Panel de Administración</small>
+            <h1 style="font-size:24px;">ALPICAT FC</h1>
+            <small>Panel de Administració</small>
         </a>
+
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/llistatNoticies') ?>"> <i class="fa fa-newspaper"></i> Gestionar Notícies</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/llistatNoticies') ?>"> <i class="fa fa-newspaper"></i><span> Gestionar Notícies</span></a></li>
         </ul>
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/programes/llistatClassificacions') ?>"><i class="fa fa-calendar-alt"></i> Gestionar Classificació</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/programes/llistatClassificacions') ?>"><i class="fa fa-calendar-alt"></i> <span> Gestionar Classificació</span></a></li>
         </ul>
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/users') ?>"><i class="fa fa-user"></i> Gestionar Usuaris</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/users') ?>"><i class="fa fa-user"></i><span> Gestionar Usuaris</span></a></li>
         </ul>
     </div>
 
@@ -42,27 +51,26 @@
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>"><i class="fa fa-envelope"></i> Gestionar Contacte</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>"><i class="fa fa-envelope"></i><span> Gestionar Contacte</span></a></li>
         </ul>
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarConfig') ?>"><i class="fa fa-gear"></i> Gestionar Configuracio</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarConfig') ?>"><i class="fa fa-gear"></i><span> Gestionar Configuracio</span></a></li>
         </ul>
     </div>
 
     <div class="divider"></div>
 
-    <div class="logo">
-        <a href="/" style="font-family: 'Arial', sans-serif !important;">
-            <h1>Tornar a inici</h1>
-        </a>
-        <div class="divider"></div>
-        <a href="/logout" style="font-family: 'Arial', sans-serif !important;">
-            <h1>Logout</h1>
-        </a>
+    <div class="menu-section">
+
+        <ul>
+            <li class="menu-item"><a href="<?php echo base_url('/logout') ?>"><i class="fa fa-sign-in-alt"></i><span> Tancar sessió</span></a></li>
+        </ul>
+
     </div>
+
 </div>
 
     <!-- Main Content -->

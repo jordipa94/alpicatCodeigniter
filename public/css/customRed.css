@@ -33,6 +33,4 @@
 .custom-button:hover {
   background-color: #000000 !important;
   color: white !important;
-  border-color: #C10C18; /* Rojo */
-  border-style: solid;
 }
