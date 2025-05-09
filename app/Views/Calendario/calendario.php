@@ -1,3 +1,7 @@
+<?= $this->extend('layouts/dashboard'); ?>
+
+<?= $this->section('contingut'); ?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
-
+use App\Models\CalendarioModel;
 class AdministracioController extends BaseController
 {
     public function index()
@@ -102,20 +102,20 @@ class AdministracioController extends BaseController
     //Calenario 
     public function calendar()
     {
-        return view('/Admin_privat/Calendario/calendario');
+
+        return view('/Calendario/calendario');
     }
-/*
+
     public function loadEvents()
     {
-        $eventModel = new \EventModel();
+        $eventModel = new CalendarioModel();
         $events = $eventModel->findAll();
         return $this->response->setJSON($events);
     }
-*/
-/*
+
     public function addEvent()
     {
-        $eventModel = new EventModel();
+        $eventModel = new CalendarioModel();
 
         $data = [
             'title' => $this->request->getPost('title'),
@@ -124,9 +124,13 @@ class AdministracioController extends BaseController
         ];
 
         $eventModel->insert($data);
+        // return de mi pagina de calendario con los datos .
         return $this->response->setJSON(['status' => 'Event Added']);
     }
-*/
-
-
+    public function deleteEvent($id)
+    {
+        $eventModel = new CalendarioModel();
+        $eventModel->delete($id);
+        return $this->response->setJSON(['status' => 'Event Deleted']);
+}
 }

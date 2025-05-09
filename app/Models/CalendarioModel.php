@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UsersModel extends Model
+class CalendarioModel extends Model
 {
-    protected $table            = 'users';
-    protected $primaryKey       = 'id';
+    protected $table            = 'eventos';
+    protected $primaryKey       = 'id_evento';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['username','role','password','fullname'];
+    protected $allowedFields    = ['titulo','descripcion','fecha_inicio','fecha_fin','created_at','color','updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

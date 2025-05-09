@@ -42,15 +42,15 @@
      <tbody>
          <?php foreach($users as $user): ?>
          <tr>
-             <td><?= esc($user['id_usr'])?></td>
-             <td><?= esc($user['User_name'])?></td>
-             <td><?= esc($user['User_name'])?></td>
-             <td><?= esc($user['User_email'])?></td>
-             <td><?= esc($user['User_password'])?></td>
+             <td><?= esc($user['id'])?></td>
+             <td><?= esc($user['username'])?></td>
+             <td><?= esc($user['full_name'])?></td>
+             <td><?= esc($user['password'])?></td>
+             <td><?= esc($user['role'])?></td>
              <td>
-                 <button class="w3-button w3-gray"><a href="<?= base_url('Ver_users/'.esc($user['id_usr'])) ?>">Veure</a></button>
-                 <button class="w3-button w3-yellow"><a href="<?= base_url('Ver_users/'.esc($user['id_usr'])) ?>">Editar</a></button>
-                 <button class="w3-button w3-red"><a href="<?= base_url('deleteUser/' . esc($user['id_usr'])) ?>">Eliminar</a></button>
+                 <button class="w3-button w3-gray"><a href="<?= base_url('Ver_users/'.esc($user['id'])) ?>">Veure</a></button>
+                 <button class="w3-button w3-yellow"><a href="<?= base_url('Ver_users/'.esc($user['id'])) ?>">Editar</a></button>
+                 <button class="w3-button w3-red"><a href="<?= base_url('deleteUser/' . esc($user['id'])) ?>">Eliminar</a></button>
              </td>
          </tr>
          <?php endforeach; ?>

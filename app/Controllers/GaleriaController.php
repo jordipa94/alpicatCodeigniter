@@ -55,17 +55,37 @@ class GaleriaController extends BaseController
             'descripcio_galeria' => 'permit_empty|max_length[1000]',
             'imatge_galeria'     => 'permit_empty|max_length[255]',
         ];
+        //$base64_image = $this->request->getPost('imatge_galeria');
+        
+        //$decoded_image = base64_decode($base64_image);
 
+        //foto ----> URL 
+        
+        $validationRules = [
+            'nom_galeria'        => 'required|max_length[255]',
+            'descripcio_galeria' => 'permit_empty|max_length[1000]',
+            'imatge_galeria'     => 'uploaded[imatge_galeria]|is_image[imatge_galeria]',
+        ];
+    
         if ($this->validate($validationRules)) {
+            $imagen = $this->request->getFile('imatge_galeria');
+    
+            if ($imagen->isValid() && !$imagen->hasMoved()) {
+                $contenido = file_get_contents($imagen->getTempName());
+                $base64 = base64_encode($contenido);
+                $mime = $imagen->getMimeType(); // ej. image/jpeg
+                $dataUri = 'data:' . $mime . ';base64,' . $base64;
+            }
+    
             $data = [
                 'nom_galeria'        => $this->request->getPost('nom_galeria'),
                 'descripcio_galeria' => $this->request->getPost('descripcio_galeria'),
-                'imatge_galeria'     => $this->request->getPost('imatge_galeria'),
+                'imatge_galeria'     => $dataUri ?? null,
                 'created_at'         => date('Y-m-d H:i:s'),
             ];
-
+    
             $model->insert($data);
-
+    
             return redirect()->back()->with('success', 'Galeria creada correctament.');
         } else {
             return redirect()->back()->withInput()->with('error', 'Validació fallida.');
