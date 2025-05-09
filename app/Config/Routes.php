@@ -22,7 +22,9 @@ $routes->get('/programes', 'ProgramesController::programes');
 $routes->get('/classificacioPrimerEquip', 'ProgramesController::fcfPrimerEquip');
 
 //GALERIES
-$routes->get('/galeria', 'GaleriaController::galeria');
+$routes->get('/galeria', 'GaleriaController::index');
+$routes->get('/admin/gestioGaleria', 'GaleriaController::index');//falta Galeria Funncion de los admins
+
 
 //CONTACTE
 $routes->get('/contacte', 'ContacteController::index');

@@ -11,7 +11,7 @@ class NoticiesController extends BaseController
     public function index()
     {
         $noticiesModel = new NoticiesModel();
-
+        
         $data['noticies'] = $noticiesModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
         $data['pager'] = $noticiesModel->pager;
 
