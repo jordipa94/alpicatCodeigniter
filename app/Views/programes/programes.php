@@ -13,7 +13,11 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3><?= esc($classification['competitionName'])?></h3>
-                    <a href="<?= base_url('programes/viewClassification/' . esc($classification['id'])) ?>" class="w3-button w3-red">Veure Equip</a>
+                    <div class="w3-center">
+                        <a href="<?= base_url('programes/viewClassification/' . esc($classification['id'])) ?>">
+                            <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                        </a>
+                    </div>
                 </div>
             </div>
 

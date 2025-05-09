@@ -88,11 +88,6 @@ a{
     letter-spacing: 0.5px;
 }
 
-.menu-item {
-    list-style: none;
-    margin-bottom: 10px;
-}
-
 .menu-item a {
     color: white;
     text-decoration: none;
@@ -100,11 +95,28 @@ a{
     padding: 8px 10px;
     border-radius: 4px;
     transition: all 0.3s;
+    position: relative;
 }
 
-.menu-item a:hover {
-    background-color: var(--primary-color);
-    color: white;
+.menu-item a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: red;
+    transition: width 0.3s;
+}
+
+.menu-item a:hover::after {
+    width: 100%;
+}
+
+.menu-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .submenu {
@@ -191,7 +203,6 @@ a{
     border-top: 3px solid var(--primary-color);
 }
 
-/* Botones y elementos interactivos */
 .w3-button {
     transition: all 0.3s;
 }

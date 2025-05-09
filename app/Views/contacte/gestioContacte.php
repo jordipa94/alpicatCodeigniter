@@ -32,7 +32,6 @@
                 <th>Telefono</th>
                 <th>Correu</th>
                 <th>Categoria</th>
-                <th>Data de creacio</th>
                 <th>Opcions</th>
             </tr>
         </thead>
@@ -44,7 +43,6 @@
                 <td><?= esc($missatge['telefono'])?></td>
                 <td><?= esc($missatge['correu'])?></td>
                 <td><?= esc($missatge['categoria'])?></td>
-                <td><?= esc($missatge['created_at'])?></td>
                 <td>
                 <button onclick="document.getElementById('modal-<?= esc($missatge['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
                 </td>

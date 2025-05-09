@@ -22,15 +22,8 @@
         
         <div class="stats-cards">
             <div class="card">
-                <h3><a href="<?php echo base_url('/admin/noticies/llistatNoticies'); ?>"> <i class="fa fa-newspaper"></i> Total noticias</a></h3>
+                <h3><a href="<?php echo base_url('/admin/noticies/llistatNoticies'); ?>"> <i class="fa fa-newspaper"></i> Total noticies publicades</a></h3>
                 <p><?= esc($count_noticies) ?></p>
-            </div>
-        </div>
-
-        <div class="stats-cards">
-            <div class="card">
-                <h3><a href="<?php echo base_url('/admin/gestionarContacte'); ?>"> <i class="fa fa-envelope"></i>  Total contactes pendents</a></h3>
-                <p><?= esc($count_contacte) ?></p>
             </div>
         </div>
 
@@ -38,6 +31,20 @@
             <div class="card">
                 <h3><a href="<?php echo base_url('/admin/programes/llistatClassificacions'); ?>"> <i class="fa fa-calendar-alt"></i> Total classificacions</a></h3>
                 <p><?= esc($count_classifications) ?></p>
+            </div>
+        </div>
+
+        <div class="stats-cards">
+            <div class="card">
+                <h3><a href="<?php echo base_url('/admin/users'); ?>"> <i class="fa fa-user"></i> Total usuaris</a></h3>
+                <p><?= esc($count_usuaris) ?></p>
+            </div>
+        </div>
+
+        <div class="stats-cards">
+            <div class="card">
+                <h3><a href="<?php echo base_url('/admin/gestionarContacte'); ?>"> <i class="fa fa-envelope"></i>  Total contactes pendents</a></h3>
+                <p><?= esc($count_contacte) ?></p>
             </div>
         </div>
 

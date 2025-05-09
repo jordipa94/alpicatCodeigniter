@@ -2,7 +2,7 @@
 
 <?php echo $this->section('contingut'); ?>
 
-    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
 
     <h2>EDITAR USUARI <?= esc($user['id'])?> </h2>
 
@@ -29,7 +29,7 @@
             <input type="password" id="password" name="password" class="w3-input w3-border w3-round">
 
             <div class="w3-margin-top">
-                <button type="submit" class="w3-button w3-red w3-round">Actualitzar</button>
+                <button type="submit" class="w3-button w3-round custom-button w3-margin-top">Actualitzar</button>
             </div>
 
         </form>

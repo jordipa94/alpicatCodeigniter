@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/programes/llistatClassificacions') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/programes/llistatClassificacions') ?>">Tornar a inici</a></button>
 
     <h1>PAPELERA CLASSIFICACIONS</h1>
 
@@ -33,7 +33,7 @@
         </tbody>
     </table>
 
-    <div class="pagination-container" style="margin-left:1vw">
+    <div class="pagination-container">
         <?= $pager->links() ?>
     </div>
 

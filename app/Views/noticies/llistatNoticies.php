@@ -12,7 +12,7 @@
     <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
 
         <!-- CREAR NOTICIES -->
-        <button class="w3-button w3-red w3-round">
+        <button class="w3-button w3-round custom-button">
             <a href="<?php echo base_url('/admin/noticies/crearNoticia') ?>"><i class="fa fa-plus"></i> Crear Noticia</a>
         </button>
 
@@ -25,13 +25,13 @@
                         placeholder="Buscar notícies..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-red w3-round w3-block"><i class="fa fa-search"></i> Buscar</button>
+                    <button type="submit" class="w3-button w3-round custom-button"><i class="fa fa-search"></i> Buscar</button>
                 </div>
             </div>
         </form>
 
         <!-- PAPELERA -->
-        <button class="w3-button w3-red w3-round">
+        <button class="w3-button w3-round custom-button">
             <a href="<?php echo base_url('/admin/noticies/papeleraNoticies') ?>"><i class="fa fa-trash"></i> Papelera</a>
         </button>
         

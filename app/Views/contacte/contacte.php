@@ -53,7 +53,7 @@
                         <option value="INFANTIL">INFANTIL</option>
                     </select>
 
-                    <button type="submit" class="w3-button w3-red">ENVIAR</button>
+                    <button type="submit" class="w3-button w3-round custom-button w3-margin-top">ENVIAR</button>
                 </form>
             </div>
         </div>

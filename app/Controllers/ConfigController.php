@@ -19,7 +19,7 @@ class ConfigController extends BaseController
         echo view('config/gestionarConfig',$data);
     }
 
-    //BUSCADOR DE NOTICIES
+    //BUSCADOR
     public function searchConfig()
     {
         $keyword = $this->request->getGet('keyword');

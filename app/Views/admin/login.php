@@ -4,7 +4,7 @@
 
     <div class="w3-card-4 w3-light-grey" style="max-width:600px; margin: 100px auto;">
     
-        <div class="w3-container w3-red w3-center">
+        <div class="w3-container w3-black w3-center">
             <h2>Login</h2>
         </div>
 
@@ -29,7 +29,7 @@
             <?php endif; ?>
 
             <p class="w3-center">
-                <button class="w3-button w3-red w3-margin-bottom" type="submit">Login</button>
+                <button class="w3-button w3-round custom-button w3-margin-bottom" type="submit">Login</button>
             </p>
         </form>
 

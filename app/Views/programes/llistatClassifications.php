@@ -8,13 +8,15 @@
 
     <h1>GESTIONAR CLASSIFICACIONS</h1>
 
-    <!-- BUSCADOR DE NOTICIES CRUD -->
+    <!-- BUSCADOR DE CLASSIFICACIONS -->
     <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
+        <!-- CREAR CLASSIFICACIONS -->
         <div class="w3-col s2 m1 l1">
-            <button class="w3-button w3-red w3-round">
+            <button class="w3-button w3-round custom-button">
                 <a href="<?php echo base_url('/admin/programes/crearClassificacio') ?>"><i class="fa fa-plus"></i> Crear Classificació</a>
             </button>
         </div>
+        <!-- BUSCAR CLASSIFICACIONS -->
         <form action="<?= base_url('/admin/programes/searchClassificacio') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
             <?= csrf_field(); ?>
             <div class="w3-row" style="max-width: 400px; width: 80%;">
@@ -23,12 +25,12 @@
                         placeholder="Buscar classificacions..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-red w3-round w3-block"><i class="fa fa-search"></i> Buscar</button>
+                    <button type="submit" class="w3-button w3-round custom-button"><i class="fa fa-search"></i> Buscar</button>
                 </div>
             </div>
         </form>
-        <!-- PAPELERA -->
-        <button class="w3-button w3-red w3-round">
+        <!-- PAPELERA CLASSIFICACIONS -->
+        <button class="w3-button w3-round custom-button">
             <a href="<?php echo base_url('/admin/programes/papeleraClassificacions') ?>"><i class="fa fa-trash"></i> Papelera</a>
         </button>
     </div>
@@ -38,7 +40,6 @@
             <tr class="w3-light-grey">
                 <th>Nom</th>
                 <th>URL</th>
-                <th>Data publicacio</th>
                 <th>Opcions</th>
             </tr>
         </thead>
@@ -47,7 +48,6 @@
             <tr>
                 <td><?= character_limiter($classification['competitionName'], 20) ?></td>
                 <td><?= character_limiter($classification['url'], 30) ?></td>
-                <td><?= esc($classification['created_at'])?></td>
                 <td>
                     <button onclick="document.getElementById('modal-<?= esc($classification['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
                     <button class="w3-button w3-yellow"><a href="<?= base_url('/admin/programes/editClassificacio/' . esc($classification['id'])) ?>">Editar</a></button>

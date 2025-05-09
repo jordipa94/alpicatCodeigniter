@@ -16,7 +16,7 @@
             </div>
         <?php endif; ?>
 
-        <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
+        <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
 
         <h1>REGISTRAR USUARI</h1>
 
@@ -48,7 +48,7 @@
             <input type="hidden" name="role" value="visitant">
 
             <p>
-                <button style="margin-top:1%;" class="w3-button w3-red w3-margin-bottom" type="submit">Registrar</button>
+                <button style="margin-top:1%;" class="w3-button w3-round custom-button w3-margin-bottom" type="submit">Registrar</button>
             </p>
 
         </form>

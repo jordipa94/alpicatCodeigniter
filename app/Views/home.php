@@ -52,14 +52,17 @@
                 <div class="w3-card w3-padding">
                     <h3><?= substr($noticia['nom'], 0, 30) . '...' ?></h3>
                     <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
-                    <img class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
-                    <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-red">Llegir més</a>
+                    <div class="w3-center">
+                        <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">
+                            <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                        </a>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
         </div>
         <div class="w3-container w3-center w3-padding moreNews">
-            <a href="/noticies" class="w3-button w3-red w3-round">MÉS NOTÍCIES</a>
+            <a href="/noticies" class="w3-button w3-round custom-button">MÉS NOTÍCIES</a>
         </div>
     </main>
 

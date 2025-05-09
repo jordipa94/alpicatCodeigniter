@@ -4,7 +4,7 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/gestionarConfig') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/gestionarConfig') ?>">Tornar a inici</a></button>
 
     <h2>EDITAR <?= esc($config['clau']) ?> </h2>
 
@@ -20,7 +20,7 @@
             <textarea id="valor" name="valor" class="w3-input w3-border w3-round" rows="4" required><?= esc($config['valor']) ?></textarea>
 
             <div class="w3-margin-top">
-                <button type="submit" class="w3-button w3-red w3-round">Enviar</button>
+                <button type="submit" class="w3-button w3-round custom-button w3-round">Enviar</button>
             </div>
 
         </form>

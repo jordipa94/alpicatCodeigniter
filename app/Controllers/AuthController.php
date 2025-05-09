@@ -21,10 +21,11 @@ class AuthController extends BaseController
         $classificationModel = new ClassificationModel();
 
         $data = [
-            'count_usuaris' => $userModel->countAll(),
-            'count_noticies' => $noticiesModel->countAll(),
+            'count_noticies' => $noticiesModel->where('deleted_at', null)->countAllResults(),
             'count_contacte' => $contacteModel->countAll(),
-            'count_classifications' => $classificationModel->countAll(),
+            'count_classifications' => $classificationModel->where('deleted_at', null)->countAllResults(),
+            'count_usuaris' => $userModel->where('deleted_at', null)->countAllResults(),
+
         ];
         
         return view('admin/admin', $data);

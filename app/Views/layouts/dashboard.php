@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('css/dashboard.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/customRed.css') ?>">
 </head>
 <body>
 
@@ -14,26 +15,26 @@
 <div class="sidebar">
     <div class="logo">
         <a href="/admin" style="font-family: 'Arial', sans-serif !important;">
-            <h1>ALPICAT FC</h1>
+            <h1 style="font-size:32px;">ALPICAT FC</h1>
             <small>Panel de Administración</small>
         </a>
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/llistatNoticies') ?>">Gestionar Notícies</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/noticies/llistatNoticies') ?>"> <i class="fa fa-newspaper"></i> Gestionar Notícies</a></li>
         </ul>
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/programes/llistatClassificacions') ?>">Gestionar Classificació</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/programes/llistatClassificacions') ?>"><i class="fa fa-calendar-alt"></i> Gestionar Classificació</a></li>
         </ul>
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/users') ?>">Gestionar Usuaris</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/users') ?>"><i class="fa fa-user"></i> Gestionar Usuaris</a></li>
         </ul>
     </div>
 
@@ -41,13 +42,13 @@
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>">Gestionar Contacte</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>"><i class="fa fa-envelope"></i> Gestionar Contacte</a></li>
         </ul>
     </div>
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarConfig') ?>">Gestionar Configuracio</a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarConfig') ?>"><i class="fa fa-gear"></i> Gestionar Configuracio</a></li>
         </ul>
     </div>
 

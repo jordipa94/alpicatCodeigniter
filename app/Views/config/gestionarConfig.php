@@ -8,7 +8,7 @@
 
     <h1>GESTIONAR CONFIGURACIO</h1>
 
-    <!-- BUSCADOR DE NOTICIES CRUD -->
+    <!-- BUSCADOR DE CONFIGURACIONS -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('/admin/searchConfig') ?>" method="GET" class="w3-center">
             <?= csrf_field(); ?>
@@ -18,7 +18,7 @@
                         placeholder="Buscar clau..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-red w3-round w3-block">Buscar</button>
+                    <button type="submit" class="w3-button w3-round custom-button"><i class="fa fa-search"></i> Buscar</button>
                 </div>
             </div>
         </form>
@@ -29,7 +29,6 @@
             <tr class="w3-light-grey">
                 <th>Clau</th>
                 <th>Valor</th>
-                <th>Data Creacio</th>
                 <th>Opcions</th>
             </tr>
         </thead>
@@ -38,7 +37,6 @@
             <tr>
                 <td><?= esc($config['clau'])?></td>
                 <td><?= substr($config['valor'], 0, 40) . '...' ?></td>
-                <td><?= esc($config['created_at'])?></td>
                 <td>
                     <button onclick="document.getElementById('modal-<?= esc($config['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
                     <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editConfig/' . esc($config['id'])) ?>">Editar</a></button>

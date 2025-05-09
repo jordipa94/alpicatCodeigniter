@@ -4,7 +4,7 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/noticies') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a style="text-decoration:none;" href="<?= base_url('/noticies') ?>">Tornar a inici</a></button>
 
     <h2>Noticia <?= esc($noticia['id']) ?></h2>
 

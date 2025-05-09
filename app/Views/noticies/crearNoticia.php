@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <button class="w3-button w3-red w3-margin-top"><a href="<?= base_url('/admin/noticies/llistatNoticies') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/noticies/llistatNoticies') ?>">Tornar a inici</a></button>
 
     <h1>CREAR NOTÍCIA</h1>
 
@@ -22,7 +22,7 @@
         <textarea id="contingut" name="contingut" class="w3-input w3-border w3-round" rows="4" required></textarea>
 
         <div class="w3-margin-top">
-            <button type="submit" class="w3-button w3-red w3-round">CREAR NOTICIA</button>
+            <button type="submit" class="w3-button w3-round custom-button w3-margin-top">CREAR NOTICIA</button>
         </div>
     </form>
 
