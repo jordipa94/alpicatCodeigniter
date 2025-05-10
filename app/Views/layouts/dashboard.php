@@ -14,6 +14,7 @@
 <!-- Sidebar -->
 <div class="sidebar">
 
+    <!-- ICONO TORNAR A HOME PER MOBIL -->
     <div id="iconResponsive" class="menu-section">
         <ul>
             <li class="menu-item"><a href="<?php echo base_url('/admin') ?>"> <i id="iconResponsive" class="fa fa-home"></i><span> ALPICAT FC</span></a></li>
@@ -43,7 +44,7 @@
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/users') ?>"><i class="fa fa-user"></i><span> Gestionar Usuaris</span></a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/users') ?>"><i class="fa fa-user-cog"></i><span> Gestionar Usuaris</span></a></li>
         </ul>
     </div>
 
@@ -61,14 +62,24 @@
         </ul>
     </div>
 
+    <div class="menu-section">
+        <ul>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarCategoria') ?>"><i class="fa fa-layer-group"></i><span> Gestionar Categoria</span></a></li>
+        </ul>
+    </div>
+
     <div class="divider"></div>
 
-    <div class="menu-section">
-
+    <div id="iconResponsive" class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/logout') ?>"><i class="fa fa-sign-in-alt"></i><span> Tancar sessió</span></a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/logout') ?>"><i style="color:#C10C18;" class="fa fa-sign-in-alt"></i><span> Tancar sessió</span></a></li>
         </ul>
+    </div>
 
+    <div class="logo">
+        <a style="color:#C10C18;font-size:18px" href="<?php echo base_url('/logout') ?>">
+            <i class="fa fa-sign-in-alt"></i><span style="font-size:22px"> Tancar sessió</span>
+        </a>
     </div>
 
 </div>

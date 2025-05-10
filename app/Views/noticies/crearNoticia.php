@@ -8,7 +8,7 @@
 
     <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/noticies/llistatNoticies') ?>">Tornar a inici</a></button>
 
-    <h1>CREAR NOTÍCIA</h1>
+    <h2>CREAR NOTÍCIA</h2>
 
     <!-- FORMULARI PER CREAR UNA NOVA NOTICIA -->
     <form action="crearNoticia" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">

@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <h2>GESTIONAR CONFIGURACIO</h2>
+    <h2>GESTIONAR CATEGORIES</h2>
 
-    <!-- BUSCADOR DE CONFIGURACIONS -->
+    <!-- BUSCADOR DE CATEGORIES -->
     <div class="w3-container w3-center w3-padding-16">
-        <form action="<?= base_url('/admin/searchConfig') ?>" method="GET" class="w3-center">
+        <form action="<?= base_url('/admin/searchCategoria') ?>" method="GET" class="w3-center">
             <?= csrf_field(); ?>
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
@@ -33,13 +33,13 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($configs as $config): ?>
+            <?php foreach($categories as $categoria): ?>
             <tr>
-                <td><?= esc($config['clau'])?></td>
-                <td><?= substr($config['valor'], 0, 40) . '...' ?></td>
+                <td><?= esc($categoria['clau'])?></td>
+                <td><?= substr($categoria['valor'], 0, 40) . '...' ?></td>
                 <td>
-                    <button onclick="document.getElementById('modal-<?= esc($config['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
-                    <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editConfig/' . esc($config['id'])) ?>">Editar</a></button>
+                    <button onclick="document.getElementById('modal-<?= esc($categoria['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
+                    <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editCategoria/' . esc($categoria['id'])) ?>">Editar</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -47,46 +47,46 @@
     </table>
 
     <!-- Modal -->
-    <?php foreach($configs as $config): ?>
-    <div id="modal-<?= esc($config['id']) ?>" class="w3-modal">
+    <?php foreach($categories as $categoria): ?>
+    <div id="modal-<?= esc($categoria['id']) ?>" class="w3-modal">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
             <div class="w3-center">
-                <span onclick="document.getElementById('modal-<?= esc($config['id']) ?>').style.display='none'" 
+                <span onclick="document.getElementById('modal-<?= esc($categoria['id']) ?>').style.display='none'" 
                     class="w3-button w3-display-topright">&times;</span>
-                <h3>Detalls de la Configuració</h3>
+                <h3>Detalls de la Categoria</h3>
             </div>
             
             <div class="w3-container w3-padding" style="max-height: 70vh; overflow-y: auto; word-wrap: break-word; overflow-wrap: break-word;">
                 <div class="w3-row w3-section">
                     <div class="w3-col s4"><strong>ID:</strong></div>
-                    <div class="w3-col s8"><?= esc($config['id']) ?></div>
+                    <div class="w3-col s8"><?= esc($categoria['id']) ?></div>
                 </div>
                 
                 <div class="w3-row w3-section">
                     <div class="w3-col s4"><strong>Clau:</strong></div>
-                    <div class="w3-col s8"><?= esc($config['clau']) ?></div>
+                    <div class="w3-col s8"><?= esc($categoria['clau']) ?></div>
                 </div>
                 
                 <div class="w3-row w3-section">
                     <div class="w3-col s4"><strong>Valor:</strong></div>
-                    <div class="w3-col s8"><?= esc($config['valor']) ?></div>
+                    <div class="w3-col s8"><?= esc($categoria['valor']) ?></div>
                 </div>
                 
                 <div class="w3-row w3-section">
                     <div class="w3-col s4"><strong>Data Creació:</strong></div>
-                    <div class="w3-col s8"><?= esc($config['created_at']) ?></div>
+                    <div class="w3-col s8"><?= esc($categoria['created_at']) ?></div>
                 </div>
                 
-                <?php if(isset($config['updated_at'])): ?>
+                <?php if(isset($categoria['updated_at'])): ?>
                 <div class="w3-row w3-section">
                     <div class="w3-col s4"><strong>Última Actualització:</strong></div>
-                    <div class="w3-col s8"><?= esc($config['updated_at']) ?></div>
+                    <div class="w3-col s8"><?= esc($categoria['updated_at']) ?></div>
                 </div>
                 <?php endif; ?>
             </div>
             
             <div class="w3-container w3-light-grey w3-padding">
-                <button onclick="document.getElementById('modal-<?= esc($config['id']) ?>').style.display='none'" 
+                <button onclick="document.getElementById('modal-<?= esc($categoria['id']) ?>').style.display='none'" 
                     class="w3-button w3-gray">Tancar</button>
             </div>
         </div>

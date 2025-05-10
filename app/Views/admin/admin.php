@@ -5,19 +5,17 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="header">
-            <h1>DASHBOARD</h1>
-            <div class="user-info">
+            <h2>DASHBOARD</h2>
 
                 <?php $session = session(); ?>
 
                 <?php if ($session->get('logged_in')): ?>
                     <div style="padding: 0 20px; font-size: 14px; margin-top: 20px;">
-                        <p><strong>Usuari:</strong> <?= esc($session->get('username')) ?></p>
-                        <p><strong>Rol:</strong> <?= esc($session->get('role')) ?></p>
+                        <p> <i class="fa fa-user"></i> <span><strong>Usuari: </strong></span><?= esc($session->get('username')) ?></p>
+                        <p> <i class="fa fa-tag"></i> <span><strong>Rol: </strong></span><?= esc($session->get('role')) ?></p>
                     </div>
                 <?php endif; ?>
 
-            </div>
         </div>
         
         <div class="stats-cards">

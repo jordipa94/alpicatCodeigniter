@@ -4,7 +4,7 @@
 
 <div class="w3-container w3-padding">
 
-    <h1>Programes</h1>
+    <h2>Programes</h2>
 
     <!-- DIVS AMB NOTICIES -->
     <div class="w3-row-padding">

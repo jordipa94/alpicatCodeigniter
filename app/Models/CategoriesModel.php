@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ConfigModel extends Model
+class CategoriesModel extends Model
 {
-    protected $table            = 'config';
+    protected $table            = 'categories';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['clau', 'valor'];
+    protected $allowedFields    = [];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -43,17 +43,4 @@ class ConfigModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function getSocialLinks()
-    {
-        $links = $this->whereIn('clau', ['facebookLink', 'twitterLink', 'instagramLink'])->findAll();
-        
-        $socialLinks = [];
-        foreach ($links as $link) {
-            $socialLinks[$link['clau']] = $link['valor'];
-        }
-
-        return $socialLinks;
-    }
-
 }

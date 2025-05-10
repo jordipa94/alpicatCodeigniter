@@ -63,11 +63,17 @@ $routes->get('admin/users/papeleraUsers', 'UsersController::recycleBinUsers',['f
 $routes->get('admin/users/restaurarUser/(:num)', 'UsersController::restaurarUser/$1',['filter'=>'login:gestor']);
 $routes->get('/admin/users/searchUser', 'UsersController::searchUser',['filter'=>'login:admin,gestor']);
 
-//CONFIGURACIO
+//CONFIGURACIO 
 $routes->get('/admin/gestionarConfig', 'ConfigController::index',['filter'=>'login:admin,gestor']);
 $routes->get('/admin/editConfig/(:num)', 'ConfigController::editConfig/$1',['filter'=>'login:admin,gestor']);
 $routes->post('/admin/updateConfig/(:num)', 'ConfigController::updateConfig/$1',['filter'=>'login:admin,gestor']);
 $routes->get('/admin/searchConfig', 'ConfigController::searchConfig',['filter'=>'login:admin,gestor']);
+
+//CATEGORIES
+$routes->get('/admin/gestionarCategoria', 'ConfigController::gestionarCategoria',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/editCategoria/(:num)', 'ConfigController::editCategoria/$1',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/updateCategoria/(:num)', 'ConfigController::updateCategoria/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/searchCategoria', 'ConfigController::searchCategoria',['filter'=>'login:admin,gestor']);
 
 //ADMIN
 $routes->get('/admin', 'AuthController::index',['filter'=>'login:admin,gestor']);

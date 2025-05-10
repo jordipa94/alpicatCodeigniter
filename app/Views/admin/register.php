@@ -2,25 +2,11 @@
 
 <?php echo $this->section('contingut'); ?>
 
-    
-
-        <?php if (session()->getFlashdata('success')): ?>
-            <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
-                <?= session('success') ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if (session()->getFlashdata('error')): ?>
-            <div class="w3-panel w3-red w3-padding w3-round w3-margin-bottom">
-                <?= session('error') ?>
-            </div>
-        <?php endif; ?>
-
         <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
 
-        <h1>REGISTRAR USUARI</h1>
+        <h2>REGISTRAR USUARI</h2>
 
-        <form class="w3-card-4 w3-padding w3-round w3-light-grey" action="<?= site_url('admin/registerUser') ?>" method="post">
+        <form class="w3-card-4 w3-padding w3-round w3-light-grey" action="<?= site_url('admin/users/registerUser') ?>" method="post">
 
             <?= csrf_field(); ?>
 

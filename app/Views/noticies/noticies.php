@@ -19,7 +19,7 @@
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
-                        placeholder="Buscar noticies..." class="w3-input w3-border w3-round">
+                        placeholder="Buscar..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
                     <button type="submit" class="w3-button w3-round custom-button">Buscar</button>

@@ -11,6 +11,8 @@
 </head>
 <body class="w3-light-grey">
 
+<?php $socialLinks = get_social_links(); ?>
+
 <div class="w3-top">
   <div class="w3-bar w3-card" style="display: flex; align-items: center; justify-content: space-between; background-color: #000000 !important;">
 
@@ -66,7 +68,7 @@
             </a>
             
             <a href="/logout" class="w3-bar-item w3-button w3-text-white w3-hover-text-white red-underline" style="background-color: #000000 !important;">
-              <i class="fa fa-sign-in-alt"></i> Logout
+              <i class="fa fa-sign-in-alt"></i> Tancar sessió
             </a>
 
           <?php else: ?>
@@ -127,7 +129,7 @@
         </a>
         
         <a href="/logout" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color:rgb(65, 65, 65) !important;">
-          <i class="fa fa-sign-in"></i> Logout
+          <i class="fa fa-sign-in"></i> Tancar sessió
         </a>
 
       <?php else: ?>
@@ -151,10 +153,9 @@
       <h3 class="w3-border-bottom w3-border-red w3-text-white">ALPICAT FC</h3>
       <p class="w3-text-white">El club esportiu d'Alpicat, compromès amb el desenvolupament esportiu i personal dels nostres jugadors.</p>
       <div class="w3-padding">
-        <a href="#" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-x"></i></a>
-        <a href="#" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-youtube"></i></a>
+        <a href="<?= esc($socialLinks['facebookLink']) ?>" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-facebook"></i></a>
+        <a href="<?= esc($socialLinks['twitterLink']) ?>" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-x"></i></a>
+        <a href="<?= esc($socialLinks['instagramLink']) ?>" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
     <div class="w3-third">

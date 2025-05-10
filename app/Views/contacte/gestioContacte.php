@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <h1>GESTIO DE CONTACTE</h1>
+    <h2>GESTIO DE CONTACTE</h2>
     
     <!-- FILTRAR PER CATEGORIA --> 
     <div style="max-width:200px">

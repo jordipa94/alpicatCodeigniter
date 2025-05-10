@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 
-    <h1>GESTIONAR CLASSIFICACIONS</h1>
+    <h2>GESTIONAR CLASSIFICACIONS</h2>
 
     <!-- BUSCADOR DE CLASSIFICACIONS -->
     <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
 
         <!-- CREAR CLASSIFICACIONS -->
         <button class="w3-button w3-round custom-button">
-            <a href="<?php echo base_url('/admin/programes/crearClassificacio') ?>"><i class="fa fa-plus"></i> Crear Classificació</a>
+            <a href="<?php echo base_url('/admin/programes/crearClassificacio') ?>"><i class="fa fa-plus"></i><span> Crear Classificació</span></a>
         </button>
 
         <!-- BUSCAR CLASSIFICACIONS -->
@@ -22,17 +22,17 @@
             <div class="w3-row" style="max-width: 400px; width: 80%;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
-                        placeholder="Buscar classificacions..." class="w3-input w3-border w3-round">
+                        placeholder="Buscar..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-round custom-button"><i class="fa fa-search"></i> Buscar</button>
+                    <button type="submit" class="w3-button w3-round custom-button"><i class="fa fa-search"></i><span> Buscar</span></button>
                 </div>
             </div>
         </form>
         
         <!-- PAPELERA CLASSIFICACIONS -->
         <button class="w3-button w3-round custom-button">
-            <a href="<?php echo base_url('/admin/programes/papeleraClassificacions') ?>"><i class="fa fa-trash"></i> Papelera</a>
+            <a href="<?php echo base_url('/admin/programes/papeleraClassificacions') ?>"><i class="fa fa-trash"></i><span> Papelera</span></a>
         </button>
     </div>
 

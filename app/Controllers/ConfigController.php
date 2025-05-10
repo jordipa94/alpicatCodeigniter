@@ -5,10 +5,11 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\ConfigModel;
+use App\Models\CategoriesModel;
 
 class ConfigController extends BaseController
 {
-    // VIEW PER CREAR NOTICIES
+    // VIEW CRUD CONFIGURACIO
     public function index()
     {
         $configModel = new ConfigModel();
@@ -73,6 +74,74 @@ class ConfigController extends BaseController
             return redirect()->to(base_url('/admin/gestionarConfig'))->with('success', 'Configuracio editada correctament.');
         } else {
             return redirect()->to(base_url('admin/editConfig/').$id);
+        }
+    }
+
+    // VIEW CRUD CATEGORIES
+    public function gestionarCategoria()
+    {
+        $configModel = new ConfigModel();
+
+        $data['categories'] = $configModel->paginate(6, 'default');
+        $data['pager'] = $configModel->pager;
+
+        echo view('config/gestionarCategoria',$data);
+    }
+
+    //BUSCADOR
+    public function searchCategoria()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $model = new ConfigModel();
+
+        if ($keyword) {
+            $model->groupStart()
+                        ->like('clau', $keyword)
+                        ->orLike('valor', $keyword)
+                        ->groupEnd();
+        }
+
+        $data['categories'] = $model->paginate(6);
+        $data['pager'] = $model->pager;
+        $data['keyword'] = $keyword;
+
+        return view('config/gestionarCategoria', $data);
+    }
+
+    public function editCategoria($id)
+    {
+        $model = new ConfigModel();
+        $config = $model->find($id);
+    
+        if (!$config) {
+            return redirect()->to(base_url('admin/editConfig/').$id);
+        }
+
+        return view('config/editCategoria', ['config' => $config]);
+    }
+
+    public function updateCategoria($id)
+    {
+        $model = new ConfigModel();
+
+        $validationRules = [
+            'valor' => 'required',
+        ];
+
+        if (!$this->validate($validationRules)) {
+            return redirect()->to(base_url('admin/editConfig/').$id)->withInput();
+        }
+        
+        $valor = $this->request->getPost('valor');
+
+        $data = [
+            'valor' => $valor,
+        ];
+
+        if ($model->update($id, $data)) {
+            return redirect()->to(base_url('/admin/gestionarCategoria'))->with('success', 'Categoria editada correctament.');
+        } else {
+            return redirect()->to(base_url('admin/editCategoria/').$id);
         }
     }
 

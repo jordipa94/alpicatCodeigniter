@@ -33,6 +33,24 @@ class ConfigSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [
+                'clau' => 'facebookLink',
+                'valor' => 'https://www.facebook.com/UnioEsportivaAlpicat/?locale=es_ES',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'clau' => 'twitterLink',
+                'valor' => 'https://x.com/FutbolAlpicat?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'clau' => 'instagramLink',
+                'valor' => 'https://www.instagram.com/futbolalpicat/?hl=es',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         $this->db->table('config')->insertBatch($data);

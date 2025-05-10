@@ -29,6 +29,5 @@
 .pagination li a:hover {
     background-color: #000000 !important;
     color: white !important;
-    border-color: #C10C18 !important;
     border-style: solid;
 }
