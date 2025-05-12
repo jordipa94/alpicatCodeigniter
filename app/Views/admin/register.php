@@ -30,8 +30,13 @@
                 <input class="w3-input" type="text" name="full_name" required>
             </p>
 
-            <!-- Rol per defecte (ocult) -->
-            <input type="hidden" name="role" value="visitant">
+            <!-- Dropdown role -->
+            <label for="role" class="w3-text-dark-grey w3-margin-top">Role</label>
+            <select id="role" name="role" class="w3-select w3-border w3-margin-bottom" required>
+                <option value="" disabled selected>Selecciona una opció</option>
+                <option value="admin">ADMIN</option>
+                <option value="gestor">GESTOR "GESTIO USUARIS"</option>
+            </select>
 
             <p>
                 <button style="margin-top:1%;" class="w3-button w3-round custom-button w3-margin-bottom" type="submit">Registrar</button>

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="<?= base_url('css/plantilla.css') ?>">
   <link rel="stylesheet" href="<?= base_url('css/customRed.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 <body class="w3-light-grey">
 

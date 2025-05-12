@@ -2,10 +2,6 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
     <h2>GESTIONAR NOTÍCIES</h2>
 
     <!-- BUSCADOR DE NOTICIES CRUD -->
@@ -18,7 +14,6 @@
 
         <!-- BUSCAR NOTICIES -->
         <form action="<?= base_url('/admin/noticies/searchNoticiaCrud') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
-            <?= csrf_field(); ?>
             <div class="w3-row" style="max-width: 400px; width: 80%;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -37,7 +32,7 @@
         
     </div>
 
-    <table class="w3-table w3-bordered w3-striped w3-card-4">
+    <table class="w3-table w3-bordered w3-striped w3-hoverable">
         <thead>
             <tr class="w3-light-grey">
                 <th>Titol</th>

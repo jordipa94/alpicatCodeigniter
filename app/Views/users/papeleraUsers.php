@@ -2,15 +2,11 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
     <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/users') ?>">Tornar a inici</a></button>
 
     <h2>PAPELERA USUARIS</h2>
 
-    <table class="w3-table w3-bordered w3-striped w3-card-4">
+    <table class="w3-table w3-bordered w3-striped w3-hoverable">
         <thead>
             <tr class="w3-light-grey">
                 <th>Username</th>

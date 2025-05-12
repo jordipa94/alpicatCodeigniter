@@ -2,16 +2,11 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
     <h2>GESTIONAR CATEGORIES</h2>
 
     <!-- BUSCADOR DE CATEGORIES -->
-    <div class="w3-container w3-center w3-padding-16">
+    <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
         <form action="<?= base_url('/admin/searchCategoria') ?>" method="GET" class="w3-center">
-            <?= csrf_field(); ?>
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -24,19 +19,17 @@
         </form>
     </div>
 
-    <table class="w3-table w3-bordered w3-striped w3-card-4">
+    <table class="w3-table w3-bordered w3-striped w3-hoverable">
         <thead>
             <tr class="w3-light-grey">
-                <th>Clau</th>
-                <th>Valor</th>
+                <th>Nom</th>
                 <th>Opcions</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($categories as $categoria): ?>
             <tr>
-                <td><?= esc($categoria['clau'])?></td>
-                <td><?= substr($categoria['valor'], 0, 40) . '...' ?></td>
+                <td><?= esc($categoria['name'])?></td>
                 <td>
                     <button onclick="document.getElementById('modal-<?= esc($categoria['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
                     <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editCategoria/' . esc($categoria['id'])) ?>">Editar</a></button>
@@ -63,13 +56,8 @@
                 </div>
                 
                 <div class="w3-row w3-section">
-                    <div class="w3-col s4"><strong>Clau:</strong></div>
-                    <div class="w3-col s8"><?= esc($categoria['clau']) ?></div>
-                </div>
-                
-                <div class="w3-row w3-section">
-                    <div class="w3-col s4"><strong>Valor:</strong></div>
-                    <div class="w3-col s8"><?= esc($categoria['valor']) ?></div>
+                    <div class="w3-col s4"><strong>Nom:</strong></div>
+                    <div class="w3-col s8"><?= esc($categoria['name']) ?></div>
                 </div>
                 
                 <div class="w3-row w3-section">

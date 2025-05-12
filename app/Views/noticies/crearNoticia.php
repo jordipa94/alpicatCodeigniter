@@ -2,10 +2,6 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
     <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/noticies/llistatNoticies') ?>">Tornar a inici</a></button>
 
     <h2>CREAR NOTÍCIA</h2>

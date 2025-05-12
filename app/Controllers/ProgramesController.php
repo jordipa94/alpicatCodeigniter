@@ -180,7 +180,7 @@ class ProgramesController extends BaseController
     
     public function viewClassification($id)
     {
-        // Crear el modelo directamente sin constructor
+        
         $classificationModel = new ClassificationModel();
         $competition = $classificationModel->getUrlById($id);
 
@@ -191,7 +191,6 @@ class ProgramesController extends BaseController
         $url = $competition['url'];
         $competitionName = $competition['competitionName'];
 
-        // Obtener la clasificación desde la URL
         $clasificacio = $this->obtenerClasificacionDesdeURL($url);
 
         return view('programes/viewClassification', [

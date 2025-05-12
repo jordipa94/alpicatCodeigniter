@@ -7,6 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 use App\Models\ContacteModel;
 use App\Models\ConfigModel;
+use App\Models\CategoriesModel;
 
 
 class ContacteController extends BaseController
@@ -16,7 +17,11 @@ class ContacteController extends BaseController
     {
         $config = new ConfigModel();
 
+        $categoriaModel = new CategoriesModel();
+        $categories = $categoriaModel->findAll();
+
         $data = [
+            'categories' => $categories,
             'telefon' => $config->where('clau', 'telefon')->first()['valor'] ?? '',
             'mail' => $config->where('clau', 'mail')->first()['valor'] ?? '',
             'direction'  => $config->where('clau', 'direccio')->first()['valor'] ?? '',
@@ -96,7 +101,10 @@ class ContacteController extends BaseController
     {
         $contacteModel = new ContacteModel();
 
+        $categoriaModel = new CategoriesModel();
+        $categories = $categoriaModel->findAll();
         $categoria = $this->request->getGet('categoria');
+        $categoriaSeleccionada = $this->request->getGet('categoria') ?? '';
 
         if (!empty($categoria)) {
             $data['missatges'] = $contacteModel
@@ -110,7 +118,9 @@ class ContacteController extends BaseController
         }
 
         $data['pager'] = $contacteModel->pager;
+        $data['categories'] = $categories;
         $data['categoria'] = $categoria;
+        $data['categoriaSeleccionada'] = $categoriaSeleccionada;
 
         echo view('/contacte/gestioContacte', $data);
     }
@@ -118,7 +128,9 @@ class ContacteController extends BaseController
     //FILTRAR CONTACTE PER CATEGORIA
     public function filtrar()
     {
-        return $this->gestionarContacte();
+
+        return redirect()->to('/admin/gestionarContacte?categoria=' . $this->request->getGet('categoria'));
+
     }
     
 }

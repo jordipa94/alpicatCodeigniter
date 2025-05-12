@@ -2,9 +2,7 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<h1 class="w3-padding">Contacte</h1>
-
-<div class="w3-container" style="margin-top:20px;">
+<div class="w3-container" style="margin-top:2%;">
     <div class="w3-row">
         <div class="w3-col l6 m6 s12 w3-border-right">
             <div class="w3-padding">
@@ -48,9 +46,11 @@
                     <label for="categoria" class="w3-text-black">CATEGORIA</label>
                     <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom">
                         <option value="" disabled selected>Selecciona una opció</option>
-                        <option value="VETERANS">VETERANS</option>
-                        <option value="JUVENIL">JUVENIL</option>
-                        <option value="INFANTIL">INFANTIL</option>
+                        <?php foreach($categories as $categoria): ?>
+
+                            <option value="<?= esc($categoria['name']) ?>"><?= esc($categoria['name']) ?></option>
+
+                        <?php endforeach; ?>
                     </select>
 
                     <button type="submit" class="w3-button w3-round custom-button w3-margin-top">ENVIAR</button>

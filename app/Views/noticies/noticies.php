@@ -2,20 +2,11 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
-<div class="w3-container">
-
-    <h2>LLISTAT NOTÍCIES</h2>
+<div class="w3-container" style="margin-top: 20px;">
 
     <!-- BUSCADOR DE NOTICIES -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('searchNoticia') ?>" method="GET" class="w3-center">
-
-            <?= csrf_field(); ?>
-
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 

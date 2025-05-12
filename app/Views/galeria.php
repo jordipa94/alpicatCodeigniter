@@ -2,11 +2,8 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<div class="w3-container">
-
-    <h2>GALERIA</h2>
-
     <main class="w3-container" style="margin-top: 20px;">
+        
         <h2 class="w3-center">Últimes galeries</h2>
 
         <div class="w3-row-padding" style="overflow: auto;">
@@ -89,7 +86,5 @@
         </div>
 
     </main>
-
-</div>
     
 <?php echo $this->endSection(); ?>

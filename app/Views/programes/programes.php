@@ -2,9 +2,9 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<div class="w3-container w3-padding">
+<div class="w3-container" style="margin-top: 20px;">
 
-    <h2>Programes</h2>
+    <h2 class="w3-center">Fitxes de equips</h2>
 
     <!-- DIVS AMB NOTICIES -->
     <div class="w3-row-padding">

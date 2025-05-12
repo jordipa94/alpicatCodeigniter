@@ -2,10 +2,6 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
     <h2>GESTIONAR USUARIS</h2>
 
     <!-- BUSCADOR USUARIS -->
@@ -18,7 +14,6 @@
 
         <!-- BUSCAR USUARIS -->
         <form action="<?= base_url('/admin/users/searchUser') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
-            <?= csrf_field(); ?>
             <div class="w3-row" style="max-width: 400px; width: 80%;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -37,7 +32,7 @@
         
     </div>
 
-    <table class="w3-table w3-bordered w3-striped">
+    <table class="w3-table w3-bordered w3-striped w3-hoverable">
         <thead>
             <tr class="w3-light-grey">
                 <th>Nom de usuari</th>
@@ -65,7 +60,7 @@
     <!-- Modal -->
     <?php foreach($users as $user): ?>
     <div id="modal-<?= esc($user['id']) ?>" class="w3-modal">
-        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+        <div class="w3-modal-content w3-animate-zoom" style="max-width:600px">
             <div class="w3-center">
                 <span onclick="document.getElementById('modal-<?= esc($user['id']) ?>').style.display='none'" 
                     class="w3-button w3-display-topright">&times;</span>

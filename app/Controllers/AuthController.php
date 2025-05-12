@@ -46,6 +46,7 @@ class AuthController extends BaseController
             'password'         => 'required|min_length[4]',
             'confirm_password' => 'required|matches[password]',
             'full_name'        => 'required',
+            'role'             => 'required',
         ];
     
         if (!$this->validate($rules)) {
@@ -60,7 +61,7 @@ class AuthController extends BaseController
                 'username'     => $this->request->getPost('username'),
                 'password'     => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
                 'full_name'    => $this->request->getPost('full_name'),
-                'role'         => 'visitant',
+                'role'         => $this->request->getPost('role'),
             ];
     
             $userModel->save($data);
@@ -98,7 +99,7 @@ class AuthController extends BaseController
                 ];
                 $session->set($sessionData);
 
-                return redirect()->to('/admin')->with('success', 'Has iniciat sessio correctament!');
+                return redirect()->to('/admin')->with('success', 'Has iniciat sessió correctament!');
             } else {
                 return redirect()->back()->with('error', 'Contrasenya o usuari incorrectes.');
             }
