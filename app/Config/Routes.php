@@ -38,6 +38,8 @@ $routes->get('/galeria', 'GaleriaController::galeria');
 $routes->get('/contacte', 'ContacteController::index');
 $routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
 $routes->get('/admin/gestionarContacte', 'ContacteController::gestionarContacte',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/marcarContestat/(:num)', 'ContacteController::marcarContestat/$1');
+$routes->get('/admin/marcarPendent/(:num)', 'ContacteController::marcarPendent/$1');
 
 //CRUD NOTICIES
 $routes->get('/admin/noticies/llistatNoticies', 'NoticiesController::viewLlistatNoticies',['filter'=>'login:admin,gestor']);

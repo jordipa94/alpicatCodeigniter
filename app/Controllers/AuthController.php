@@ -22,7 +22,7 @@ class AuthController extends BaseController
 
         $data = [
             'count_noticies' => $noticiesModel->where('deleted_at', null)->countAllResults(),
-            'count_contacte' => $contacteModel->countAll(),
+            'count_contacte' => $contacteModel->where('is_active', 0)->countAllResults(),
             'count_classifications' => $classificationModel->where('deleted_at', null)->countAllResults(),
             'count_usuaris' => $userModel->where('deleted_at', null)->countAllResults(),
 

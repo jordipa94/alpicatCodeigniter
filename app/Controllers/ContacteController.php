@@ -100,21 +100,35 @@ class ContacteController extends BaseController
     public function gestionarContacte()
     {
         $contacteModel = new ContacteModel();
-
         $categoriaModel = new CategoriesModel();
+        
         $categories = $categoriaModel->findAll();
         $categoria = $this->request->getGet('categoria');
         $categoriaSeleccionada = $this->request->getGet('categoria') ?? '';
 
+        // Missatges per contestar (is_active = 0)
         if (!empty($categoria)) {
-            $data['missatges'] = $contacteModel
+            $data['missatgesPendents'] = $contacteModel
                 ->where('categoria', $categoria)
+                ->where('is_active', 0)
                 ->orderBy('created_at', 'DESC')
                 ->paginate(6, 'default');
+            
+            $data['missatgesContestats'] = $contacteModel
+                ->where('categoria', $categoria)
+                ->where('is_active', 1)
+                ->orderBy('created_at', 'DESC')
+                ->findAll();
         } else {
-            $data['missatges'] = $contacteModel
+            $data['missatgesPendents'] = $contacteModel
+                ->where('is_active', 0)
                 ->orderBy('created_at', 'DESC')
                 ->paginate(6, 'default');
+            
+            $data['missatgesContestats'] = $contacteModel
+                ->where('is_active', 1)
+                ->orderBy('created_at', 'DESC')
+                ->findAll();
         }
 
         $data['pager'] = $contacteModel->pager;
@@ -123,6 +137,36 @@ class ContacteController extends BaseController
         $data['categoriaSeleccionada'] = $categoriaSeleccionada;
 
         echo view('/contacte/gestioContacte', $data);
+    }
+
+    public function marcarContestat($id)
+    {
+        $contacteModel = new ContacteModel();
+
+        $missatge = $contacteModel->find($id);
+
+        if ($missatge) {
+            
+            $contacteModel->update($id, ['is_active' => 1]);
+            return redirect()->to('/admin/gestionarContacte')->with('success', 'Missatge marcat com contestat.');
+        }
+
+        return redirect()->to('/admin/gestionarContacte')->with('error', 'El missatge no existeix.');
+    }
+
+    public function marcarPendent($id)
+    {
+        $contacteModel = new ContacteModel();
+
+        $missatge = $contacteModel->find($id);
+
+        if ($missatge) {
+            
+            $contacteModel->update($id, ['is_active' => 0]);
+            return redirect()->to('/admin/gestionarContacte')->with('success', 'Missatge marcat com pendent.');
+        }
+
+        return redirect()->to('/admin/gestionarContacte')->with('error', 'El missatge no existeix.');
     }
 
     //FILTRAR CONTACTE PER CATEGORIA

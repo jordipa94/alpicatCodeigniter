@@ -261,3 +261,7 @@ a{
 .w3-black {
     background-color: var(--secondary-color) !important;
 }
+
+.w3-modal-content{
+    width: 80%;
+}
