@@ -8,6 +8,10 @@ body {
   background-color: #C10C18 !important;
 }
 
+.w3-border-red{
+  border-color: #C10C18 !important;
+}
+
 .w3-theme {
   color: #fff !important;
   background-color: #000000 !important;

@@ -4,6 +4,24 @@
 
 <div class="w3-container" style="margin-top: 20px;">
 
+    <!-- FILTRAR PER CATEGORIA -->
+    <div style="max-width:200px">
+        <form action="<?= base_url('/noticies') ?>" method="get" id="filtrarForm">
+            <?= csrf_field(); ?>
+
+            <label for="categoria">Filtrar per Categoria</label>
+            <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom" onchange="document.getElementById('filtrarForm').submit()">
+                <option value="" <?= (empty($categoriaSeleccionada)) ? 'selected' : '' ?>>Totes les Categories</option>
+                
+                <?php foreach ($categories as $categoria): ?>
+                    <option value="<?= esc($categoria['name']) ?>" <?= ($categoriaSeleccionada == $categoria['name']) ? 'selected' : '' ?>>
+                        <?= esc($categoria['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </form>
+    </div>
+
     <!-- BUSCADOR DE NOTICIES -->
     <div class="w3-container w3-center w3-padding-16">
         <form action="<?= base_url('searchNoticia') ?>" method="GET" class="w3-center">

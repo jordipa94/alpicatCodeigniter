@@ -12,6 +12,7 @@ class SeederNoticies extends Seeder
             [
                 'nom' => 'noticia1',
                 'contingut' => 'contingutnoticia1',
+                'categoria' => 'JUVENIL',
                 'url' => '	http://localhost/noticies/readNoticia/1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -19,6 +20,7 @@ class SeederNoticies extends Seeder
             [
                 'nom' => 'noticia2',
                 'contingut' => 'contingutnoticia2',
+                'categoria' => 'VETERANS',
                 'url' => '	http://localhost/noticies/readNoticia/2',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -26,6 +28,7 @@ class SeederNoticies extends Seeder
             [
                 'nom' => 'noticia3',
                 'contingut' => 'contingutnoticia3',
+                'categoria' => 'INFANTIL',
                 'url' => 'http://localhost/noticies/readNoticia/3',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

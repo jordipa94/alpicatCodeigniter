@@ -6,7 +6,7 @@
     
     <!-- FILTRAR PER CATEGORIA -->
     <div style="max-width:200px">
-        <form action="<?= base_url('/admin/gestionarContacte/filtrar') ?>" method="get" id="filtrarForm">
+        <form action="<?= base_url('/admin/gestionarContacte') ?>" method="get" id="filtrarForm">
             <?= csrf_field(); ?>
 
             <label for="categoria">Filtrar per Categoria</label>

@@ -177,7 +177,7 @@
     </div>
   </div>
   <div class="w3-center w3-padding-16">
-    <p class="w3-text-white">&copy; 2025 Alpicat FC. Tots els drets reservats.</p>
+    <p class="w3-text-white">&copy; <?= date('Y') ?> Alpicat FC. Tots els drets reservats.</p>
   </div>
 </footer>
 

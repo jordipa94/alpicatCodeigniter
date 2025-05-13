@@ -10,25 +10,29 @@ class Noticies extends Migration
     {
         $this->forge->addField([
                 'id'          => [
-                        'type'           => 'INT',
-                        'auto_increment' => true,
+                    'type'           => 'INT',
+                    'auto_increment' => true,
                 ],
                 'nom'          => [
-                        'type'           => 'VARCHAR',
-                        'constraint'     => '255',
+                    'type'           => 'VARCHAR',
+                    'constraint'     => '255',
                 ],
                 'contingut'          => [
-                        'type'           => 'VARCHAR',
-                        'constraint'     => '255',
+                    'type'           => 'VARCHAR',
+                    'constraint'     => '255',
                 ],
                 'url'          => [
-                        'type'           => 'VARCHAR',
-                        'constraint'     => '255',
+                    'type'           => 'VARCHAR',
+                    'constraint'     => '255',
+                ],
+                'categoria'          => [
+                    'type'           => 'VARCHAR',
+                    'constraint'     => '255',
                 ],
                 'created_at'      =>  [
                     'type'         =>  'DATETIME',
-                     'null'         =>  true,
-                     'default'    =>  null,
+                    'null'         =>  true,
+                    'default'    =>  null,
                 ],
                 'updated_at'     =>  [
                     'type'         =>  'DATETIME',

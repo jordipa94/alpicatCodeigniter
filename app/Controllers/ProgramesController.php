@@ -79,7 +79,6 @@ class ProgramesController extends BaseController
         if ($keyword) {
             $classificationModel->groupStart()
                         ->like('competitionName', $keyword)
-                        ->orLike('url', $keyword)
                         ->groupEnd();
         }
 

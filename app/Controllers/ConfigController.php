@@ -88,6 +88,31 @@ class ConfigController extends BaseController
         echo view('config/gestionarCategoria',$data);
     }
 
+    // POST PER CREAR CATEGORIES DES DEL CRUD
+    public function crearCategoria()
+    {
+
+        $model = new CategoriesModel();
+
+        $validationRules = [
+            'name' => 'required|max_length[128]',
+        ];
+
+        if ($this->validate($validationRules)) {
+
+            $name = $this->request->getPost('name');
+
+            $id = $model->insert([
+                "name" => $name,
+            ]);
+
+            return redirect()->back()->with('success', 'Categoria creada correctament.');
+
+        } else {
+            return redirect()->back()->withInput();
+        }
+    }
+
     //BUSCADOR
     public function searchCategoria()
     {
@@ -142,6 +167,54 @@ class ConfigController extends BaseController
         } else {
             return redirect()->to(base_url('admin/editCategoria/').$id)->with('error', 'Error al editar la categoria.');
         }
+    }
+
+    // ELIMINAR USER
+    public function deleteCategoria($id)
+    {
+        $categoriesModel = new CategoriesModel();
+        
+        $categoria = $categoriesModel->find($id);
+        if (!$categoria) {
+            return redirect()->back()->with('error', 'Usuari no trobat.');
+        }
+        
+        $categoriesModel->delete($id);
+        
+        return redirect()->back()->with('success', 'Categoria eliminada correctament.');
+    }
+
+    //VIEW DE LA PAPELERA
+    public function recycleBinCategories()
+    {
+        $categoriesModel = new CategoriesModel();
+
+        $data['categories'] = $categoriesModel->onlyDeleted()->paginate(6, 'default');
+        $data['pager'] = $categoriesModel->pager;
+        
+        return view('config/papeleraCategoria', $data);
+    }
+
+    // RESTAURAR USER DE LA PAPELERA
+    public function restaurarCategoria($id = null)
+    {
+        $categoriesModel = new CategoriesModel();
+
+        $user = $categoriesModel->withDeleted()->find($id);
+
+        if ($user['deleted_at'] !== null) {
+
+            $data = [
+                'deleted_at' => null,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+
+            $categoriesModel->update($id, $data);
+
+            return redirect()->back()->with('success', 'Categoria restaurada correctament.');
+        }
+
+        return redirect()->to('/papeleraCategories')->with('error', 'Error al restaurar la categoria.');
     }
 
 }

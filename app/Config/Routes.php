@@ -38,7 +38,6 @@ $routes->get('/galeria', 'GaleriaController::galeria');
 $routes->get('/contacte', 'ContacteController::index');
 $routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
 $routes->get('/admin/gestionarContacte', 'ContacteController::gestionarContacte',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/gestionarContacte/filtrar', 'ContacteController::filtrar',['filter'=>'login:admin,gestor']);
 
 //CRUD NOTICIES
 $routes->get('/admin/noticies/llistatNoticies', 'NoticiesController::viewLlistatNoticies',['filter'=>'login:admin,gestor']);
@@ -74,6 +73,10 @@ $routes->get('/admin/gestionarCategoria', 'ConfigController::gestionarCategoria'
 $routes->get('/admin/editCategoria/(:num)', 'ConfigController::editCategoria/$1',['filter'=>'login:admin,gestor']);
 $routes->post('/admin/updateCategoria/(:num)', 'ConfigController::updateCategoria/$1',['filter'=>'login:admin,gestor']);
 $routes->get('/admin/searchCategoria', 'ConfigController::searchCategoria',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/crearCategoria', 'ConfigController::crearCategoria',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/deleteCategoria/(:num)', 'ConfigController::deleteCategoria/$1',['filter'=>'login:admin,gestor']);
+$routes->get('admin/papeleraCategories', 'ConfigController::recycleBinCategories',['filter'=>'login:gestor']);
+$routes->get('admin/restaurarCategoria/(:num)', 'ConfigController::restaurarCategoria/$1',['filter'=>'login:gestor']);
 
 //ADMIN
 $routes->get('/admin', 'AuthController::index',['filter'=>'login:admin,gestor']);

@@ -4,10 +4,16 @@
 
     <h2>GESTIONAR CATEGORIES</h2>
 
-    <!-- BUSCADOR DE CATEGORIES -->
     <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
-        <form action="<?= base_url('/admin/searchCategoria') ?>" method="GET" class="w3-center">
-            <div class="w3-row" style="max-width: 400px; margin: auto;">
+
+        <!-- CREAR CATEGORIES -->
+        <button onclick="document.getElementById('modal-crear-categoria').style.display='block'" class="w3-button w3-round custom-button">
+            <i class="fa fa-plus"></i><span> Crear Categoria</span>
+        </button>
+
+        <!-- BUSCADOR DE CATEGORIES -->
+        <form action="<?= base_url('/admin/searchCategoria') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
+            <div class="w3-row" style="max-width: 400px; width: 80%;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
                         placeholder="Buscar..." class="w3-input w3-border w3-round">
@@ -17,6 +23,12 @@
                 </div>
             </div>
         </form>
+
+        <!-- PAPELERA CATEGORIES -->
+        <button class="w3-button w3-round custom-button">
+            <a href="<?php echo base_url('/admin/papeleraCategories') ?>"><i class="fa fa-trash"></i><span> Papelera</span></a>
+        </button>
+
     </div>
 
     <table class="w3-table w3-bordered w3-striped w3-hoverable">
@@ -33,6 +45,7 @@
                 <td>
                     <button onclick="document.getElementById('modal-<?= esc($categoria['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
                     <button class="w3-button w3-yellow"><a href="<?= base_url('admin/editCategoria/' . esc($categoria['id'])) ?>">Editar</a></button>
+                    <button class="w3-button w3-red"><a href="<?= base_url('admin/deleteCategoria/' . esc($categoria['id'])) ?>">Eliminar</a></button>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -80,6 +93,35 @@
         </div>
     </div>
     <?php endforeach; ?>
+
+    <!-- MODAL CREAR CATEGORIA -->
+    <div id="modal-crear-categoria" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <div class="w3-center">
+                <span onclick="document.getElementById('modal-crear-categoria').style.display='none'" 
+                    class="w3-button w3-display-topright">&times;</span>
+                <h3>Crear Nova Categoria</h3>
+            </div>
+
+            <div class="w3-container w3-padding">
+                <form action="crearCategoria" method="post" class="w3-padding w3-round w3-light-grey">
+                    <?= csrf_field(); ?>
+                    
+                    <label for="name" class="w3-text-dark-grey">Nom</label>
+                    <input type="text" id="name" name="name" class="w3-input w3-border w3-round" required>
+
+                    <div class="w3-margin-top">
+                        <button type="submit" class="w3-button w3-green w3-round">CREAR CATEGORIA</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="w3-container w3-light-grey w3-padding">
+                <button onclick="document.getElementById('modal-crear-categoria').style.display='none'" 
+                    class="w3-button w3-gray">Tancar</button>
+            </div>
+        </div>
+    </div>
 
     <div class="pagination-container">
         <?= $pager->links() ?>

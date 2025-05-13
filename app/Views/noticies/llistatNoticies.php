@@ -37,6 +37,7 @@
             <tr class="w3-light-grey">
                 <th>Titol</th>
                 <th>Contingut</th>
+                <th>Categoria</th>
                 <th>URL</th>
                 <th>Data publicacio</th>
                 <th>Opcions</th>
@@ -47,6 +48,7 @@
             <tr>
                 <td><?= character_limiter($noticia['nom'], 20) ?></td>
                 <td><?= character_limiter($noticia['contingut'], 30) ?></td>
+                <td><?= esc($noticia['categoria']) ?></td>
                 <td><?= esc($noticia['url'])?></td>
                 <td><?= esc($noticia['created_at'])?></td>
                 <td>
@@ -83,6 +85,11 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col s4"><strong>Contingut:</strong></div>
                     <div class="w3-col s8"><?= esc($noticia['contingut']) ?></div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Categoria:</strong></div>
+                    <div class="w3-col s8"><a href="<?= esc($noticia['categoria']) ?>"><?= esc($noticia['categoria']) ?></a></div>
                 </div>
 
                 <div class="w3-row w3-section">
