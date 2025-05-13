@@ -45,7 +45,6 @@ $routes->get('/admin/restaurarNoticia/(:num)', 'NoticiesController::restaurarNot
 $routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
 $routes->get('/admin/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud');
 //CRUD GALERIA
-// Crear galeria
 $routes->get('/admin/crearGaleria', 'GaleriaController::viewCrearGaleria');
 $routes->post('/admin/crearGaleria', 'GaleriaController::crearGaleria');
 $routes->get('/admin/editGaleria/(:num)', 'GaleriaController::editGaleria/$1');
@@ -75,7 +74,7 @@ $routes->get('/searchUser','AdministracioController::searchUser');
 //CRUD USERS
 $routes->get('/deleteUser/(:num)', 'AdministracioController::deleteUser/$1');
 //CALENDARIO 
-
 $routes->get('/calendar', 'AdministracioController::calendar');
 $routes->get('/calendar/loadEvents', 'AdministracioController::loadEvents');
-$routes->post('/calendar/addEvent', 'AdministracioController::addEvent');
+$routes->get('/calendar/addEvent', 'AdministracioController::create');
+$routes->post('/calendar/addEvent', 'AdministracioController::create');

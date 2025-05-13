@@ -149,6 +149,11 @@ footer .social {
         </div>
         <div class="w3-container w3-center w3-padding moreNews">
             <a href="/noticies" class="w3-button w3-blue w3-round">MÉS NOTÍCIES</a>
+            <h3 class="w3-container w3-center w3-padding moreNews">Calendari Proper</h3>
+<div class="w3-card w3-white w3-padding-small w3-center" style="height: 300px; overflow: auto;">
+    <iframe src="<?= base_url('calendar'); ?>" style="width: 100%; height: 100%; border: none;"></iframe>
+</div>
+
         </div>
     </main>
 

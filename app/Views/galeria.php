@@ -31,7 +31,9 @@
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding w3-white">
                     <h3><?= character_limiter($galeria['nom_galeria'], 20) ?></h3>
-                    <img src="<?= $galeria['imatge_galeria'] ?>" alt="Imagen" width="100px;"> 
+                    <img src="<?= esc($galeria['imatge_galeria']) ?>" alt="Imagen" width="100px;">
+                    <pre><?= esc(substr($galeria['imatge_galeria'], 0, 200)) ?>...</pre>
+
                     <p><?= character_limiter($galeria['descripcio_galeria'], 50) ?></p>
                     <a href="<?= base_url('galeria/readGaleria/' . esc($galeria['id_galeria'])) ?>" class="w3-button w3-blue">Obrir galeria</a>
                 </div>

@@ -100,37 +100,80 @@ class AdministracioController extends BaseController
     }
 
     //Calenario 
+    protected $eventoModel;
+
+    public function __construct()
+    {
+        $this->eventoModel = new CalendarioModel();
+    }
+
     public function calendar()
     {
-
-        return view('/Calendario/calendario');
+        $data['eventos'] = $this->eventoModel->findAll();
+        return view('calendario/gestioevento', $data);
     }
 
-    public function loadEvents()
+    public function create()
     {
-        $eventModel = new CalendarioModel();
-        $events = $eventModel->findAll();
-        return $this->response->setJSON($events);
+        if ($this->request->getMethod() === 'post') {
+            $data = $this->request->getPost([
+                'titulo', 'descripcion', 'fecha_inicio', 'fecha_fin', 'color'
+            ]);
+
+            $data['created_at'] = date('Y-m-d H:i:s');
+
+            $this->eventoModel->insert($data);
+            return redirect()->to('/eventos');
+        }
+
+        return view('calendario/addEvent');
     }
 
-    public function addEvent()
+    public function edit($id)
     {
-        $eventModel = new CalendarioModel();
+        $evento = $this->eventoModel->find($id);
+        if (!$evento) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("Esdeveniment no trobat: $id");
+        }
 
-        $data = [
-            'title' => $this->request->getPost('title'),
-            'start' => $this->request->getPost('start'),
-            'end'   => $this->request->getPost('end'),
-        ];
-
-        $eventModel->insert($data);
-        // return de mi pagina de calendario con los datos .
-        return $this->response->setJSON(['status' => 'Event Added']);
+        $data['evento'] = $evento;
+        return view('editevento', $data);
     }
-    public function deleteEvent($id)
+
+    public function update($id)
     {
-        $eventModel = new CalendarioModel();
-        $eventModel->delete($id);
-        return $this->response->setJSON(['status' => 'Event Deleted']);
-}
+        if ($this->request->getMethod() === 'post') {
+            $data = $this->request->getPost([
+                'titulo', 'descripcion', 'fecha_inicio', 'fecha_fin', 'color'
+            ]);
+
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            $this->eventoModel->update($id, $data);
+
+            return redirect()->to('calendario');
+        }
+    }
+
+    public function delete($id)
+    {
+        $this->eventoModel->delete($id);
+        return redirect()->to('calendario');
+    }
+
+    public function read($id)
+    {
+        $evento = $this->eventoModel->find($id);
+        if (!$evento) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("Esdeveniment no trobat: $id");
+        }
+
+        $data['evento'] = $evento;
+        return view('readevento', $data);
+    }
+
+    public function json()
+    {
+        $eventos = $this->eventoModel->findAll();
+        return $this->response->setJSON($eventos);
+    }
 }
