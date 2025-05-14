@@ -10,7 +10,7 @@ class GaleriaModel extends Model
     protected $primaryKey       = 'id_galeria';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = ['nom_galeria', 'descripcio_galeria', 'imatge_galeria', 'created_at', 'updated_at','deleted_at'];
 
@@ -21,7 +21,7 @@ class GaleriaModel extends Model
     protected array $castHandlers = [];
     
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
