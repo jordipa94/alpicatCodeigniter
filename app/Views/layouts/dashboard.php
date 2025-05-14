@@ -213,7 +213,7 @@
 <ul>
 
     <li class="menu-item"><a href="<?php echo base_url('/galeria') ?>">Gestionar Galeria</a></li>
-
+    
 </ul>
 <h3>Usuaris</h3>
 
@@ -230,6 +230,10 @@
             <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>">Gestionar Contacte</a></li>
 
         </ul>
+        <h3>CALENDARI GESTIO</h3>
+                    <li class="menu-item"><a href="<?php echo base_url('/calendario/addEvent') ?>">Gestionar Calendari</a></li>
+                    <li class="menu-item"><a href="<?php echo base_url('/calendario') ?>">Calendari</a></li>
+
     
     </div>
 

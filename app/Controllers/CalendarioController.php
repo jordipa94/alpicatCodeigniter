@@ -25,7 +25,10 @@ class CalendarioController extends BaseController
 
     public function viewAddEvent()
     {
-        return view('calendario/addEvent');
+        $model = new CalendarioModel();
+    $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->findAll();
+    return view('calendario/addEvent', $data);
+        
     }
 
     public function addEvent()
@@ -52,7 +55,7 @@ class CalendarioController extends BaseController
 
             $model->insert($data);
 
-            return redirect()->to('/calendario/gestiEvent')->with('success', 'Evento creado correctamente.');
+            return redirect()->to('/calendario/addevent')->with('success', 'Evento creado correctamente.');
         }
 
         return redirect()->back()->withInput()->with('error', 'Error en la validación.');
@@ -64,7 +67,7 @@ class CalendarioController extends BaseController
         $evento = $model->find($id);
 
         if (!$evento) {
-            return redirect()->to('/calendario/gestiEvent')->with('error', 'Evento no encontrado.');
+            return redirect()->to('/calendario/addEvent')->with('error', 'Evento no encontrado.');
         }
 
         return view('calendario/editEvent', ['evento' => $evento]);
@@ -94,7 +97,7 @@ class CalendarioController extends BaseController
 
             $model->update($id, $data);
 
-            return redirect()->to('/calendario/gestiEvent')->with('success', 'Evento actualizado correctamente.');
+            return redirect()->to('/calendario/addEvent')->with('success', 'Evento actualizado correctamente.');
         }
 
         return redirect()->back()->withInput()->with('error', 'Error en la validación.');

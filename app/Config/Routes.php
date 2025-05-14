@@ -54,6 +54,28 @@ $routes->get('/admin/papeleraGaleria', 'GaleriaController::recycleBinGaleria');
 $routes->get('/admin/restaurarGaleria/(:num)', 'GaleriaController::restaurarGaleria/$1');
 $routes->get('galeria/readGaleria/(:num)', 'GaleriaController::readGaleria/$1');
 $routes->get('/admin/searchGaleriaCrud', 'GaleriaController::searchGaleriaCrud');
+//CRUD CALENDARIO
+// Página principal del calendario
+$routes->get('/calendario', 'CalendarioController::index');
+
+// Página de gestión de eventos (tabla con opciones CRUD)
+$routes->get('/calendario/gestiEvent', 'CalendarioController::gestiEvent');
+
+// Crear nuevo evento
+$routes->get('/calendario/addEvent', 'CalendarioController::viewAddEvent');
+$routes->post('/calendario/addEvent', 'CalendarioController::addEvent');
+
+// Editar evento existente
+
+$routes->get('/calendario/editEvent/(:num)', 'CalendarioController::viewEditEvent/$1');
+$routes->post('/calendario/editEvent/(:num)', 'CalendarioController::editEvent/$1');
+
+// Eliminar evento
+$routes->get('/calendario/deleteEvent/(:num)', 'CalendarioController::deleteEvent/$1');
+
+// Buscador de eventos en el CRUD (si lo implementas)
+$routes->get('/calendario/searchEventCrud', 'CalendarioController::searchEventCrud');
+
 
 //LOGIN ADMIN
 $routes->get('/administracio_log','AdministracioController::login_dashboard');
@@ -74,7 +96,4 @@ $routes->get('/searchUser','AdministracioController::searchUser');
 //CRUD USERS
 $routes->get('/deleteUser/(:num)', 'AdministracioController::deleteUser/$1');
 //CALENDARIO 
-$routes->get('/calendar', 'AdministracioController::calendar');
-$routes->get('/calendar/loadEvents', 'AdministracioController::loadEvents');
-$routes->get('/calendar/addEvent', 'AdministracioController::create');
-$routes->post('/calendar/addEvent', 'AdministracioController::create');
+

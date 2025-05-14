@@ -1,21 +1,54 @@
-?>
-<?= $this->extend('layouts/dashboard'); ?>
-<?= $this->section('contingut'); ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-<div class="w3-container">
-    <h2>Calendari d'Esdeveniments</h2>
+<?php echo $this->extend('layouts/dashboard'); ?>
+
+<?php echo $this->section('contingut'); ?>
+
+<head>
+    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+</head>
+<div class="w3-padding">
+    <h1>Calendari d'Esdeveniments</h1>
+
+    <?php if (session()->getFlashdata('success')): ?>
+        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
+            <?= session('success') ?>
+        </div>
+    <?php endif; ?>
+
+    <a href="<?= base_url('calendario/addEvent') ?>" class="w3-button w3-blue w3-margin-bottom">Afegir Esdeveniment</a>
+
     <div id="calendar"></div>
 </div>
+
 <script>
+    //no lo he hecho yo 
     document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        const calendarEl = document.getElementById('calendar');
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            locale: 'ca',
-            events: '/eventos/json',
+            locale: 'ca', 
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: <?= json_encode(array_map(function($evento) {
+                return [
+                    'id'    => $evento['id_evento'],
+                    'title' => $evento['titulo'],
+                    'start' => $evento['fecha_inicio'],
+                    'end'   => $evento['fecha_fin'],
+                    'color' => $evento['color'],
+                    'url'   => base_url('calendario/editEvent/' . $evento['id_evento'])
+                ];
+            }, $eventos), JSON_UNESCAPED_UNICODE) ?>
         });
+
         calendar.render();
     });
 </script>
-<?= $this->endSection(); ?>
+
+<?php echo $this->endSection(); ?>
