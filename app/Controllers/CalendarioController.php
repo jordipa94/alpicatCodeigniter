@@ -55,7 +55,7 @@ class CalendarioController extends BaseController
 
             $model->insert($data);
 
-            return redirect()->to('/calendario/addevent')->with('success', 'Evento creado correctamente.');
+            return redirect()->to('/calendario/addEvent')->with('success', 'Evento creado correctamente.');
         }
 
         return redirect()->back()->withInput()->with('error', 'Error en la validación.');
