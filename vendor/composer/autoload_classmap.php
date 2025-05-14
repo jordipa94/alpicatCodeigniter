@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Controllers\\AdministracioController' => $baseDir . '/app/Controllers/AdministracioController.php',
+    'App\\Controllers\\AdministracioController' => $baseDir . '/app/Controllers/AdministracioController.php',
     'App\\Controllers\\BaseController' => $baseDir . '/app/Controllers/BaseController.php',
     'App\\Controllers\\ContacteController' => $baseDir . '/app/Controllers/ContacteController.php',
     'App\\Controllers\\GaleriaController' => $baseDir . '/app/Controllers/GaleriaController.php',
@@ -992,6 +993,7 @@ return array(
     'Faker\\Provider\\zh_TW\\Text' => $vendorDir . '/fakerphp/faker/src/Faker/Provider/zh_TW/Text.php',
     'Faker\\UniqueGenerator' => $vendorDir . '/fakerphp/faker/src/Faker/UniqueGenerator.php',
     'Faker\\ValidGenerator' => $vendorDir . '/fakerphp/faker/src/Faker/ValidGenerator.php',
+    'Ifsnop\\Mysqldump\\Mysqldump' => $vendorDir . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
     'Ifsnop\\Mysqldump\\Mysqldump' => $vendorDir . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
     'Laminas\\Escaper\\Escaper' => $vendorDir . '/laminas/laminas-escaper/src/Escaper.php',
     'Laminas\\Escaper\\Exception\\ExceptionInterface' => $vendorDir . '/laminas/laminas-escaper/src/Exception/ExceptionInterface.php',

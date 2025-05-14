@@ -63,11 +63,30 @@
             <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarContacte') ?>"><i class="fa fa-envelope"></i><span> Gestionar Contacte</span></a></li>
         </ul>
     </div>
+    <h3>Galeria</h3>
+
+<ul>
+
+    <li class="menu-item"><a href="<?php echo base_url('/galeria') ?>">Gestionar Galeria</a></li>
+    
+</ul>
+<h3>Usuaris</h3>
+
+<ul>
+
+    <li class="menu-item"><a href="<?php echo base_url('/administracio_users') ?>">Gestionar Usuaris</a></li>
+
+</ul> 
 
     <div class="menu-section">
         <ul>
             <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarConfig') ?>"><i class="fa fa-gear"></i><span> Gestionar Configuracio</span></a></li>
         </ul>
+        <h3>CALENDARI GESTIO</h3>
+                    <li class="menu-item"><a href="<?php echo base_url('/calendario/addEvent') ?>">Gestionar Calendari</a></li>
+                    <li class="menu-item"><a href="<?php echo base_url('/calendario') ?>">Calendari</a></li>
+
+    
     </div>
 
     <div class="divider"></div>

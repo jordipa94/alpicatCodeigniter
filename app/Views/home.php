@@ -43,7 +43,15 @@
         <p>ENTRENEM FUTURS CAMPIONS</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nisi sit perferendis, sunt commodi eum et fugiat ipsa mollitia adipisci modi laudantium quam inventore quibusdam accusantium quas amet labore exercitationem.</p>
     </div>
+    <div class="w3-container" style="margin-top: 20px;">
+    <div class="w3-row-padding">
 
+<!-- 
+    Calendario 
+-->
+
+    </div>
+    </div>
     <main class="w3-container" style="margin-top: 20px;">
         <h2 class="w3-center">Últimes Notícies</h2>
         <div class="w3-row-padding">
@@ -58,11 +66,17 @@
                         </a>
                     </div>
                 </div>
+                
             </div>
         <?php endforeach; ?>
         </div>
         <div class="w3-container w3-center w3-padding moreNews">
             <a href="/noticies" class="w3-button w3-round custom-button">MÉS NOTÍCIES</a>
+            <h3 class="w3-container w3-center w3-padding moreNews">Calendari Proper</h3>
+<div class="w3-card w3-white w3-padding-small w3-center" style="height: 300px; overflow: auto;">
+    <iframe src="<?= base_url('calendar'); ?>" style="width: 100%; height: 100%; border: none;"></iframe>
+</div>
+
         </div>
     </main>
 
