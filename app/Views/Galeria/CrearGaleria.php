@@ -2,10 +2,6 @@
 
 <?= $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
 <div class="w3-padding">
 
     <h1>Crear Galeria</h1>

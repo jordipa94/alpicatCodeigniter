@@ -7,10 +7,17 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 </head>
 <div class="w3-padding">
-    
     <h1>Calendari d'Esdeveniments</h1>
 
-    <div id="calendar"  style="width: 500px;"></div>
+    <?php if (session()->getFlashdata('success')): ?>
+        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
+            <?= session('success') ?>
+        </div>
+    <?php endif; ?>
+
+    <a href="<?= base_url('calendario/addEvent') ?>" class="w3-button w3-blue w3-margin-bottom">Afegir Esdeveniment</a>
+
+    <div id="calendar"></div>
 </div>
 
 <script>

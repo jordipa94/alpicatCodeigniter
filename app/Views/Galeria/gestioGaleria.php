@@ -1,8 +1,7 @@
-<?php echo $this->extend('layouts/dashboard'); ?>
+<?php echo $this->extend('layouts/plantilla'); ?>
 
 <?php echo $this->section('contingut'); ?>
 
-<div class="w3-container">
     <h2>GALERIA</h2>
 
     <main class="w3-container" style="margin-top: 20px;">
@@ -33,6 +32,5 @@
             <?= $pager->links() ?>
         </div>
     </main>
-</div>
 
 <?php echo $this->endSection(); ?>

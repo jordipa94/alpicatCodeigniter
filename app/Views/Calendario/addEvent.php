@@ -2,63 +2,37 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
+    <h2>CREAR ESDEVENIMENT</h2>
 
-<div class="w3-padding">
+    <!-- BUSCADOR DE ESDEVENIMENTS CRUD -->
+    <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
 
-    <h1>Crear Esdeveniment</h1>
+        <!-- CREAR ESDEVENIMENT -->
+        <button class="w3-button w3-round custom-button">
+            <a href="<?php echo base_url('/admin/calendari/crearEvent') ?>"><i class="fa fa-plus"></i><span> Crear Esdeveniment</span></a>
+        </button>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
-            <?= session('success') ?>
-        </div>
-    <?php elseif (session()->getFlashdata('error')): ?>
-        <div class="w3-panel w3-red w3-padding w3-round w3-margin-bottom">
-            <?= session('error') ?>
-        </div>
-    <?php endif; ?>
-
-    <!-- FORMULARI PER CREAR UN NOU ESDEVENIMENT -->
-    <form action="<?= base_url('calendario/addEvent') ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
-        
-        <label for="titulo" class="w3-text-dark-grey">Títol</label>
-        <input type="text" id="titulo" name="titulo" class="w3-input w3-border w3-round" required>
-
-        <label for="descripcion" class="w3-text-dark-grey w3-margin-top">Descripció</label>
-        <textarea id="descripcion" name="descripcion" class="w3-input w3-border w3-round" rows="4"></textarea>
-
-        <label for="fecha_inicio" class="w3-text-dark-grey w3-margin-top">Data Inici</label>
-        <input type="datetime-local" id="fecha_inicio" name="fecha_inicio" class="w3-input w3-border w3-round" required>
-
-        <label for="fecha_fin" class="w3-text-dark-grey w3-margin-top">Data Final</label>
-        <input type="datetime-local" id="fecha_fin" name="fecha_fin" class="w3-input w3-border w3-round" required>
-
-        <label for="color" class="w3-text-dark-grey w3-margin-top">Color</label>
-        <input type="color" id="color" name="color" class="w3-input w3-border w3-round" value="#3a87ad">
-
-        <div class="w3-margin-top">
-            <button type="submit" class="w3-button w3-blue w3-round">CREAR ESDEVENIMENT</button>
-        </div>
-    </form>
-
-    <!-- BUSCADOR DE ESDEVENIMENTS -->
-    <div class="w3-container w3-center w3-padding-16">
-        <form action="<?= base_url('/calendario/searchEventoCrud') ?>" method="GET" class="w3-center">
-            <div class="w3-row" style="max-width: 400px; margin: auto;">
+        <!-- BUSCAR ESDEVENIMENTS -->
+        <form action="<?= base_url('/calendario/searchEventCrud') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
+            <div class="w3-row" style="max-width: 400px; width: 80%;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
-                        placeholder="Buscar esdeveniments..." class="w3-input w3-border w3-round">
+                        placeholder="Buscar..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-blue w3-round w3-block">Buscar</button>
+                    <button type="submit" class="w3-button w3-round custom-button"><i class="fa fa-search"></i><span> Buscar</span></button>
                 </div>
             </div>
         </form>
+
+        <!-- PAPELERA -->
+        <button class="w3-button w3-round custom-button">
+            <a href="<?php echo base_url('/admin/calendari/papeleraNoticies') ?>"><i class="fa fa-trash"></i><span> Papelera</span></a>
+        </button>
+        
     </div>
 
-    <table class="w3-table w3-bordered w3-striped w3-card-4">
+    <table class="w3-table w3-bordered w3-striped w3-hoverable">
         <thead>
             <tr class="w3-light-grey">
                 <th>ID</th>
@@ -85,8 +59,9 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-           
 
-</div>
+    <div class="pagination-container" style="margin-left:1vw">
+        <?= $pager->links() ?>
+    </div>
 
 <?php echo $this->endSection(); ?>

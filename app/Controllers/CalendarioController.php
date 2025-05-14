@@ -15,6 +15,25 @@ class CalendarioController extends BaseController
         return view('calendario/calendario', $data);
     }
 
+    public function searchEventCrud()
+    {
+        $keyword = $this->request->getGet('keyword');
+        $model = new CalendarioModel();
+
+        if ($keyword) {
+            $model->groupStart()
+                        ->like('titulo', $keyword)
+                        ->orLike('descripcion', $keyword)
+                        ->groupEnd();
+        }
+
+        $data['eventos'] = $model->paginate(5);
+        $data['pager'] = $model->pager;
+        $data['keyword'] = $keyword;
+
+        return view('calendario/addEvent', $data);
+    }
+
     public function gestiEvent()
     {
         $model = new CalendarioModel();
@@ -26,8 +45,10 @@ class CalendarioController extends BaseController
     public function viewAddEvent()
     {
         $model = new CalendarioModel();
-    $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->findAll();
-    return view('calendario/addEvent', $data);
+        $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->paginate(6, 'default');
+        $data['pager'] = $model->pager;
+        
+        return view('calendario/addEvent', $data);
         
     }
 
