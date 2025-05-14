@@ -16,9 +16,9 @@
             <?= session('success') ?>
         </div>
     <?php endif; ?>
- <!--
+   
     <a href="<?= base_url('calendario/addEvent') ?>" class="w3-button w3-blue w3-margin-bottom">Afegir Esdeveniment</a>
--->
+    
     <div id="calendar"  style="width: 500px;"></div>
 </div>
 
@@ -42,7 +42,7 @@
                     'start' => $evento['fecha_inicio'],
                     'end'   => $evento['fecha_fin'],
                     'color' => $evento['color'],
-                    //'url'   => base_url('calendario/editEvent/' . $evento['id_evento'])   url deshabilitado para los usuarios home 
+                    'url'   => base_url('calendario/editEvent/' . $evento['id_evento'])   
                 ];
             }, $eventos), JSON_UNESCAPED_UNICODE) ?>
         });

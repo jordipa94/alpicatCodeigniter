@@ -14,10 +14,10 @@ class GaleriaController extends BaseController
 
         $data['galeries'] = $galeriaModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
         $data['pager'] = $galeriaModel->pager;
-
-        return view('galeria/gestiogaleria', $data);
+    
+        return view('galeria/galeria', $data);
     }
-
+    
     public function searchGaleria()
     {
         $keyword = $this->request->getGet('keyword');
@@ -58,29 +58,28 @@ class GaleriaController extends BaseController
         //$base64_image = $this->request->getPost('imatge_galeria');
         
         //$decoded_image = base64_decode($base64_image);
-
+        
         //foto ----> URL 
         
-        $validationRules = [
-            'nom_galeria'        => 'required|max_length[255]',
-            'descripcio_galeria' => 'permit_empty|max_length[1000]',
-            'imatge_galeria'     => 'uploaded[imatge_galeria]|is_image[imatge_galeria]',
-        ];
     
         if ($this->validate($validationRules)) {
-            $imagen = $this->request->getFile('imatge_galeria');
-    
-            if ($imagen->isValid() && !$imagen->hasMoved()) {
-                $contenido = file_get_contents($imagen->getTempName());
-                $base64 = base64_encode($contenido);
-                $mime = $imagen->getMimeType(); // ej. image/jpeg
-                $dataUri = 'data:' . $mime . ';base64,' . $base64;
-            }
+            $imagen = $this->request->getPost('imatge_galeria');
+            
+         /*   if ($imagen->isValid() && !$imagen->hasMoved()) {
+            //    $contenido = file_get_contents($imagen->getTempName());
+            //    $base64 = base64_encode($contenido);
+            //    $mime = $imagen->getMimeType(); 
+            //    $dataUri = 'data:' . $mime . ';base64,' . $base64;
+            $base64 = base64_decode($imagen);
+            }*/
+
+            $base64 = base64_decode($imagen);
+
     
             $data = [
                 'nom_galeria'        => $this->request->getPost('nom_galeria'),
                 'descripcio_galeria' => $this->request->getPost('descripcio_galeria'),
-                'imatge_galeria'     => $dataUri ?? null,
+                'imatge_galeria'     => $base64 ?? null,
                 'created_at'         => date('Y-m-d H:i:s'),
             ];
     

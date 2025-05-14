@@ -7,6 +7,12 @@ use App\Models\CalendarioModel;
 
 class CalendarioController extends BaseController
 {
+    public function index_home(){
+         $model = new CalendarioModel();
+        $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->findAll();
+
+        return view('calendario/calendario_home', $data);
+    }
     public function index()
     {
         $model = new CalendarioModel();

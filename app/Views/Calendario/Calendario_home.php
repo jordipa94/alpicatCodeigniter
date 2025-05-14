@@ -1,4 +1,4 @@
-<?php echo $this->extend('layouts/dashboard'); ?>
+<?php echo $this->extend('layouts/plantilla'); ?>
 
 <?php echo $this->section('contingut'); ?>
 
@@ -17,9 +17,8 @@
         </div>
     <?php endif; ?>
 
-    <a href="<?= base_url('calendario/addEvent') ?>" class="w3-button w3-blue w3-margin-bottom">Afegir Esdeveniment</a>
 
-    <div id="calendar"></div>
+    <div id="calendar" style="width: 400px;"></div>
 </div>
 
 <script>
@@ -42,7 +41,7 @@
                     'start' => $evento['fecha_inicio'],
                     'end'   => $evento['fecha_fin'],
                     'color' => $evento['color'],
-                    'url'   => base_url('calendario/editEvent/' . $evento['id_evento'])
+                   // 'url'   => base_url('calendario/editEvent/' . $evento['id_evento'])
                 ];
             }, $eventos), JSON_UNESCAPED_UNICODE) ?>
         });

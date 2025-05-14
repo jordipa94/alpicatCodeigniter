@@ -67,7 +67,7 @@
 
 <ul>
 
-    <li class="menu-item"><a href="<?php echo base_url('/galeria') ?>">Gestionar Galeria</a></li>
+    <li class="menu-item"><a href="<?php echo base_url('/admin/crearGaleria') ?>">Gestionar Galeria</a></li>
     
 </ul>
 <h3>Usuaris</h3>
@@ -85,8 +85,6 @@
         <h3>CALENDARI GESTIO</h3>
                     <li class="menu-item"><a href="<?php echo base_url('/calendario/addEvent') ?>">Gestionar Calendari</a></li>
                     <li class="menu-item"><a href="<?php echo base_url('/calendario') ?>">Calendari</a></li>
-
-    
     </div>
 
     <div class="divider"></div>

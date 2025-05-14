@@ -32,7 +32,7 @@ $routes->get('/admin/programes/restaurarClassificacio/(:num)', 'ProgramesControl
 $routes->get('/admin/programes/searchClassificacio', 'ProgramesController::searchClassificacio',['filter'=>'login:admin,gestor']);
 
 //GALERIES
-$routes->get('/galeria', 'GaleriaController::index');
+//$routes->get('/galeria', 'GaleriaController::index');
 $routes->get('/admin/gestioGaleria', 'GaleriaController::index');//falta Galeria Funncion de los admins
 
 
@@ -54,7 +54,9 @@ $routes->get('/admin/noticies/papeleraNoticies', 'NoticiesController::recycleBin
 $routes->get('/admin/noticies/restaurarNoticia/(:num)', 'NoticiesController::restaurarNoticia/$1',['filter'=>'login:admin,gestor']);
 $routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
 $routes->get('/admin/noticies/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud',['filter'=>'login:admin,gestor']);
-//CRUD GALERIA
+//CRUD GALERIA falta ['filter'=>'login:admin,gestor'] 
+$routes->get('/galeria', 'GaleriaController::index');
+$routes->get('/admin/gestioGaleria', 'GaleriaController::index');
 $routes->get('/admin/crearGaleria', 'GaleriaController::viewCrearGaleria');
 $routes->post('/admin/crearGaleria', 'GaleriaController::crearGaleria');
 $routes->get('/admin/editGaleria/(:num)', 'GaleriaController::editGaleria/$1');
@@ -64,7 +66,8 @@ $routes->get('/admin/papeleraGaleria', 'GaleriaController::recycleBinGaleria');
 $routes->get('/admin/restaurarGaleria/(:num)', 'GaleriaController::restaurarGaleria/$1');
 $routes->get('galeria/readGaleria/(:num)', 'GaleriaController::readGaleria/$1');
 $routes->get('/admin/searchGaleriaCrud', 'GaleriaController::searchGaleriaCrud');
-//CRUD CALENDARIO
+//CRUD CALENDARIO falta cambiar los links de las paginas privadas añadir ['filter'=>'login:admin,gestor']
+$routes->get('/calendario_home','CalendarioController::index_home');
 $routes->get('/calendario', 'CalendarioController::index');
 $routes->get('/calendario/gestiEvent', 'CalendarioController::gestiEvent');
 $routes->get('/calendario/addEvent', 'CalendarioController::viewAddEvent');

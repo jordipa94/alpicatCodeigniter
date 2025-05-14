@@ -1,11 +1,11 @@
-<?= $this->extend('layouts/dashboard'); ?>
+<?= $this->extend('layouts/plantilla'); ?>
 
 <?= $this->section('contingut'); ?>
 
 <div class="w3-container">
 
     <button class="w3-button w3-blue w3-margin-top">
-        <a href="<?= base_url('admin/crearGaleria') ?>" style="text-decoration: none; color: white;">Tornar a inici</a>
+        <a href="<?= base_url('galeria') ?>" style="text-decoration: none; color: white;">Tornar a inici</a>
     </button>
 
     <h2 class="w3-text-blue">Galeria <?= esc($galeria['id_galeria']) ?></h2>
