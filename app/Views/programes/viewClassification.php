@@ -4,12 +4,12 @@
 
 <div class="w3-container w3-padding">
     
-    <h2 class="w3-center w3-text-blue">Classificació Primer Equip - FCF</h2>
+    <h2 class="w3-center">Classificació <?= esc($competitionName) ?> - FCF</h2>
 
     <div class="w3-responsive">
         <table class="w3-table-all w3-hoverable w3-centered">
             <thead>
-                <tr class="w3-blue">
+                <tr class="w3-red">
                     <th>Posició</th>
                     <th>Logo</th>
                     <th>Equip</th>

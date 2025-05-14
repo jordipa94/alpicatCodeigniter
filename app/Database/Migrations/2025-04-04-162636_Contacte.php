@@ -33,6 +33,11 @@ class Contacte extends Migration
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
                 ],
+                'is_active'          => [
+                        'type'           => 'VARCHAR',
+                        'constraint'     => '255',
+                        'default'        => '0',
+                ],
                 'created_at'      =>  [
                           'type'         =>  'DATETIME',
                            'null'         =>  true,

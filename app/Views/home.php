@@ -2,88 +2,6 @@
 
 <?php echo $this->section('contingut'); ?>
 <style>
-/* General styles */
-
-.menu {
-    display: flex;
-    gap: 15px;
-}
-
-.menu a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.menu a:hover {
-    background-color: #555;
-}
-
-.menu .dropdown {
-    position: relative;
-}
-
-.menu .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #333;
-    top: 40px;
-    left: 0;
-    min-width: 150px;
-    z-index: 1000;
-}
-
-.menu .dropdown-content a {
-    display: block;
-    padding: 10px;
-}
-
-.menu .dropdown-content a:hover {
-    background-color: #555;
-}
-
-.menu .dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Responsive Menu */
-.hamburger {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.menu-responsive {
-    display: none;
-    flex-direction: column;
-    background-color: #333;
-    width: 100%;
-}
-
-.menu-responsive a {
-    padding: 10px;
-    text-align: center;
-}
-
-.menu-responsive .dropdown-content {
-    position: static;
-}
-
-@media (max-width: 768px) {
-    .menu {
-    display: none;
-    }
-
-    .hamburger {
-    display: block;
-    }
-
-    .menu-responsive {
-    display: flex;
-    }
-}
-
 .welcomeDiv, .teamDiv {
     text-align: center;
     padding: 30px;
@@ -91,6 +9,7 @@
 }
 
 .welcomeDiv {
+    margin-top: 35px;
     background-color: green;
 }
 
@@ -98,15 +17,17 @@
     background-color: rgb(33, 124, 33);
 }
 
-footer {
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 15px;
+.imgNoticia {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-footer .social {
-    display: inline-block;
-    margin-left: 10px;
+.w3-row-padding {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 </style>
 <body>
@@ -114,12 +35,11 @@ footer .social {
     <div class="welcomeDiv">
         <h2>"BENVINGUTS A U.E.A"</h2>
         <p>*foto nens jugant*</p>
-        <a class="w3-button w3-white w3-hover-green w3-round" href="<?php echo base_url('administracio_log');?>">INSCRIU-TE ARA</a>
+        <a class="w3-button w3-white w3-hover-green w3-round" href="#">INSCRIU-TE ARA</a>
     </div>
 
     <div class="teamDiv">
         <h2>UNEIX-TE AL NOSTRE EQUIP</h2>
-        <a href="<?php echo base_url('admin') ?>">Administracion</a>
         <p>ENTRENEM FUTURS CAMPIONS</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nisi sit perferendis, sunt commodi eum et fugiat ipsa mollitia adipisci modi laudantium quam inventore quibusdam accusantium quas amet labore exercitationem.</p>
     </div>
@@ -138,17 +58,20 @@ footer .social {
         <?php foreach($noticies as $noticia): ?>
             <div class="w3-third w3-margin-bottom">
                 <div class="w3-card w3-padding">
-                    <h3><?= character_limiter($noticia['nom'], 30) ?></h3>
-                    <p><?= character_limiter($noticia['contingut'], 50) ?></p>
-                    <img class="imgNoticia" src="<?= base_url('img/logoAmbNom.png') ?>">
-                    <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir més</a>
+                    <h3><?= substr($noticia['nom'], 0, 30) . '...' ?></h3>
+                    <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
+                    <div class="w3-center">
+                        <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">
+                            <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                        </a>
+                    </div>
                 </div>
                 
             </div>
         <?php endforeach; ?>
         </div>
         <div class="w3-container w3-center w3-padding moreNews">
-            <a href="/noticies" class="w3-button w3-blue w3-round">MÉS NOTÍCIES</a>
+            <a href="/noticies" class="w3-button w3-round custom-button">MÉS NOTÍCIES</a>
             <h3 class="w3-container w3-center w3-padding moreNews">Calendari Proper</h3>
 <div class="w3-card w3-white w3-padding-small w3-center" style="height: 300px; overflow: auto;">
     <iframe src="<?= base_url('calendar'); ?>" style="width: 100%; height: 100%; border: none;"></iframe>

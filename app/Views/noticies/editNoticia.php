@@ -4,18 +4,14 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-blue w3-margin-top"><a href="<?= base_url('/admin/crearNoticia') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/noticies/llistatNoticies') ?>">Tornar a inici</a></button>
 
     <h2>EDITAR NOTICIA</h2>
 
-    <?php if (session()->getFlashdata('success')): ?>
-        <div class="w3-panel w3-green w3-padding w3-round w3-margin-bottom">
-            <?= session('success') ?>
-        </div>
-    <?php endif; ?>
-
     <div class="w3-padding">
-        <form action="<?= base_url('admin/updateNoticia/'.$noticia['id']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
+        <form action="<?= base_url('admin/noticies/updateNoticia/'.$noticia['id']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
+
+            <?= csrf_field(); ?>
 
             <label for="nom" class="w3-text-dark-grey">Nom</label>
             <input type="text" id="nombre" name="nom" class="w3-input w3-border w3-round" value="<?= esc($noticia['nom']) ?>" required>
@@ -23,8 +19,20 @@
             <label for="contingut" class="w3-text-dark-grey w3-margin-top">Contingut</label>
             <textarea id="contingut" name="contingut" class="w3-input w3-border w3-round" rows="4" required><?= esc($noticia['contingut']) ?></textarea>
 
+            <!-- Dropdown Categoria -->
+            <label for="categoria" class="w3-text-black">CATEGORIA</label>
+            <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom">
+                <option value="" disabled>Selecciona una opció</option>
+                <?php foreach($categories as $categoria): ?>
+                    <option value="<?= esc($categoria['name']) ?>" 
+                        <?= (isset($noticia['categoria']) && $noticia['categoria'] == $categoria['name']) ? 'selected' : '' ?>>
+                        <?= esc($categoria['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
             <div class="w3-margin-top">
-                <button type="submit" class="w3-button w3-blue w3-round">Enviar</button>
+                <button type="submit" class="w3-button w3-round custom-button w3-margin-top">Enviar</button>
             </div>
 
         </form>

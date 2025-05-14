@@ -2,13 +2,7 @@
 
 <?= $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
-<div class="w3-container">
-
-    <h2>LLISTAT GALERIES</h2>
+<?php echo $this->section('contingut'); ?>
 
     <!-- BUSCADOR DE GALERIES -->
     <div class="w3-container w3-center w3-padding-16">

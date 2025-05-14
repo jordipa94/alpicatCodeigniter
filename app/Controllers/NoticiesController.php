@@ -5,17 +5,51 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\NoticiesModel;
+use App\Models\CategoriesModel;
 
 class NoticiesController extends BaseController
 {
     public function index()
     {
         $noticiesModel = new NoticiesModel();
-        
-        $data['noticies'] = $noticiesModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
+        $categoriaModel = new CategoriesModel();
+
+        $categories = $categoriaModel->findAll();
+        $categoriaSeleccionada = $this->request->getGet('categoria') ?? '';
+
+        if (!empty($categoriaSeleccionada)) {
+            $data['noticies'] = $noticiesModel
+                ->where('categoria', $categoriaSeleccionada)
+                ->orderBy('created_at', 'DESC')
+                ->paginate(9, 'default');
+        } else {
+            $data['noticies'] = $noticiesModel->orderBy('created_at', 'DESC')->paginate(9, 'default');
+        }
+
+        $data['categories'] = $categories;
+        $data['categoriaSeleccionada'] = $categoriaSeleccionada;
         $data['pager'] = $noticiesModel->pager;
 
         echo view('noticies/noticies', $data);
+    }
+
+
+    public function filtrar()
+    {
+
+        return redirect()->to('/noticies?categoria=' . $this->request->getGet('categoria'));
+
+    }
+
+    // VIEW PER CREAR NOTICIES
+    public function viewLlistatNoticies()
+    {
+        $noticiesModel = new NoticiesModel();
+
+        $data['noticies'] = $noticiesModel->paginate(6, 'default');
+        $data['pager'] = $noticiesModel->pager;
+
+        echo view('noticies/llistatNoticies',$data);
     }
 
     //BUSCADOR DE NOTICIES
@@ -23,15 +57,20 @@ class NoticiesController extends BaseController
     {
         $keyword = $this->request->getGet('keyword');
         $noticiesModel = new NoticiesModel();
+        $categoriaModel = new CategoriesModel();
+        $categoriaSeleccionada = $this->request->getGet('categoria') ?? '';
+        $categories = $categoriaModel->findAll();
 
         if ($keyword) {
             $noticiesModel->groupStart()
-                        ->like('nom', $keyword)
-                        ->orLike('contingut', $keyword)
-                        ->groupEnd();
+                ->like('nom', $keyword)
+                ->orLike('contingut', $keyword)
+                ->groupEnd();
         }
 
         $data['noticies'] = $noticiesModel->paginate(6);
+        $data['categories'] = $categories;
+        $data['categoriaSeleccionada'] = $categoriaSeleccionada;
         $data['pager'] = $noticiesModel->pager;
         $data['keyword'] = $keyword;
 
@@ -43,7 +82,11 @@ class NoticiesController extends BaseController
     {
         $noticiesModel = new NoticiesModel();
 
+        $categoriaModel = new CategoriesModel();
+        $categories = $categoriaModel->findAll();
+
         $data['noticies'] = $noticiesModel->paginate(6, 'default');
+        $data['categories'] = $categories;
         $data['pager'] = $noticiesModel->pager;
 
         echo view('noticies/crearNoticia',$data);
@@ -58,26 +101,29 @@ class NoticiesController extends BaseController
         $validationRules = [
             'nom' => 'required|max_length[128]',
             'contingut' => 'required',
+            'categoria' => 'required',
         ];
 
         if ($this->validate($validationRules)) {
 
             $nom = $this->request->getPost('nom');
             $contingut = $this->request->getPost('contingut');
+            $categoria = $this->request->getPost('categoria');
 
             $id = $model->insert([
                 "nom" => $nom,
                 "contingut" => $contingut,
+                "categoria" => $this->request->getPost('categoria'),
             ]);
             
             $model->update($id, [
-                'url' => base_url('readNoticia/' . $id),
+                'url' => base_url('noticies/readNoticia/' . $id),
             ]);
 
             return redirect()->back()->with('success', 'Notícia creada correctament.');
 
         } else {
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('error', 'Error al crear la noticia.');
         }
     }
 
@@ -99,12 +145,18 @@ class NoticiesController extends BaseController
     {
         $model = new NoticiesModel();
         $noticia = $model->find($id);
+
+        $categoriaModel = new CategoriesModel();
+        $categories = $categoriaModel->findAll();
+
+        $data['noticia'] = $noticia;
+        $data['categories'] = $categories;
     
         if (!$noticia) {
             return redirect()->to(base_url('editNoticia/').$id);
         }
 
-        return view('noticies/editNoticia', ['noticia' => $noticia]);
+        return view('noticies/editNoticia', $data);
     }
 
     // POST PER FER UPDATE DE LA NOTICIA DESDE EDIT NOTICIA
@@ -115,6 +167,7 @@ class NoticiesController extends BaseController
         $validationRules = [
             'nom' => 'required|max_length[128]',
             'contingut' => 'required',
+            'categoria' => 'required',
         ];
 
         if (!$this->validate($validationRules)) {
@@ -123,17 +176,19 @@ class NoticiesController extends BaseController
 
         $nom = $this->request->getPost('nom');
         $contingut = $this->request->getPost('contingut');
+        $categoria = $this->request->getPost('categoria');
 
-        $url = base_url('readNoticia/' . $id);
+        $url = base_url('noticies/readNoticia/' . $id);
 
         $data = [
             'nom' => $nom,
             'contingut' => $contingut,
+            'categoria' => $categoria,
             'url' => $url,
         ];
 
         if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/admin/crearNoticia'))->with('success', 'Notícia editada correctament.');
+            return redirect()->to(base_url('/admin/noticies/llistatNoticies'))->with('success', 'Notícia editada correctament.');
         } else {
             return redirect()->to(base_url('editNoticia/').$id);
         }
@@ -202,7 +257,7 @@ class NoticiesController extends BaseController
         $data['pager'] = $noticiesModel->pager;
         $data['keyword'] = $keyword;
 
-        return view('noticies/crearNoticia', $data);
+        return view('noticies/llistatNoticies', $data);
     }
     
 }

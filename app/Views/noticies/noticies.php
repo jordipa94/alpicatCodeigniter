@@ -2,13 +2,25 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
+<div class="w3-container" style="margin-top: 20px;">
 
-<div class="w3-container">
+    <!-- FILTRAR PER CATEGORIA -->
+    <div style="max-width:200px">
+        <form action="<?= base_url('/noticies') ?>" method="get" id="filtrarForm">
+            <?= csrf_field(); ?>
 
-    <h2>LLISTAT NOTICIES</h2>
+            <label for="categoria">Filtrar per Categoria</label>
+            <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom" onchange="document.getElementById('filtrarForm').submit()">
+                <option value="" <?= (empty($categoriaSeleccionada)) ? 'selected' : '' ?>>Totes les Categories</option>
+                
+                <?php foreach ($categories as $categoria): ?>
+                    <option value="<?= esc($categoria['name']) ?>" <?= ($categoriaSeleccionada == $categoria['name']) ? 'selected' : '' ?>>
+                        <?= esc($categoria['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </form>
+    </div>
 
     <!-- BUSCADOR DE NOTICIES -->
     <div class="w3-container w3-center w3-padding-16">
@@ -16,10 +28,10 @@
             <div class="w3-row" style="max-width: 400px; margin: auto;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
-                        placeholder="Buscar noticies..." class="w3-input w3-border w3-round">
+                        placeholder="Buscar..." class="w3-input w3-border w3-round">
                 </div>
                 <div class="w3-col s4 m3 l3">
-                    <button type="submit" class="w3-button w3-blue w3-round w3-block">Buscar</button>
+                    <button type="submit" class="w3-button w3-round custom-button">Buscar</button>
                 </div>
             </div>
         </form>
@@ -31,19 +43,23 @@
 
         <div class="w3-third w3-margin-bottom">
             <div class="w3-card w3-padding w3-white">
-                <h3><?= character_limiter($noticia['nom'], 20) ?></h3>
-                <img src="../images/galeria.png" alt="">
-                <p><?= character_limiter($noticia['contingut'], 50) ?></p>
-                <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>" class="w3-button w3-blue">Llegir Noticia</a>
+                <h3><?= substr($noticia['nom'], 0, 20) . '...' ?></h3>
+                <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
+                <div class="w3-center">
+                    <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">
+                        <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                    </a>
+                </div>
             </div>
         </div>
 
         <?php endforeach; ?>
+        
     </div>
 
 </div>
 
-    <div class="pagination-container" style="margin-left:1vw">
+    <div class="pagination-container">
         <?= $pager->links() ?>
     </div>
 

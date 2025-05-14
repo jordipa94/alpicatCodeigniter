@@ -2,62 +2,190 @@
 
 <?php echo $this->section('contingut'); ?>
 
-<head>
-    <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
-</head>
-
-    <div class="w3-padding">
-
-    <h1>Gestio de Contacte</h1>
+    <h2>GESTIO DE CONTACTE</h2>
     
-   <!-- FILTRAR PER CATEGORIA --> 
+    <!-- FILTRAR PER CATEGORIA -->
     <div style="max-width:200px">
-        <form action="<?= base_url('/admin/gestionarContacte/filtrar') ?>" method="get" id="filtrarForm">
+        <form action="<?= base_url('/admin/gestionarContacte') ?>" method="get" id="filtrarForm">
+            <?= csrf_field(); ?>
+
             <label for="categoria">Filtrar per Categoria</label>
             <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom" onchange="document.getElementById('filtrarForm').submit()">
-                <option value="" <?= (empty($categoria)) ? 'selected' : '' ?> >Totes les Categories</option>
-                <option value="VETERANS" <?= isset($categoria) && $categoria == 'VETERANS' ? 'selected' : '' ?>>VETERANS</option>
-                <option value="JUVENIL" <?= isset($categoria) && $categoria == 'JUVENIL' ? 'selected' : '' ?>>JUVENIL</option>
-                <option value="INFANTIL" <?= isset($categoria) && $categoria == 'INFANTIL' ? 'selected' : '' ?>>INFANTIL</option>
+                <option value="" <?= (empty($categoriaSeleccionada)) ? 'selected' : '' ?>>Totes les Categories</option>
+                
+                <?php foreach ($categories as $categoria): ?>
+                    <option value="<?= esc($categoria['name']) ?>" <?= ($categoriaSeleccionada == $categoria['name']) ? 'selected' : '' ?>>
+                        <?= esc($categoria['name']) ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
         </form>
     </div>
 
-    <table class="w3-table w3-bordered w3-striped w3-card-4">
+    <!-- MISSATGES PENDENTS -->
+    <button class="w3-button w3-gray" onclick="document.getElementById('modal-missatges-contestats').style.display='block'">Veure Missatges Contestats</button>
+
+    <table class="w3-table w3-bordered w3-striped w3-hoverable">
         <thead>
             <tr class="w3-light-grey">
-                <th>ID</th>
                 <th>Concepte</th>
                 <th>Missatge</th>
                 <th>Telefono</th>
                 <th>Correu</th>
                 <th>Categoria</th>
-                <th>Data de creacio</th>
                 <th>Opcions</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($missatges as $missatge): ?>
+            <?php foreach($missatgesPendents as $missatge): ?>
             <tr>
-                <td><?= esc($missatge['id'])?></td>
-                <td><?= character_limiter($missatge['concepte'], 20) ?></td>
-                <td><?= character_limiter($missatge['missatge'], 40) ?></td>
+                <td><?= substr($missatge['concepte'], 0, 20) . '...' ?></td>
+                <td><?= substr($missatge['missatge'], 0, 40) . '...' ?></td>
                 <td><?= esc($missatge['telefono'])?></td>
                 <td><?= esc($missatge['correu'])?></td>
                 <td><?= esc($missatge['categoria'])?></td>
-                <td><?= esc($missatge['created_at'])?></td>
                 <td>
-                    <button class="w3-button w3-gray"><a href="<?= base_url('admin/readContactForm/' . esc($missatge['id'])) ?>">Veure</a></button>
+                    <button onclick="document.getElementById('modal-<?= esc($missatge['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
+                    <a href="<?= base_url('/admin/marcarContestat/' . $missatge['id']) ?>" class="w3-button w3-green">Marcar com contestat</a>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
+    <!-- Modal per mostrar els missatges contestats (is_active = 1) -->
+    <div id="modal-missatges-contestats" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card-4" style="max-width:100%">
+            <div class="w3-container w3-padding">
+                <span onclick="document.getElementById('modal-missatges-contestats').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <h3>Missatges Contestats</h3>
+                <table class="w3-table w3-bordered w3-striped w3-hoverable">
+                    <thead>
+                        <tr class="w3-light-grey">
+                            <th>Concepte</th>
+                            <th>Missatge</th>
+                            <th>Telefono</th>
+                            <th>Correu</th>
+                            <th>Categoria</th>
+                            <th>Opcions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($missatgesContestats as $missatge): ?>
+                        <tr>
+                            <td><?= substr($missatge['concepte'], 0, 20) . '...' ?></td>
+                            <td><?= substr($missatge['missatge'], 0, 40) . '...' ?></td>
+                            <td><?= esc($missatge['telefono'])?></td>
+                            <td><?= esc($missatge['correu'])?></td>
+                            <td><?= esc($missatge['categoria'])?></td>
+                            <td>
+                                <button onclick="document.getElementById('modal-<?= esc($missatge['id']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
+                                <a href="<?= base_url('/admin/marcarPendent/' . $missatge['id']) ?>" class="w3-button w3-green">Marcar com pendent</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Veure Dades Missatges Contestats -->
+    <?php foreach($missatgesContestats as $missatge): ?>
+    <div id="modal-<?= esc($missatge['id']) ?>" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <div class="w3-center">
+                <span onclick="document.getElementById('modal-<?= esc($missatge['id']) ?>').style.display='none'" 
+                    class="w3-button w3-display-topright">&times;</span>
+                <h3>Detalls del Missatge</h3>
+            </div>
+            
+            <div class="w3-container w3-padding" style="max-height: 70vh; overflow-y: auto; word-wrap: break-word; overflow-wrap: break-word;">
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>ID:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['id']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Concepte:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['concepte']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Missatge:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['missatge']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Telefono:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['telefono']) ?></div>
+                </div>
+                
+                <?php if(isset($missatge['updated_at'])): ?>
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Correu:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['correu']) ?></div>
+                </div>
+                <?php endif; ?>
+            </div>
+            
+            <div class="w3-container w3-light-grey w3-padding">
+                <button onclick="document.getElementById('modal-<?= esc($missatge['id']) ?>').style.display='none'" 
+                    class="w3-button w3-gray">Tancar</button>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+
+    <!-- Modal Veure Dades Missatges Pendents -->
+    <?php foreach($missatgesPendents as $missatge): ?>
+    <div id="modal-<?= esc($missatge['id']) ?>" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <div class="w3-center">
+                <span onclick="document.getElementById('modal-<?= esc($missatge['id']) ?>').style.display='none'" 
+                    class="w3-button w3-display-topright">&times;</span>
+                <h3>Detalls del Missatge</h3>
+            </div>
+            
+            <div class="w3-container w3-padding" style="max-height: 70vh; overflow-y: auto; word-wrap: break-word; overflow-wrap: break-word;">
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>ID:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['id']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Concepte:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['concepte']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Missatge:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['missatge']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Telefono:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['telefono']) ?></div>
+                </div>
+                
+                <?php if(isset($missatge['updated_at'])): ?>
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Correu:</strong></div>
+                    <div class="w3-col s8"><?= esc($missatge['correu']) ?></div>
+                </div>
+                <?php endif; ?>
+            </div>
+            
+            <div class="w3-container w3-light-grey w3-padding">
+                <button onclick="document.getElementById('modal-<?= esc($missatge['id']) ?>').style.display='none'" 
+                    class="w3-button w3-gray">Tancar</button>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+
         <div class="pagination-container">
             <?= $pager->links() ?>
         </div>
-
-    </div>
 
 <?php echo $this->endSection(); ?>

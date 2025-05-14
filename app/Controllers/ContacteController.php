@@ -4,14 +4,31 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
+
 use App\Models\ContacteModel;
+use App\Models\ConfigModel;
+use App\Models\CategoriesModel;
+
 
 class ContacteController extends BaseController
 {
     //VISTA DE CONTACTE
     public function index()
     {
-        echo view("contacte/contacte");
+        $config = new ConfigModel();
+
+        $categoriaModel = new CategoriesModel();
+        $categories = $categoriaModel->findAll();
+
+        $data = [
+            'categories' => $categories,
+            'telefon' => $config->where('clau', 'telefon')->first()['valor'] ?? '',
+            'mail' => $config->where('clau', 'mail')->first()['valor'] ?? '',
+            'direction'  => $config->where('clau', 'direccio')->first()['valor'] ?? '',
+            'googleMaps'  => $config->where('clau', 'googleMaps')->first()['valor'] ?? '',
+        ];
+
+        return view('contacte/contacte', $data);
     }
 
     //ENVIAR FORMULARI DE CONTACTE
@@ -82,41 +99,82 @@ class ContacteController extends BaseController
     //VISTA GESTIONAR CONTACTE
     public function gestionarContacte()
     {
-    $contacteModel = new ContacteModel();
+        $contacteModel = new ContacteModel();
+        $categoriaModel = new CategoriesModel();
+        
+        $categories = $categoriaModel->findAll();
+        $categoria = $this->request->getGet('categoria');
+        $categoriaSeleccionada = $this->request->getGet('categoria') ?? '';
 
-    $categoria = $this->request->getGet('categoria');
+        // Missatges per contestar (is_active = 0)
+        if (!empty($categoria)) {
+            $data['missatgesPendents'] = $contacteModel
+                ->where('categoria', $categoria)
+                ->where('is_active', 0)
+                ->orderBy('created_at', 'DESC')
+                ->paginate(6, 'default');
+            
+            $data['missatgesContestats'] = $contacteModel
+                ->where('categoria', $categoria)
+                ->where('is_active', 1)
+                ->orderBy('created_at', 'DESC')
+                ->findAll();
+        } else {
+            $data['missatgesPendents'] = $contacteModel
+                ->where('is_active', 0)
+                ->orderBy('created_at', 'DESC')
+                ->paginate(6, 'default');
+            
+            $data['missatgesContestats'] = $contacteModel
+                ->where('is_active', 1)
+                ->orderBy('created_at', 'DESC')
+                ->findAll();
+        }
 
-    if (!empty($categoria)) {
-        $data['missatges'] = $contacteModel
-            ->where('categoria', $categoria)
-            ->orderBy('created_at', 'DESC')
-            ->paginate(6, 'default');
-    } else {
-        $data['missatges'] = $contacteModel
-            ->orderBy('created_at', 'DESC')
-            ->paginate(6, 'default');
+        $data['pager'] = $contacteModel->pager;
+        $data['categories'] = $categories;
+        $data['categoria'] = $categoria;
+        $data['categoriaSeleccionada'] = $categoriaSeleccionada;
+
+        echo view('/contacte/gestioContacte', $data);
     }
 
-    $data['pager'] = $contacteModel->pager;
-    $data['categoria'] = $categoria;
+    public function marcarContestat($id)
+    {
+        $contacteModel = new ContacteModel();
 
-    echo view('/contacte/gestioContacte', $data);
+        $missatge = $contacteModel->find($id);
+
+        if ($missatge) {
+            
+            $contacteModel->update($id, ['is_active' => 1]);
+            return redirect()->to('/admin/gestionarContacte')->with('success', 'Missatge marcat com contestat.');
+        }
+
+        return redirect()->to('/admin/gestionarContacte')->with('error', 'El missatge no existeix.');
+    }
+
+    public function marcarPendent($id)
+    {
+        $contacteModel = new ContacteModel();
+
+        $missatge = $contacteModel->find($id);
+
+        if ($missatge) {
+            
+            $contacteModel->update($id, ['is_active' => 0]);
+            return redirect()->to('/admin/gestionarContacte')->with('success', 'Missatge marcat com pendent.');
+        }
+
+        return redirect()->to('/admin/gestionarContacte')->with('error', 'El missatge no existeix.');
     }
 
     //FILTRAR CONTACTE PER CATEGORIA
     public function filtrar()
     {
-        return $this->gestionarContacte();
-    }
 
-    //READ CONTACTE
-    public function readContactForm($id)
-    {
-        $contacteModel = new ContacteModel();
-
-        $data['missatge'] = $contacteModel->find($id);
-
-        echo view('/contacte/readContactForm', $data);
+        return redirect()->to('/admin/gestionarContacte?categoria=' . $this->request->getGet('categoria'));
 
     }
+    
 }

@@ -15,6 +15,7 @@ class IndexController extends BaseController
     $data['noticies'] = $noticiesModel->orderBy('created_at', 'DESC')->paginate(3, 'default');
 
     echo view('home', $data);
+
     }
 
 }

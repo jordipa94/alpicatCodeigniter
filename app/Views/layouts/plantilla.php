@@ -2,200 +2,183 @@
 <html>
 <head>
   <title>Alpicat FC</title>
+  <link rel="icon" type="image/png" href="<?= base_url('img/alpicat.png') ?>">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .w3-theme {
-      color: #fff !important;
-      background-color: #2e8b57 !important;
-    }
-
-    .w3-theme-dark {
-      background-color: #1e5c3a !important;
-    }
-
-    .w3-theme-light {
-      background-color: #f5f5f5 !important;
-    }
-
-    .w3-theme-accent {
-      background-color: #e63946 !important;
-    }
-
-    .w3-theme-text {
-      color: #2e8b57 !important;
-    }
-
-    .w3-theme-accent-text {
-      color: #e63946 !important;
-    }
-
-    .w3-hover-theme:hover {
-      background-color: #1e5c3a !important;
-      color: white !important;
-    }
-
-    .w3-hover-accent:hover {
-      background-color: #c1121f !important;
-      color: white !important;
-    }
-
-    .main-content {
-      flex: 1;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      min-width: 160px;
-      z-index: 1;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .logo {
-      height: 50px;
-      transition: transform 0.3s;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 992px) {
-      .w3-dropdown-hover {
-        width: 100%;
-        text-align: left;
-      }
-
-      .dropdown-content {
-        position: static;
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="<?= base_url('css/plantilla.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('css/customRed.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('css/pager.css') ?>">
 </head>
 <body class="w3-light-grey">
 
+<?php $socialLinks = get_social_links(); ?>
+
 <div class="w3-top">
-  <div class="w3-bar w3-theme w3-card" style="display: flex; align-items: center; justify-content: space-between;">
+  <div class="w3-bar w3-card" style="display: flex; align-items: center; justify-content: space-between; background-color: #000000 !important;">
 
     <!-- Logo -->
-    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-theme">
+    <a href="/" class="w3-bar-item w3-button w3-padding-large w3-right" style="background-color: #000000 !important;">
       <img src="<?= base_url('img/alpicat.png') ?>" class="logo" alt="Logo">
-      <span class="w3-hide-small"><b>ALPICAT FC</b></span>
+      <span class="w3-hide-small w3-text-white w3-hover-text-red"><b>ALPICAT FC</b></span>
     </a>
 
-    <!-- Enllaços alineats a l'esquerra -->
+    <!-- LINKS PC -->
     <div class="w3-hide-small" style="display: flex; flex: 1; justify-content: flex-start;">
+      <!-- DROPDOWN SOBRE NOSALTRES -->
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-padding-large w3-theme w3-hover-theme">
+        <button class="w3-button w3-text-white w3-padding-large w3-hover-text-white red-underline" style="background-color: #000000 !important;">
           <i class="fa fa-info-circle"></i> Sobre Nosaltres <i class="fa fa-caret-down"></i>
         </button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-theme-light">
-          <a href="/historia" class="w3-bar-item w3-button w3-hover-theme">
+        <div class="w3-dropdown-content w3-bar-block w3-card-4" style="background-color: #000000 !important;">
+          <a href="/historia" class="w3-bar-item w3-button w3-text-white w3-hover-text-white red-underline" style="background-color: #000000 !important;">
             <i class="fa fa-history"></i> Història
           </a>
-          <a href="/club" class="w3-bar-item w3-button w3-hover-theme">
+          <a href="/club" class="w3-bar-item w3-button w3-text-white w3-hover-text-white red-underline" style="background-color: #000000 !important;">
             <i class="fa fa-users"></i> Club
           </a>
         </div>
       </div>
-      <a href="/noticies" class="w3-bar-item w3-button w3-padding-large w3-hover-theme">
+      <!-- NOTICIES -->
+      <a href="/noticies" class="w3-bar-item w3-text-white w3-button w3-padding-large w3-hover-text-white red-underline" style="background-color: #000000 !important;">
         <i class="fa fa-newspaper"></i> Notícies
       </a>
-      <a href="/programes" class="w3-bar-item w3-button w3-padding-large w3-hover-theme">
+      <!-- PROGRAMES -->
+      <a href="/programes" class="w3-bar-item w3-text-white w3-button w3-padding-large w3-hover-text-white red-underline" style="background-color: #000000 !important;">
         <i class="fa fa-calendar-alt"></i> Programes
       </a>
-      <a href="/galeria" class="w3-bar-item w3-button w3-padding-large w3-hover-theme">
+      <!-- GALERIA -->
+      <a href="/galeria" class="w3-bar-item w3-text-white w3-button w3-padding-large w3-hover-text-white red-underline" style="background-color: #000000 !important;">
         <i class="fa fa-images"></i> Galeria
       </a>
-      <a href="/contacte" class="w3-bar-item w3-button w3-padding-large w3-hover-theme">
+      <!-- CONTACTE -->
+      <a href="/contacte" class="w3-bar-item w3-text-white w3-button w3-padding-large w3-hover-text-white red-underline" style="background-color: #000000 !important;">
         <i class="fa fa-envelope"></i> Contacte
       </a>
+      <!-- ADMIN -->
+      <div class="w3-dropdown-hover" style="margin-left: auto;">
+        <button class="w3-button w3-text-white w3-padding-large w3-hover-text-white red-underline" style="background-color: #000000 !important;">
+          <i class="fa fa-user-circle"></i> Usuari <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4" style="background-color: #000000 !important;">
+          <?php $session = session(); ?>
+          <?php if ($session->get('logged_in')): ?>
+
+            <a href="/admin" class="w3-bar-item w3-button w3-text-white w3-hover-text-white red-underline" style="background-color: #000000 !important;">
+              <i class="fa fa-info-circle"></i> Admin
+            </a>
+            
+            <a href="/logout" class="w3-bar-item w3-button w3-text-white w3-hover-text-white red-underline" style="background-color: #000000 !important;">
+              <i class="fa fa-sign-in-alt"></i> Tancar sessió
+            </a>
+
+          <?php else: ?>
+
+            <a href="/login" class="w3-bar-item w3-button w3-text-white w3-hover-text-white red-underline" style="background-color: #000000 !important;">
+              <i class="fa fa-sign-in-alt"></i> Login
+            </a>
+
+          <?php endif; ?>
+        </div>
+      </div>
     </div>
 
     <!-- Menú mòbil -->
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large" onclick="toggleMobileMenu()">
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-text-white w3-hover-red" onclick="toggleMobileMenu()" style="background-color: #000000 !important;">
       <i class="fa fa-bars"></i>
     </a>
   </div>
 </div>
 
 <!-- Menú per a dispositius mòbils -->
-<div id="mobileMenu" class="w3-bar-block w3-theme w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <div class="w3-dropdown-hover">
-    <button class="w3-button w3-padding-large w3-block w3-left-align w3-theme w3-hover-theme">
+<div id="mobileMenu" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-top w3-right" style="margin-top: 70px; background-color: #000000 !important;">
+  <div>
+    <button onclick="toggleSubmenu()" class="w3-button w3-padding-large w3-block w3-left-align w3-text-white w3-hover-red" style="background-color: #000000 !important;">
       <i class="fa fa-info-circle"></i> Sobre Nosaltres <i class="fa fa-caret-down"></i>
     </button>
-    <div class="w3-dropdown-content w3-bar-block w3-theme-light">
-      <a href="/historia" class="w3-bar-item w3-button">
+    <div id="submenu" class="w3-bar-block w3-hide" style="background-color:rgb(65, 65, 65) !important;">
+      <a href="/historia" class="w3-bar-item w3-button w3-text-white w3-hover-black">
         <i class="fa fa-history"></i> Història
       </a>
-      <a href="/club" class="w3-bar-item w3-button">
+      <a href="/club" class="w3-bar-item w3-button w3-text-white w3-hover-black">
         <i class="fa fa-users"></i> Club
       </a>
     </div>
   </div>
-  <a href="/noticies" class="w3-bar-item w3-button w3-padding-large">
+  <a href="/noticies" class="w3-bar-item w3-button w3-padding-large w3-text-white w3-hover-red" style="background-color: #000000 !important;">
     <i class="fa fa-newspaper"></i> Notícies
   </a>
-  <a href="/programes" class="w3-bar-item w3-button w3-padding-large">
+  <a href="/programes" class="w3-bar-item w3-button w3-padding-large w3-text-white w3-hover-red" style="background-color: #000000 !important;">
     <i class="fa fa-calendar-alt"></i> Programes
   </a>
-  <a href="/galeria" class="w3-bar-item w3-button w3-padding-large">
+  <a href="/galeria" class="w3-bar-item w3-button w3-padding-large w3-text-white w3-hover-red" style="background-color: #000000 !important;">
     <i class="fa fa-images"></i> Galeria
   </a>
-  <a href="/contacte" class="w3-bar-item w3-button w3-padding-large">
+  <a href="/contacte" class="w3-bar-item w3-button w3-padding-large w3-text-white w3-hover-red" style="background-color: #000000 !important;">
     <i class="fa fa-envelope"></i> Contacte
   </a>
+  <div class="w3-dropdown-hover" style="margin-left: auto;">
+    <button class="w3-button w3-text-white w3-padding-large w3-hover-text-red" style="background-color: #000000 !important;">
+      <i class="fa fa-user-circle"></i> Usuari <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="w3-dropdown-content w3-bar-block w3-card-4" style="background-color:rgb(65, 65, 65) !important;">
+      <?php $session = session(); ?>
+      <?php if ($session->get('logged_in')): ?>
+
+        <a href="/admin" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color: #000000 !important;">
+          <i class="fa fa-info-circle"></i> Admin
+        </a>
+        
+        <a href="/logout" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color:rgb(65, 65, 65) !important;">
+          <i class="fa fa-sign-in"></i> Tancar sessió
+        </a>
+
+      <?php else: ?>
+
+        <a href="/login" class="w3-bar-item w3-button w3-text-white w3-hover-text-red" style="background-color:rgb(65, 65, 65) !important;">
+          <i class="fa fa-sign-in-alt"></i> Login
+        </a>
+
+      <?php endif; ?>
+    </div>
+  </div>
 </div>
 
 <div class="main-content w3-container w3-padding-64">
   <?php echo $this->renderSection('contingut'); ?>
 </div>
 
-<footer class="w3-container w3-theme-dark w3-padding-32">
+<footer class="w3-container w3-padding-top-32" style="background-color: #000000 !important;">
   <div class="w3-row-padding">
     <div class="w3-third">
-      <h3 class="w3-border-bottom w3-border-white">ALPICAT FC</h3>
-      <p>El club esportiu d'Alpicat, compromès amb el desenvolupament esportiu i personal dels nostres jugadors.</p>
+      <h3 class="w3-border-bottom w3-border-red w3-text-white">ALPICAT FC</h3>
+      <p class="w3-text-white">El club esportiu d'Alpicat, compromès amb el desenvolupament esportiu i personal dels nostres jugadors.</p>
       <div class="w3-padding">
-        <a href="#" class="w3-button w3-round w3-white w3-margin-bottom w3-hover-accent"><i class="fa fa-facebook"></i></a>
-        <a href="#" class="w3-button w3-round w3-white w3-margin-bottom w3-hover-accent"><i class="fa fa-twitter"></i></a>
-        <a href="#" class="w3-button w3-round w3-white w3-margin-bottom w3-hover-accent"><i class="fa fa-instagram"></i></a>
-        <a href="#" class="w3-button w3-round w3-white w3-margin-bottom w3-hover-accent"><i class="fa fa-youtube"></i></a>
+        <a href="<?= esc($socialLinks['facebookLink']) ?>" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-facebook"></i></a>
+        <a href="<?= esc($socialLinks['twitterLink']) ?>" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-x"></i></a>
+        <a href="<?= esc($socialLinks['instagramLink']) ?>" class="w3-button w3-round w3-red w3-margin-bottom w3-hover-black"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
     <div class="w3-third">
-      <h3 class="w3-border-bottom w3-border-white">Enllaços Ràpids</h3>
+      <h3 class="w3-border-bottom w3-border-red w3-text-white">Enllaços Ràpids</h3>
       <ul class="w3-ul">
-        <li><a href="/" class="w3-hover-text-theme">Inici</a></li>
-        <li><a href="/noticies" class="w3-hover-text-theme">Notícies</a></li>
-        <li><a href="/programes" class="w3-hover-text-theme">Programes</a></li>
-        <li><a href="/galeria" class="w3-hover-text-theme">Galeria</a></li>
-        <li><a href="/contacte" class="w3-hover-text-theme">Contacte</a></li>
+        <li><a href="/" class="w3-hover-text-white red-underline w3-text-white">Inici</a></li>
+        <li><a href="/noticies" class="w3-hover-text-white red-underline w3-text-white">Notícies</a></li>
+        <li><a href="/programes" class="w3-hover-text-white red-underline w3-text-white">Programes</a></li>
+        <li><a href="/galeria" class="w3-hover-text-white red-underline w3-text-white">Galeria</a></li>
+        <li><a href="/contacte" class="w3-hover-text-white red-underline w3-text-white">Contacte</a></li>
       </ul>
     </div>
     <div class="w3-third">
-      <h3 class="w3-border-bottom w3-border-white">Administració</h3>
-      <a href="/admin/crearNoticia" class="w3-button w3-block w3-margin-bottom w3-theme-accent w3-hover-accent"><i class="fa fa-plus"></i> Crear Notícia</a>
-      <a href="/fcf" class="w3-button w3-block w3-margin-bottom w3-white w3-hover-theme"><i class="fa fa-external-link-alt"></i> FCF</a>
-      <a href="#" class="w3-button w3-block w3-white w3-hover-theme"><i class="fa fa-envelope"></i> Contacte Admin</a>
+      <h3 class="w3-border-bottom w3-border-red w3-text-white">Administració</h3>
+      <a href="/admin/crearNoticia" class="w3-button w3-block w3-margin-bottom w3-red w3-hover-black"><i class="fa fa-plus"></i> Crear Notícia</a>
+      <a href="#" class="w3-button w3-block w3-margin-bottom w3-white w3-hover-red"><i class="fa fa-external-link-alt"></i> FCF</a>
+      <a href="#" class="w3-button w3-block w3-white w3-hover-red"><i class="fa fa-envelope"></i> Contacte Admin</a>
     </div>
   </div>
   <div class="w3-center w3-padding-16">
-    <p>&copy; 2025 Alpicat FC. Tots els drets reservats.</p>
+    <p class="w3-text-white">&copy; <?= date('Y') ?> Alpicat FC. Tots els drets reservats.</p>
   </div>
 </footer>
 
@@ -206,6 +189,15 @@ function toggleMobileMenu() {
     x.className += " w3-show";
   } else {
     x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+function toggleSubmenu() {
+  var submenu = document.getElementById("submenu");
+  if (submenu.classList.contains("w3-hide")) {
+    submenu.classList.remove("w3-hide");
+  } else {
+    submenu.classList.add("w3-hide");
   }
 }
 </script>

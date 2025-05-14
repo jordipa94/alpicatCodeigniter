@@ -4,9 +4,9 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-blue w3-margin-top"><a href="<?= base_url('/noticies') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a style="text-decoration:none;" href="<?= base_url('/noticies') ?>">Tornar a inici</a></button>
 
-    <h2 class="w3-text-blue">Noticia <?= esc($noticia['id']) ?></h2>
+    <h2>Noticia <?= esc($noticia['id']) ?></h2>
 
     <div class="w3-card-4 w3-round w3-light-grey w3-padding">
 
