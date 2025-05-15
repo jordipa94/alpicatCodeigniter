@@ -9,6 +9,7 @@ use App\Models\UserModel;
 use App\Models\NoticiesModel;
 use App\Models\ContacteModel;
 use App\Models\ClassificationModel;
+use App\Models\CalendarioModel;
 
 class AuthController extends BaseController
 {
@@ -19,13 +20,14 @@ class AuthController extends BaseController
         $noticiesModel = new NoticiesModel();
         $contacteModel = new ContacteModel();
         $classificationModel = new ClassificationModel();
+        $calendarioModel = new CalendarioModel();
 
         $data = [
             'count_noticies' => $noticiesModel->where('deleted_at', null)->countAllResults(),
             'count_contacte' => $contacteModel->where('is_active', 0)->countAllResults(),
             'count_classifications' => $classificationModel->where('deleted_at', null)->countAllResults(),
             'count_usuaris' => $userModel->where('deleted_at', null)->countAllResults(),
-
+            'eventos' => $calendarioModel->findAll(),
         ];
         
         return view('admin/admin', $data);

@@ -11,6 +11,7 @@
     <h1>Calendari d'Esdeveniments</h1>
 
     <div id="calendar"  style="width: 500px;"></div>
+    
 </div>
 
 <script>

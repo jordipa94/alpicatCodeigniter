@@ -11,7 +11,6 @@ class Galeria extends Migration
         $this->forge->addField([
             'id_galeria' => [
                 'type'           => 'INT',
-                'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'nom_galeria' => [
@@ -30,14 +29,21 @@ class Galeria extends Migration
             'created_at' => [
                 'type'    => 'DATETIME',
                 'null'    => true,
+                'default'    =>  null,
             ],
             'updated_at' => [
                 'type'    => 'DATETIME',
                 'null'    => true,
+                'default'    =>  null,
+            ],
+            'deleted_at' => [
+                'type'    => 'DATETIME',
+                'null'    => true,
+                'default'    =>  null,
             ],
         ]);
 
-        $this->forge->addKey('id_galeria', true);
+        $this->forge->addKey('id_galeria');
         $this->forge->createTable('galerias');
     }
 
