@@ -72,7 +72,7 @@
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/galeria') ?>"><i class="fa fa-images"></i><span> Gestionar Galeria</span></a></li>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/crearGaleria') ?>"><i class="fa fa-images"></i><span> Gestionar Galeria</span></a></li>
         </ul>
     </div>
 
