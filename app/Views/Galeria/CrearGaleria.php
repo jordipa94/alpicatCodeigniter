@@ -6,7 +6,21 @@
 
     <!-- PANEL SUPERIOR: CREAR, BUSCAR, PAPERERA -->
     <div class="w3-container w3-padding-16" style="display: flex; justify-content: space-between; align-items: center;">
+    <form action="<?= base_url('admin/crearGaleria') ?>" method="post" enctype="multipart/form-data" class="w3-card-4 w3-padding w3-round w3-light-grey">
+        
+        <label for="nom_galeria" class="w3-text-dark-grey">Nom</label>
+        <input type="text" id="nom_galeria" name="nom_galeria" class="w3-input w3-border w3-round" required>
 
+        <label for="descripcio_galeria" class="w3-text-dark-grey w3-margin-top">Descripció</label>
+        <textarea id="descripcio_galeria" name="descripcio_galeria" class="w3-input w3-border w3-round" rows="4"></textarea>
+
+        <label for="imatge_galeria" class="w3-text-dark-grey w3-margin-top">Pujar imatge</label>
+        <input type="file" id="imatge_galeria" name="imatge_galeria" accept="image/*" class="w3-input w3-border w3-round">
+
+        <div class="w3-margin-top">
+            <button type="submit" class="w3-button w3-blue w3-round">CREAR GALERIA</button>
+        </div>
+    </form>
         <!-- BOTÓN CREAR GALERIA -->
         <button class="w3-button w3-round custom-button">
             <a href="<?= base_url('/admin/crearGaleria') ?>"><i class="fa fa-plus"></i><span> Crear Galeria</span></a>
