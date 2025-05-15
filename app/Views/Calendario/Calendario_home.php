@@ -15,8 +15,6 @@
         </div>
     <?php endif; ?>
 
-    <a href="<?= base_url('calendario/addEvent') ?>" class="w3-button w3-blue w3-margin-bottom">Afegir Esdeveniment</a>
-
     <div id="calendar"></div>
 </div>
 
@@ -40,7 +38,7 @@
                     'start' => $evento['fecha_inicio'],
                     'end'   => $evento['fecha_fin'],
                     'color' => $evento['color'],
-                    'url'   => base_url('calendario/editEvent/' . $evento['id_evento'])
+                   // 'url'   => base_url('calendario/editEvent/' . $evento['id_evento']) solo para administrador
                 ];
             }, $eventos), JSON_UNESCAPED_UNICODE) ?>
         });

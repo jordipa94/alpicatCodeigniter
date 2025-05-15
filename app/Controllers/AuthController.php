@@ -10,7 +10,7 @@ use App\Models\NoticiesModel;
 use App\Models\ContacteModel;
 use App\Models\ClassificationModel;
 use App\Models\CalendarioModel;
-
+use App\Models\GaleriaModel;
 class AuthController extends BaseController
 {
     public function index()
@@ -21,12 +21,14 @@ class AuthController extends BaseController
         $contacteModel = new ContacteModel();
         $classificationModel = new ClassificationModel();
         $calendarioModel = new CalendarioModel();
+        $GaleriaModel = new GaleriaModel();
 
         $data = [
             'count_noticies' => $noticiesModel->where('deleted_at', null)->countAllResults(),
             'count_contacte' => $contacteModel->where('is_active', 0)->countAllResults(),
             'count_classifications' => $classificationModel->where('deleted_at', null)->countAllResults(),
             'count_usuaris' => $userModel->where('deleted_at', null)->countAllResults(),
+            'count_galeries' => $GaleriaModel->where('deleted_at', null)->countAllResults(),
             'eventos' => $calendarioModel->findAll(),
         ];
         
