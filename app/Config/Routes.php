@@ -55,24 +55,24 @@ $routes->get('/admin/noticies/restaurarNoticia/(:num)', 'NoticiesController::res
 $routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
 $routes->get('/admin/noticies/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud',['filter'=>'login:admin,gestor']);
 //CRUD GALERIA
-$routes->get('/admin/crearGaleria', 'GaleriaController::viewCrearGaleria');
-$routes->post('/admin/crearGaleria', 'GaleriaController::crearGaleria');
-$routes->get('/admin/editGaleria/(:num)', 'GaleriaController::editGaleria/$1');
-$routes->post('/admin/updateGaleria/(:num)', 'GaleriaController::updateGaleria/$1');
-$routes->get('/admin/deleteGaleria/(:num)', 'GaleriaController::deleteGaleria/$1');
-$routes->get('/admin/papeleraGaleria', 'GaleriaController::recycleBinGaleria');
-$routes->get('/admin/restaurarGaleria/(:num)', 'GaleriaController::restaurarGaleria/$1');
+$routes->get('/admin/crearGaleria', 'GaleriaController::viewCrearGaleria',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/crearGaleria', 'GaleriaController::crearGaleria',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/editGaleria/(:num)', 'GaleriaController::editGaleria/$1',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/updateGaleria/(:num)', 'GaleriaController::updateGaleria/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/deleteGaleria/(:num)', 'GaleriaController::deleteGaleria/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/papeleraGaleria', 'GaleriaController::recycleBinGaleria',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/restaurarGaleria/(:num)', 'GaleriaController::restaurarGaleria/$1',['filter'=>'login:admin,gestor']);
 $routes->get('galeria/readGaleria/(:num)', 'GaleriaController::readGaleria/$1');
-$routes->get('/admin/searchGaleriaCrud', 'GaleriaController::searchGaleriaCrud');
+$routes->get('/admin/searchGaleriaCrud', 'GaleriaController::searchGaleriaCrud',['filter'=>'login:admin,gestor']);
 //CRUD CALENDARIO
 $routes->get('/calendario', 'CalendarioController::index');
-$routes->get('/calendario/gestiEvent', 'CalendarioController::gestiEvent');
-$routes->get('/calendario/addEvent', 'CalendarioController::viewAddEvent');
-$routes->post('/calendario/addEvent', 'CalendarioController::addEvent');
-$routes->get('/calendario/editEvent/(:num)', 'CalendarioController::viewEditEvent/$1');
-$routes->post('/calendario/editEvent/(:num)', 'CalendarioController::editEvent/$1');
-$routes->get('/calendario/deleteEvent/(:num)', 'CalendarioController::deleteEvent/$1');
-$routes->get('/calendario/searchEventCrud', 'CalendarioController::searchEventCrud');
+$routes->get('/calendario/gestiEvent', 'CalendarioController::gestiEvent',['filter'=>'login:admin,gestor']);
+$routes->get('/calendario/addEvent', 'CalendarioController::viewAddEvent',['filter'=>'login:admin,gestor']);
+$routes->post('/calendario/addEvent', 'CalendarioController::addEvent',['filter'=>'login:admin,gestor']);
+$routes->get('/calendario/editEvent/(:num)', 'CalendarioController::viewEditEvent/$1',['filter'=>'login:admin,gestor']);
+$routes->post('/calendario/editEvent/(:num)', 'CalendarioController::editEvent/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/calendario/deleteEvent/(:num)', 'CalendarioController::deleteEvent/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/calendario/searchEventCrud', 'CalendarioController::searchEventCrud',['filter'=>'login:admin,gestor']);
 
 
 //USUARIS
