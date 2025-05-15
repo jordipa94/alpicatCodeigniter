@@ -34,12 +34,12 @@ class CalendarioController extends BaseController
         return view('calendario/addEvent', $data);
     }
 
-    public function gestiEvent()
+    public function gestioEvent()
     {
         $model = new CalendarioModel();
         $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->findAll();
 
-        return view('calendario/gestiEvent', $data);
+        return view('calendario/gestioEvent', $data);
     }
 
     public function viewAddEvent()

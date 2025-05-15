@@ -15,26 +15,16 @@ class GaleriaController extends BaseController
         $data['galeries'] = $galeriaModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
         $data['pager'] = $galeriaModel->pager;
 
-        return view('galeria/gestiogaleria', $data);
+        return view('galeria', $data);
     }
 
-    public function searchGaleria()
+    public function viewLlistatGaleria()
     {
-        $keyword = $this->request->getGet('keyword');
         $galeriaModel = new GaleriaModel();
-
-        if ($keyword) {
-            $galeriaModel->groupStart()
-                         ->like('nom_galeria', $keyword)
-                         ->orLike('descripcio_galeria', $keyword)
-                         ->groupEnd();
-        }
-
-        $data['galeries'] = $galeriaModel->paginate(6);
+        $data['galeries'] = $galeriaModel->paginate(6, 'default');
         $data['pager'] = $galeriaModel->pager;
-        $data['keyword'] = $keyword;
 
-        return view('galeria/galeria', $data);
+        return view('galeria/gestioGaleria',$data);
     }
 
     public function viewCrearGaleria()
@@ -138,7 +128,7 @@ class GaleriaController extends BaseController
         ];
 
         if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/galeria'))->with('success', 'Galeria editada correctament.');
+            return redirect()->to(base_url('/admin/galeria/viewLlistatGaleria'))->with('success', 'Galeria editada correctament.');
         } else {
             return redirect()->to(base_url('editGaleria/' . $id));
         }
@@ -202,6 +192,6 @@ class GaleriaController extends BaseController
         $data['pager'] = $model->pager;
         $data['keyword'] = $keyword;
 
-        return view('galeria/crearGaleria', $data);
+        return view('galeria/gestioGaleria', $data);
     }
 }

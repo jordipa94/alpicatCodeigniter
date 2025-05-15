@@ -52,6 +52,12 @@
 
     <div class="menu-section">
         <ul>
+            <li class="menu-item"><a href="<?php echo base_url('/admin/galeria/viewLlistatGaleria') ?>"><i class="fa fa-images"></i><span> Gestionar Galeria</span></a></li>
+        </ul>
+    </div>
+
+    <div class="menu-section">
+        <ul>
             <li class="menu-item"><a href="<?php echo base_url('/admin/gestionarCategoria') ?>"><i class="fa fa-layer-group"></i><span> Gestionar Categoria</span></a></li>
         </ul>
     </div>
@@ -72,20 +78,7 @@
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/admin/crearGaleria') ?>"><i class="fa fa-images"></i><span> Gestionar Galeria</span></a></li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <ul>
             <li class="menu-item"><a href="<?php echo base_url('/calendario/addEvent') ?>"><i class="fa fa-calendar-alt"></i><span> Gestionar Calendari</span></a></li>
-        </ul>
-    </div>
-
-    <div class="menu-section">
-        <ul>
-            
-            <li class="menu-item"><a href="<?php echo base_url('/calendario') ?>"><i class="fa fa-calendar-alt"></i><span> Calendari</span></a></li>
         </ul>
     </div>
 

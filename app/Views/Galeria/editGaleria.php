@@ -4,9 +4,7 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-blue w3-margin-top">
-        <a href="<?= base_url('/admin/crearGaleria') ?>" style="text-decoration: none; color: white;">Tornar a inici</a>
-    </button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/galeria/viewLlistatGaleria') ?>">Tornar a inici</a></button>
 
     <h2>EDITAR GALERIA</h2>
 
@@ -17,7 +15,7 @@
     <?php endif; ?>
 
     <div class="w3-padding">
-        <form action="<?= base_url('admin/updateGaleria/'.$galeria['id_galeria']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
+        <form action="<?= base_url('admin/galeria/updateGaleria/'.$galeria['id_galeria']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
 
             <label for="nom_galeria" class="w3-text-dark-grey">Nom</label>
             <input type="text" id="nom_galeria" name="nom_galeria" class="w3-input w3-border w3-round" value="<?= esc($galeria['nom_galeria']) ?>" required>
@@ -29,7 +27,7 @@
             <input type="text" id="imatge_galeria" name="imatge_galeria" class="w3-input w3-border w3-round" value="<?= esc($galeria['imatge_galeria']) ?>">
 
             <div class="w3-margin-top">
-                <button type="submit" class="w3-button w3-blue w3-round">Enviar</button>
+                <button style="margin-top:1%;" class="w3-button w3-round custom-button w3-margin-bottom" type="submit">Enviar</button>
             </div>
 
         </form>
