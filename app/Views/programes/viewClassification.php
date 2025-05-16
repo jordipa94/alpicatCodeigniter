@@ -6,7 +6,13 @@
     
     <h2 class="w3-center">Classificació <?= esc($competitionName) ?> - FCF</h2>
 
-    <div class="w3-responsive">
+    <div class="w3-card-4 w3-round w3-light-grey w3-padding">
+
+        <p class="w3-text-dark-grey"><?= esc($contingut) ?></p>
+
+    </div>
+
+    <div class="w3-responsive w3-margin-top">
         <table class="w3-table-all w3-hoverable w3-centered">
             <thead>
                 <tr class="w3-red">

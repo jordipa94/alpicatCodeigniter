@@ -15,6 +15,9 @@
 
             <label for="competitionName" class="w3-text-dark-grey">Nom</label>
             <input type="text" id="competitionName" name="competitionName" class="w3-input w3-border w3-round" value="<?= esc($classification['competitionName']) ?>" required>
+
+            <label for="contingut" class="w3-text-dark-grey">Contingut</label>
+            <input type="text" id="contingut" name="contingut" class="w3-input w3-border w3-round" value="<?= esc($classification['contingut']) ?>" required>
             
             <label for="url" class="w3-text-dark-grey w3-margin-top">URL</label>
             <textarea id="url" name="url" class="w3-input w3-border w3-round" rows="4" required><?= esc($classification['url']) ?></textarea>

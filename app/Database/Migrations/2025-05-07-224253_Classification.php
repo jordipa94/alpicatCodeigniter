@@ -17,9 +17,18 @@ class Classification extends Migration
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
                 ],
+                'contingut'          => [
+                        'type'           => 'VARCHAR',
+                        'constraint'     => '255',
+                ],
                 'url'          => [
                         'type'           => 'VARCHAR',
                         'constraint'     => '255',
+                ],
+                'imagen_path'       => [
+                    'type'           => 'VARCHAR',
+                    'constraint'     => '255',
+                    'null'           => true,
                 ],
                 'created_at'      =>  [
                           'type'         =>  'DATETIME',

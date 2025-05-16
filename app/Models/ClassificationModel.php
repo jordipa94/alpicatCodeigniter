@@ -12,7 +12,7 @@ class ClassificationModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['competitionName', 'url', 'created_at', 'updated_at','deleted_at'];
+    protected $allowedFields    = ['competitionName', 'contingut', 'url', 'imagen_path', 'created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

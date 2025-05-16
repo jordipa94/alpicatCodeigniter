@@ -39,17 +39,38 @@ class ProgramesController extends BaseController
 
         $validationRules = [
             'competitionName' => 'required|max_length[128]',
+            'contingut' => 'required|max_length[128]',
             'url' => 'required',
+            'imatge' => 'permit_empty|is_image[imatge]|max_size[imatge,2048]',
         ];
 
         if ($this->validate($validationRules)) {
 
             $competitionName = $this->request->getPost('competitionName');
+            $contingut = $this->request->getPost('contingut');
             $url = $this->request->getPost('url');
+            $rutaImagen = null;
+
+            // Gestio de la imatge
+            $imagen = $this->request->getFile('imatge');
+            if ($imagen && $imagen->isValid() && !$imagen->hasMoved()) {
+                // Crear la carpeta per data si no existeix
+                $fecha = date('Y-m-d');
+                $rutaCarpeta = 'uploads/classificacions/' . $fecha;
+                if (!is_dir($rutaCarpeta)) {
+                    mkdir($rutaCarpeta, 0777, true);
+                }
+
+                $nombreImagen = $imagen->getRandomName();
+                $imagen->move($rutaCarpeta, $nombreImagen);
+                $rutaImagen = $rutaCarpeta . '/' . $nombreImagen;
+            }
 
             $id = $model->insert([
                 "competitionName" => $competitionName,
+                "contingut" => $contingut,
                 "url" => $url,
+                "imagen_path" => $rutaImagen,
             ]);
 
             return redirect()->back()->with('success', 'Classificació creada correctament.');
@@ -109,6 +130,7 @@ class ProgramesController extends BaseController
 
         $validationRules = [
             'competitionName' => 'required|max_length[128]',
+            'contingut' => 'required|max_length[128]',
             'url' => 'required',
         ];
 
@@ -117,10 +139,12 @@ class ProgramesController extends BaseController
         }
 
         $competitionName = $this->request->getPost('competitionName');
+        $contingut = $this->request->getPost('contingut');
         $url = $this->request->getPost('url');
 
         $data = [
             'competitionName' => $competitionName,
+            'contingut' => $contingut,
             'url' => $url,
         ];
 
@@ -189,12 +213,14 @@ class ProgramesController extends BaseController
 
         $url = $competition['url'];
         $competitionName = $competition['competitionName'];
+        $contingut = $competition['contingut'];
 
         $clasificacio = $this->obtenerClasificacionDesdeURL($url);
 
         return view('programes/viewClassification', [
             'clasificacio' => $clasificacio,
-            'competitionName' => $competitionName
+            'competitionName' => $competitionName,
+            'contingut' => $contingut
         ]);
     }
 

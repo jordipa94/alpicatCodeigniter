@@ -101,7 +101,7 @@ class NoticiesController extends BaseController
             'nom' => 'required|max_length[128]',
             'contingut' => 'required',
             'categoria' => 'required',
-            'imatge' => 'permit_empty|uploaded[imatge]|is_image[imatge]|max_size[imatge,2048]',
+            'imatge' => 'permit_empty|is_image[imatge]|max_size[imatge,2048]'
         ];
 
         if ($this->validate($validationRules)) {
