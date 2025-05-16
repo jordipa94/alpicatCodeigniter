@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\NoticiesModel;
 use App\Models\CalendarioModel;
+use App\Models\ConfigModel;
 
 
 class IndexController extends BaseController
@@ -15,6 +16,11 @@ class IndexController extends BaseController
 
     $noticiesModel = new NoticiesModel();
     $calendarioModel = new CalendarioModel();
+    $config = new ConfigModel();
+
+    $data = [
+            'linkBannerPrincipal'  => $config->where('clau', 'linkBannerPrincipal')->first()['valor'] ?? '',
+        ];
 
     $data['noticies'] = $noticiesModel->orderBy('created_at', 'DESC')->paginate(3, 'default');
     $data['eventos'] = $calendarioModel->findAll();

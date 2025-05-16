@@ -52,6 +52,7 @@
                 <td><?= esc($evento['fecha_inicio']) ?></td>
                 <td><?= esc($evento['fecha_fin']) ?></td>
                 <td>
+                    <button onclick="document.getElementById('modal-<?= esc($evento['id_evento']) ?>').style.display='block'" class="w3-button w3-gray">Veure</button>
                     <a href="<?= base_url('/admin/calendario/editEvent/' . esc($evento['id_evento'])) ?>" class="w3-button w3-yellow">Editar</a>
                     <a href="<?= base_url('/admin/calendario/deleteEvent/' . esc($evento['id_evento'])) ?>" class="w3-button w3-red">Eliminar</a>
                 </td>
@@ -59,6 +60,68 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- Modal -->
+    <?php foreach($eventos as $evento): ?>
+    <div id="modal-<?= esc($evento['id_evento']) ?>" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom" style="max-width:600px">
+            <div class="w3-center">
+                <span onclick="document.getElementById('modal-<?= esc($evento['id_evento']) ?>').style.display='none'" 
+                    class="w3-button w3-display-topright">&times;</span>
+                <h3>Detalls de l'event</h3>
+            </div>
+            
+            <div class="w3-container w3-padding" style="max-height: 70vh; overflow-y: auto; word-wrap: break-word; overflow-wrap: break-word;">
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>ID:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['id_evento']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Titol event:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['titulo']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Descripcio event:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['descripcion']) ?></div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Fecha d'inici del event:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['fecha_inicio']) ?></div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Fecha final del event:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['fecha_fin']) ?></div>
+                </div>
+
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Color al calendari:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['color']) ?></div>
+                </div>
+                
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Data Creació:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['created_at']) ?></div>
+                </div>
+                
+                <?php if(isset($evento['updated_at'])): ?>
+                <div class="w3-row w3-section">
+                    <div class="w3-col s4"><strong>Última Actualització:</strong></div>
+                    <div class="w3-col s8"><?= esc($evento['updated_at']) ?></div>
+                </div>
+                <?php endif; ?>
+            </div>
+            
+            <div class="w3-container w3-light-grey w3-padding">
+                <button onclick="document.getElementById('modal-<?= esc($evento['id_evento']) ?>').style.display='none'" 
+                    class="w3-button w3-gray">Tancar</button>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
 
     <div class="pagination-container" style="margin-left:1vw">
         <?= $pager->links() ?>

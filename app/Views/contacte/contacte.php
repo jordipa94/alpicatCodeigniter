@@ -75,7 +75,7 @@
 
     <div class="w3-row w3-margin-top">
         <div class="w3-col l6 m6 s12 w3-padding">
-            <span>DIRECCION: <?= esc($direction) ?></span><br>
+            <span>DIRECCIÓ: <?= esc($direction) ?></span><br>
             <span>MAIL: <?= esc($mail) ?></span><br>
             <span>TELEFONO: <?= esc($telefon) ?></span>
         </div>

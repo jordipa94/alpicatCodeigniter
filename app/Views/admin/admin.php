@@ -61,7 +61,10 @@
 
     </div>
 
-    <div id="calendar"></div>
+    <div class="w3-card w3-padding w3-light-grey w3-round-large">
+        <h3 class="w3-center">Calendari d'Esdeveniments</h3>
+        <div id="calendar" class="w3-white w3-round-large" style="padding: 10px;"></div>
+    </div>
 
 <script>
 

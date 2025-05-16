@@ -6,21 +6,59 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 </head>
 <style>
-.welcomeDiv, .teamDiv {
-    text-align: center;
-    padding: 30px;
+    a {
+        text-decoration: none;
+    }
+    .banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-image: url('<?= base_url('img/home.jpg') ?>'); /* Aquí pones tu imagen */
+    background-size: cover;
+    background-position: center;
     color: white;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
 
-.welcomeDiv {
-    margin-top: 35px;
-    background-color: green;
-}
+  .banner-content {
+    position: relative; /* Para que quede encima */
+    z-index: 2;
+  }
 
-.teamDiv {
-    background-color: rgb(33, 124, 33);
-}
+  .banner-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  }
 
+  .banner-content button {
+    padding: 12px 25px;
+    font-size: 1em;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+  }
+
+  .banner-content button:hover {
+    background-color: #218838;
+  }
+
+  /* Opcional: una capa oscura para mejorar la visibilidad del texto */
+  .banner::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
 .imgNoticia {
     max-width: 100%;
     height: auto;
@@ -36,16 +74,11 @@
 </style>
 <body>
 
-    <div class="welcomeDiv">
-        <h2>"BENVINGUTS A U.E.A"</h2>
-        <p>*foto nens jugant*</p>
-        <a class="w3-button w3-white w3-hover-green w3-round" href="#">INSCRIU-TE ARA</a>
+    <div class="banner">
+    <div class="banner-content">
+        <h1>BENVINGUTS A U.E.A</h1>
+        <button><a href="<?= esc($linkBannerPrincipal) ?>">INSCRIU-TE ARA</a></button>
     </div>
-
-    <div class="teamDiv">
-        <h2>UNEIX-TE AL NOSTRE EQUIP</h2>
-        <p>ENTRENEM FUTURS CAMPIONS</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nisi sit perferendis, sunt commodi eum et fugiat ipsa mollitia adipisci modi laudantium quam inventore quibusdam accusantium quas amet labore exercitationem.</p>
     </div>
 
     <main class="w3-container" style="margin-top: 20px;">

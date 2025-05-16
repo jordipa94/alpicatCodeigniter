@@ -2,9 +2,9 @@
 
 <?php echo $this->section('contingut'); ?>
 
-    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/galeria/viewLlistatGaleria') ?>">Tornar a inici</a></button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('admin/calendario/gestioCalendari') ?>">Tornar a inici</a></button>
 
-    <h2>CREAR GALERIA</h2>
+    <h2>CREAR ESDEVENIMENT</h2>
 
     <!-- FORMULARI PER CREAR UN NOU ESDEVENIMENT -->
     <form action="<?= base_url('/admin/calendario/addEvent') ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">

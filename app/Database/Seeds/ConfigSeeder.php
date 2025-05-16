@@ -51,6 +51,12 @@ class ConfigSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [
+                'clau' => 'linkBannerPrincipal',
+                'valor' => 'https://www.fcf.cat/equip/2324/2cat/alpicat-at-c-a',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
 
         $this->db->table('config')->insertBatch($data);

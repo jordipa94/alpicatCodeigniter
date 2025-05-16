@@ -11,7 +11,7 @@ class eventSeeder extends Seeder
         $data = [
             [
                 'titulo' => 'SORTIDA',
-                'descripcion' => date('Y-m-d H:i:s'),
+                'descripcion' => 'PROXIMA SORTIDA',
                 'fecha_inicio' => date('Y-m-d H:i:s'),
                 'fecha_fin' => date('Y-m-d H:i:s'),
                 'color' => 'blue',
@@ -20,7 +20,7 @@ class eventSeeder extends Seeder
             ],
             [
                 'titulo' => 'JORNADA 3',
-                'descripcion' => date('Y-m-d H:i:s'),
+                'descripcion' => 'PROXIMA JORNADA',
                 'fecha_inicio' => date('Y-m-d H:i:s'),
                 'fecha_fin' => date('Y-m-d H:i:s'),
                 'color' => 'red',
@@ -29,7 +29,7 @@ class eventSeeder extends Seeder
             ],
             [
                 'titulo' => 'VACANCES',
-                'descripcion' => date('Y-m-d H:i:s'),
+                'descripcion' => 'VACANCES AL CLUB',
                 'fecha_inicio' => date('Y-m-d H:i:s'),
                 'fecha_fin' => date('Y-m-d H:i:s'),
                 'color' => 'black',
