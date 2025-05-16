@@ -4,9 +4,7 @@
 
 <div class="w3-container">
 
-    <button class="w3-button w3-blue w3-margin-top">
-        <a href="<?= base_url('/calendario/addEvent') ?>" style="text-decoration: none; color: white;">Tornar a inici</a>
-    </button>
+    <button class="w3-button w3-round custom-button w3-margin-top"><a href="<?= base_url('/admin/calendario/gestioCalendari') ?>">Tornar a inici</a></button>
 
     <h2>EDITAR ESDEVENIMENT</h2>
 
@@ -17,7 +15,7 @@
     <?php endif; ?>
 
     <div class="w3-padding">
-        <form action="<?= base_url('calendario/editEvent/' . $evento['id_evento']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
+        <form action="<?= base_url('admin/calendario/editEvent/' . $evento['id_evento']) ?>" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
 
             <label for="titulo" class="w3-text-dark-grey">Títol</label>
             <input type="text" id="titulo" name="titulo" class="w3-input w3-border w3-round" 
@@ -39,7 +37,7 @@
                    value="<?= esc($evento['color']) ?>">
 
             <div class="w3-margin-top">
-                <button type="submit" class="w3-button w3-blue w3-round">Enviar</button>
+                <button type="submit" class="w3-button w3-round custom-button w3-margin-top">Actualitzar</button>
             </div>
 
         </form>

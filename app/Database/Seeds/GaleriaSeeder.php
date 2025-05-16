@@ -16,6 +16,7 @@ class GaleriaSeeder extends Seeder
                 'nom_galeria'        => $faker->words(3, true),
                 'descripcio_galeria' => $faker->paragraph(2),
                 'imatge_galeria'     => $faker->imageUrl(640, 480, 'nature', true, 'Galeria'),
+                'categoria' => 'JUVENIL',
                 'created_at'         => $faker->dateTime()->format('Y-m-d H:i:s'),
                 'updated_at'         => $faker->dateTime()->format('Y-m-d H:i:s'),
                 'deleted_at'         => null, 

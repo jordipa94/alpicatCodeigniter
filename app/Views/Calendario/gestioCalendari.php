@@ -9,11 +9,11 @@
 
         <!-- CREAR ESDEVENIMENT -->
         <button class="w3-button w3-round custom-button">
-            <a href="<?php echo base_url('/admin/calendari/crearEvent') ?>"><i class="fa fa-plus"></i><span> Crear Esdeveniment</span></a>
+            <a href="<?php echo base_url('/admin//calendario/addEvent') ?>"><i class="fa fa-plus"></i><span> Crear Esdeveniment</span></a>
         </button>
 
         <!-- BUSCAR ESDEVENIMENTS -->
-        <form action="<?= base_url('/calendario/searchEventCrud') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
+        <form action="<?= base_url('/admin/calendario/searchEventCrud') ?>" method="GET" style="flex-grow: 1; display: flex; justify-content: center;">
             <div class="w3-row" style="max-width: 400px; width: 80%;">
                 <div class="w3-col s8 m9 l9">
                     <input type="text" name="keyword" value="<?= esc($keyword ?? '') ?>" 
@@ -27,7 +27,7 @@
 
         <!-- PAPELERA -->
         <button class="w3-button w3-round custom-button">
-            <a href="<?php echo base_url('/admin/calendari/papeleraNoticies') ?>"><i class="fa fa-trash"></i><span> Papelera</span></a>
+            <a href="<?php echo base_url('/admin/calendario/papeleraEvent') ?>"><i class="fa fa-trash"></i><span> Papelera</span></a>
         </button>
         
     </div>
@@ -52,8 +52,8 @@
                 <td><?= esc($evento['fecha_inicio']) ?></td>
                 <td><?= esc($evento['fecha_fin']) ?></td>
                 <td>
-                    <a href="<?= base_url('calendario/editEvent/' . esc($evento['id_evento'])) ?>" class="w3-button w3-yellow">Editar</a>
-                    <a href="<?= base_url('calendario/deleteEvent/' . esc($evento['id_evento'])) ?>" class="w3-button w3-red">Eliminar</a>
+                    <a href="<?= base_url('/admin/calendario/editEvent/' . esc($evento['id_evento'])) ?>" class="w3-button w3-yellow">Editar</a>
+                    <a href="<?= base_url('/admin/calendario/deleteEvent/' . esc($evento['id_evento'])) ?>" class="w3-button w3-red">Eliminar</a>
                 </td>
             </tr>
             <?php endforeach; ?>

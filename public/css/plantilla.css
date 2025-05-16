@@ -4,6 +4,23 @@ body {
   min-height: 100vh;
 }
 
+/* Assegurar que el header estigui sempre al davant */
+.w3-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Evitar que el calendari superi el header */
+#calendar {
+    height: 80vh;
+    position: relative;
+    z-index: 1;
+    padding-top: 80px;
+}
+
 .w3-red{
   background-color: #C10C18 !important;
 }

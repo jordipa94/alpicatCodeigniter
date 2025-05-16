@@ -10,9 +10,11 @@ class CalendarioController extends BaseController
     public function index()
     {
         $model = new CalendarioModel();
-        $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->findAll();
-
-        return view('calendario/calendario', $data);
+        $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->paginate(6, 'default');
+        $data['pager'] = $model->pager;
+        
+        return view('calendario/gestioCalendari', $data);
+        
     }
 
     public function searchEventCrud()
@@ -31,25 +33,17 @@ class CalendarioController extends BaseController
         $data['pager'] = $model->pager;
         $data['keyword'] = $keyword;
 
-        return view('calendario/addEvent', $data);
-    }
-
-    public function gestioEvent()
-    {
-        $model = new CalendarioModel();
-        $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->findAll();
-
-        return view('calendario/gestioEvent', $data);
+        return view('calendario/gestioCalendari', $data);
     }
 
     public function viewAddEvent()
-    {
+    {   
         $model = new CalendarioModel();
-        $data['eventos'] = $model->orderBy('fecha_inicio', 'DESC')->paginate(6, 'default');
+
+        $data['events'] = $model->paginate(6, 'default');
         $data['pager'] = $model->pager;
-        
-        return view('calendario/addEvent', $data);
-        
+
+        return view('calendario/crearEvent',$data);
     }
 
     public function addEvent()
@@ -76,7 +70,7 @@ class CalendarioController extends BaseController
 
             $model->insert($data);
 
-            return redirect()->to('/calendario/addevent')->with('success', 'Evento creado correctamente.');
+            return redirect()->to('/admin/calendario/gestioCalendari')->with('success', 'Evento creado correctamente.');
         }
 
         return redirect()->back()->withInput()->with('error', 'Error en la validación.');
@@ -88,7 +82,7 @@ class CalendarioController extends BaseController
         $evento = $model->find($id);
 
         if (!$evento) {
-            return redirect()->to('/calendario/addEvent')->with('error', 'Evento no encontrado.');
+            return redirect()->to('admin/calendario/gestioCalendari')->with('error', 'Evento no encontrado.');
         }
 
         return view('calendario/editEvent', ['evento' => $evento]);
@@ -118,7 +112,7 @@ class CalendarioController extends BaseController
 
             $model->update($id, $data);
 
-            return redirect()->to('/calendario/addEvent')->with('success', 'Evento actualizado correctamente.');
+            return redirect()->to('admin/calendario/gestioCalendari')->with('success', 'Evento actualizado correctamente.');
         }
 
         return redirect()->back()->withInput()->with('error', 'Error en la validación.');
@@ -137,4 +131,33 @@ class CalendarioController extends BaseController
 
         return redirect()->back()->with('success', 'Evento eliminado correctamente.');
     }
+
+    public function recycleBinEvent()
+    {
+        $model = new CalendarioModel();
+        $data['events'] = $model->onlyDeleted()->paginate(6, 'default');
+        $data['pager'] = $model->pager;
+
+        return view('calendario/papeleraEvents', $data);
+    }
+
+    public function restaurarEvent($id = null)
+    {
+        $model = new CalendarioModel();
+        $event = $model->withDeleted()->find($id);
+
+        if ($event && $event['deleted_at'] !== null) {
+            $data = [
+                'deleted_at' => null,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+
+            $model->update($id, $data);
+
+            return redirect()->back()->with('success', 'Event restaurat correctament.');
+        }
+
+        return redirect()->to('/papeleraEvents');
+    }
+
 }

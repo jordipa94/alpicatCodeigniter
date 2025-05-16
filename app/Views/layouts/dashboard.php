@@ -78,7 +78,7 @@
 
     <div class="menu-section">
         <ul>
-            <li class="menu-item"><a href="<?php echo base_url('/calendario/addEvent') ?>"><i class="fa fa-calendar-alt"></i><span> Gestionar Calendari</span></a></li>
+            <li class="menu-item"><a href="<?php echo base_url('admin/calendario/gestioCalendari') ?>"><i class="fa fa-calendar-alt"></i><span> Gestionar Calendari</span></a></li>
         </ul>
     </div>
 

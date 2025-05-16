@@ -67,14 +67,15 @@ $routes->get('/admin/marcarContestat/(:num)', 'ContacteController::marcarContest
 $routes->get('/admin/marcarPendent/(:num)', 'ContacteController::marcarPendent/$1');
 
 //CRUD CALENDARIO
-//$routes->get('/calendario', 'CalendarioController::index');
-$routes->get('/calendario/gestioEvent', 'CalendarioController::gestioEvent',['filter'=>'login:admin,gestor']);
-$routes->get('/calendario/addEvent', 'CalendarioController::viewAddEvent',['filter'=>'login:admin,gestor']);
-$routes->post('/calendario/addEvent', 'CalendarioController::addEvent',['filter'=>'login:admin,gestor']);
-$routes->get('/calendario/editEvent/(:num)', 'CalendarioController::viewEditEvent/$1',['filter'=>'login:admin,gestor']);
-$routes->post('/calendario/editEvent/(:num)', 'CalendarioController::editEvent/$1',['filter'=>'login:admin,gestor']);
-$routes->get('/calendario/deleteEvent/(:num)', 'CalendarioController::deleteEvent/$1',['filter'=>'login:admin,gestor']);
-$routes->get('/calendario/searchEventCrud', 'CalendarioController::searchEventCrud',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/calendario/gestioCalendari', 'CalendarioController::index',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/calendario/addEvent', 'CalendarioController::viewAddEvent',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/calendario/addEvent', 'CalendarioController::addEvent',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/calendario/editEvent/(:num)', 'CalendarioController::viewEditEvent/$1',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/calendario/editEvent/(:num)', 'CalendarioController::editEvent/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/calendario/deleteEvent/(:num)', 'CalendarioController::deleteEvent/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/calendario/papeleraEvent', 'CalendarioController::recycleBinEvent',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/calendario/restaurarEvent/(:num)', 'CalendarioController::restaurarEvent/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/calendario/searchEventCrud', 'CalendarioController::searchEventCrud',['filter'=>'login:admin,gestor']);
 
 //USUARIS
 $routes->get('admin/users/registerUser', 'AuthController::showRegisterForm',['filter'=>'login:gestor']);

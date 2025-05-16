@@ -10,9 +10,9 @@ class CalendarioModel extends Model
     protected $primaryKey       = 'id_evento';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['titulo','descripcion','fecha_inicio','fecha_fin','created_at','color','updated_at'];
+    protected $allowedFields    = ['titulo','descripcion','fecha_inicio','fecha_fin','created_at','color','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +21,7 @@ class CalendarioModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

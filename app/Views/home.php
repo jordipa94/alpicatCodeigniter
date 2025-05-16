@@ -1,6 +1,10 @@
 <?php echo $this->extend('layouts/plantilla'); ?>
 
 <?php echo $this->section('contingut'); ?>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+</head>
 <style>
 .welcomeDiv, .teamDiv {
     text-align: center;
@@ -64,5 +68,41 @@
         </div>
 
     </main>
+
+    <div class="w3-card w3-padding w3-light-grey w3-round-large">
+        <h3 class="w3-center">Calendari d'Esdeveniments</h3>
+        <div id="calendar" class="w3-white w3-round-large" style="padding: 10px;"></div>
+    </div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('calendar');
+
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'ca', 
+            headerToolbar: {
+                left: 'prev,next',
+                left2: isMobile ? '' : 'today',
+                center: isMobile ? '' : 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: <?= json_encode(array_map(function($evento) {
+                return [
+                    'id'    => $evento['id_evento'],
+                    'title' => $evento['titulo'],
+                    'start' => $evento['fecha_inicio'],
+                    'end'   => $evento['fecha_fin'],
+                    'color' => $evento['color']
+                ];
+            }, $eventos), JSON_UNESCAPED_UNICODE) ?>
+        });
+
+        calendar.render();
+    });
+</script>
 
 <?php echo $this->endSection(); ?>
