@@ -27,6 +27,7 @@
 
         <div class="w3-row-padding">
 
+        <?php if (!empty($galeries)): ?>
             <?php foreach($galeries as $galeria): ?>
                 <div class="w3-third w3-margin-bottom">
                     <div class="w3-card w3-padding w3-white">
@@ -43,6 +44,10 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+
+        <?php else: ?>
+            <p class="w3-text-dark-grey">No hi ha galeries disponibles.</p>
+        <?php endif; ?>
             
         </div>
 

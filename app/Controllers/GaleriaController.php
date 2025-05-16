@@ -107,16 +107,23 @@ class GaleriaController extends BaseController
             $galeriaModel->insert($dataGaleria);
             $idGaleria = $galeriaModel->insertID();
             
+            // Crear carpeta basat en la fecha de creació
+            $fecha = date('Y-m-d');
+            $rutaCarpeta = 'uploads/galeria/' . $fecha;
+
+            if (!is_dir($rutaCarpeta)) {
+                mkdir($rutaCarpeta, 0777, true);
+            }
+            
             $imagenes = $this->request->getFiles('imatge_galeria');
             $imagenesGuardadas = [];
 
             foreach ($imagenes['imatge_galeria'] as $imagen) {
                 if ($imagen->isValid() && !$imagen->hasMoved()) {
-                    // Guardar la imatge en la carpeta 'uploads/galeria'
-                    $imagen->move('uploads/galeria');
-                    $rutaImagen = 'uploads/galeria/' . $imagen->getName();
-                    
-                    // Guardar la informació de la imatge en la tabla imagenes_galeria
+                    $nuevoNombre = $imagen->getRandomName();
+                    $imagen->move($rutaCarpeta, $nuevoNombre);
+                    $rutaImagen = $rutaCarpeta . '/' . $nuevoNombre;
+
                     $dataImagen = [
                         'id_galeria' => $idGaleria,
                         'imagen_path' => $rutaImagen,
@@ -194,13 +201,14 @@ class GaleriaController extends BaseController
         if (!$this->validate($validationRules)) {
             return redirect()->to(base_url('admin/galeria/editGaleria/' . $id))->withInput();
         }
-        
+
         $data = [
             'nom_galeria'        => $this->request->getPost('nom_galeria'),
             'descripcio_galeria' => $this->request->getPost('descripcio_galeria'),
             'categoria'          => $this->request->getPost('categoria'),
             'updated_at'         => date('Y-m-d H:i:s'),
         ];
+
         $model->update($id, $data);
 
         $imagenesEliminar = $this->request->getPost('imagenesEliminar');
@@ -208,7 +216,6 @@ class GaleriaController extends BaseController
             foreach ($imagenesEliminar as $imagenId) {
                 $imagen = $imagenModel->find($imagenId);
                 if ($imagen) {
-                    // Eliminar del servidor
                     if (file_exists($imagen['imagen_path'])) {
                         unlink($imagen['imagen_path']);
                     }
@@ -217,11 +224,22 @@ class GaleriaController extends BaseController
             }
         }
 
+        //CREAR CARPETA SEGONS LA FECHA
+        $galeria = $model->find($id);
+        $fecha = date('Y-m-d', strtotime($galeria['created_at']));
+        $rutaCarpeta = 'uploads/galeria/' . $fecha;
+
+        // Crear la carpeta si no existe
+        if (!is_dir($rutaCarpeta)) {
+            mkdir($rutaCarpeta, 0777, true);
+        }
+
         if ($imagenes = $this->request->getFiles('imatge_galeria')) {
             foreach ($imagenes['imatge_galeria'] as $imagen) {
                 if ($imagen->isValid() && !$imagen->hasMoved()) {
-                    $imagen->move('uploads/galeria');
-                    $rutaImagen = 'uploads/galeria/' . $imagen->getName();
+                    $nuevoNombre = $imagen->getRandomName();
+                    $imagen->move($rutaCarpeta, $nuevoNombre);
+                    $rutaImagen = $rutaCarpeta . '/' . $nuevoNombre;
                     
                     $imagenModel->insert([
                         'id_galeria' => $id,
@@ -233,6 +251,7 @@ class GaleriaController extends BaseController
         }
 
         return redirect()->to(base_url('/admin/galeria/viewLlistatGaleria'))->with('success', 'Galeria editada correctament.');
+        
     }
 
     public function deleteGaleria($id)
