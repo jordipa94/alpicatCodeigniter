@@ -7,7 +7,7 @@
     <h2>CREAR CLASSIFICACIÓ</h2>
 
     <!-- FORMULARI PER CREAR UNA NOVA NOTICIA -->
-    <form action="crearClassificacio" method="post" class="w3-card-4 w3-padding w3-round w3-light-grey">
+    <form action="crearClassificacio" method="post" enctype="multipart/form-data" class="w3-card-4 w3-padding w3-round w3-light-grey">
 
         <?= csrf_field(); ?>
         

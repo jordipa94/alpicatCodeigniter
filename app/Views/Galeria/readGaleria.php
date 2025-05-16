@@ -7,7 +7,7 @@
         <a style="text-decoration:none;" href="<?= base_url('/galeria') ?>">Tornar a inici</a>
     </button>
 
-    <h2 class="w3-text-blue">Galeria: <?= esc($galeria['nom_galeria']) ?></h2>
+    <h2>Galeria: <?= esc($galeria['nom_galeria']) ?></h2>
 
     <div class="w3-card-4 w3-round w3-light-grey w3-padding">
         <h3 class="w3-text-dark-grey"><?= esc($galeria['nom_galeria']) ?></h3>

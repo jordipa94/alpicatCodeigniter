@@ -99,10 +99,14 @@ a {
                 <div class="w3-third w3-margin-bottom">
                     <div class="w3-card w3-padding">
                         <h3><?= substr($noticia['nom'], 0, 30) . '...' ?></h3>
-                        <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
+                        <p><?= substr($noticia['contingut'], 0, 40) . '...' ?></p>
                         <div class="w3-center">
                             <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">
-                                <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                                <?php if (!empty($noticia['imagen_path'])): ?>
+                                    <img src="<?= base_url($noticia['imagen_path']) ?>" alt="Imatge de la notícia" class="w3-image" style="max-width:400px;max-height:200px;margin-bottom:5%">
+                                <?php else: ?>
+                                    <img style="max-width:400px;max-height:200px;margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                                <?php endif; ?>
                             </a>
                         </div>
                     </div>

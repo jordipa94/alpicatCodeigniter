@@ -22,6 +22,18 @@
             <label for="url" class="w3-text-dark-grey w3-margin-top">URL</label>
             <textarea id="url" name="url" class="w3-input w3-border w3-round" rows="4" required><?= esc($classification['url']) ?></textarea>
 
+            <!-- Imatge actual -->
+            <?php if (!empty($classification['imagen_path'])): ?>
+                <div class="w3-margin-top">
+                    <label class="w3-text-dark-grey">Imatge actual:</label>
+                    <img src="<?= base_url($classification['imagen_path']) ?>" alt="Imatge de la notícia" style="max-width:200px;">
+                </div>
+            <?php endif; ?>
+
+            <!-- Nova Imatge -->
+            <label for="imatge" class="w3-text-dark-grey w3-margin-top">Actualitzar Imatge (opcional)</label>
+            <input type="file" id="imatge" name="imatge" class="w3-input w3-border w3-round">
+
             <div class="w3-margin-top">
                 <button type="submit" class="w3-button w3-round custom-button w3-margin-top">Enviar</button>
             </div>

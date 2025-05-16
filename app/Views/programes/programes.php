@@ -6,7 +6,7 @@
 
     <h2 class="w3-center">Fitxes de equips</h2>
 
-    <!-- DIVS AMB NOTICIES -->
+    <!-- DIVS AMB CLASSIFICACIONS -->
     <div class="w3-row-padding">
         <?php foreach($classifications as $classification): ?>
 
@@ -15,7 +15,11 @@
                     <h3><?= esc($classification['competitionName'])?></h3>
                     <div class="w3-center">
                         <a href="<?= base_url('programes/viewClassification/' . esc($classification['id'])) ?>">
-                            <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                            <?php if (!empty($classification['imagen_path'])): ?>
+                                <img src="<?= base_url($classification['imagen_path']) ?>" alt="Imatge de la notícia" class="w3-image" style="max-width:400px;max-height:200px;margin-bottom:5%">
+                            <?php else: ?>
+                                <img style="max-width:400px;max-height:200px;margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                            <?php endif; ?>
                         </a>
                     </div>
                 </div>

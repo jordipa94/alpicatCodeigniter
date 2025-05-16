@@ -146,7 +146,32 @@ class ProgramesController extends BaseController
             'competitionName' => $competitionName,
             'contingut' => $contingut,
             'url' => $url,
+            'imatge' => 'is_image[imatge]|max_size[imatge,2048]'
         ];
+
+                // Comprovar si sa pujat una nova imatge
+        $imatge = $this->request->getFile('imatge');
+        if ($imatge && $imatge->isValid() && !$imatge->hasMoved()) {
+            // Crear carpeta amb la data
+            $folder = 'uploads/classificacions/' . date('Y-m-d');
+            if (!is_dir($folder)) {
+                mkdir($folder, 0755, true);
+            }
+
+            // Guardar la nova imatge
+            $imatgeName = $imatge->getRandomName();
+            $imatge->move($folder, $imatgeName);
+            $rutaImatge = $folder . '/' . $imatgeName;
+
+            // Obtenir la imatge antiga per eliminar-la
+            $classification = $model->find($id);
+            if (!empty($classification['imagen_path']) && file_exists($classificacio['imagen_path'])) {
+                unlink($classification['imagen_path']);
+            }
+
+            // Actualitzar la ruta de la imatge
+            $data['imagen_path'] = $rutaImatge;
+        }
 
         if ($model->update($id, $data)) {
             return redirect()->to(base_url('/admin/programes/llistatClassificacions'))->with('success', 'Classificació editada correctament.');

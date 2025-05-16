@@ -10,6 +10,11 @@
 
         <p class="w3-text-dark-grey"><?= esc($contingut) ?></p>
 
+        <!-- Mostrar la imatge si existeix -->
+        <?php if (!empty($competition['imagen_path'])): ?>
+            <img src="<?= base_url($competition['imagen_path']) ?>" alt="Imatge de la notícia" class="w3-image w3-margin-bottom" style="max-width:100%; max-height:400px; object-fit:cover;">
+        <?php endif; ?>
+
     </div>
 
     <div class="w3-responsive w3-margin-top">
