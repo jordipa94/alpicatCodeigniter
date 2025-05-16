@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\GaleriaModel;
 use App\Models\CategoriesModel;
+use App\Models\imatgesGaleriaModel;
 
 class GaleriaController extends BaseController
 {
@@ -12,20 +13,33 @@ class GaleriaController extends BaseController
     public function index()
     {
         $model = new GaleriaModel();
+        $imagenModel = new imatgesGaleriaModel();
         $categoriaModel = new CategoriesModel();
 
         $categories = $categoriaModel->findAll();
         $categoriaSeleccionada = $this->request->getGet('categoria') ?? '';
 
         if (!empty($categoriaSeleccionada)) {
-            $data['galeries'] = $model
-                ->where('categoria', $categoriaSeleccionada)
-                ->orderBy('created_at', 'DESC')
-                ->paginate(9, 'default');
+            $galerias = $model->where('categoria', $categoriaSeleccionada)
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(9, 'default');
         } else {
-            $data['galeries'] = $model->orderBy('created_at', 'DESC')->paginate(9, 'default');
+            $galerias = $model->orderBy('created_at', 'DESC')
+                            ->paginate(9, 'default');
         }
 
+        // Obtener la imagen de portada para cada galería
+        foreach ($galerias as &$galeria) {
+            $imagenPortada = $imagenModel
+                ->where('id_galeria', $galeria['id_galeria'])
+                ->orderBy('created_at', 'ASC')
+                ->first();
+            
+            // Si hay imagen de portada, la añadimos
+            $galeria['portada'] = $imagenPortada ? base_url($imagenPortada['imagen_path']) : base_url('img/placeholder.jpg');
+        }
+
+        $data['galeries'] = $galerias;
         $data['categories'] = $categories;
         $data['categoriaSeleccionada'] = $categoriaSeleccionada;
         $data['pager'] = $model->pager;
@@ -57,7 +71,7 @@ class GaleriaController extends BaseController
     }
 
     public function viewCrearGaleria()
-    {   
+    {
         $galeriaModel = new GaleriaModel();
 
         $categoriaModel = new CategoriesModel();
@@ -72,47 +86,53 @@ class GaleriaController extends BaseController
 
     public function crearGaleria()
     {
-        $model = new GaleriaModel();
+        $galeriaModel = new GaleriaModel();
+        $imagenModel = new imatgesGaleriaModel();
 
         $validationRules = [
             'nom_galeria'        => 'required|max_length[255]',
             'descripcio_galeria' => 'permit_empty|max_length[1000]',
-            'imatge_galeria'     => 'permit_empty|max_length[255]',
-            'categoria' => 'required',
+            'imatge_galeria.*'   => 'uploaded[imatge_galeria]|is_image[imatge_galeria]',
+            'categoria'          => 'required',
         ];
-        //$base64_image = $this->request->getPost('imatge_galeria');
-        
-        //$decoded_image = base64_decode($base64_image);
 
-        //foto ----> URL 
-        
-        $validationRules = [
-            'nom_galeria'        => 'required|max_length[255]',
-            'descripcio_galeria' => 'permit_empty|max_length[1000]',
-            'imatge_galeria'     => 'uploaded[imatge_galeria]|is_image[imatge_galeria]',
-        ];
-    
         if ($this->validate($validationRules)) {
-            $imagen = $this->request->getFile('imatge_galeria');
-    
-            if ($imagen->isValid() && !$imagen->hasMoved()) {
-                $contenido = file_get_contents($imagen->getTempName());
-                $base64 = base64_encode($contenido);
-                $mime = $imagen->getMimeType(); // ej. image/jpeg
-                $dataUri = 'data:' . $mime . ';base64,' . $base64;
-            }
-    
-            $data = [
+            $dataGaleria = [
                 'nom_galeria'        => $this->request->getPost('nom_galeria'),
                 'descripcio_galeria' => $this->request->getPost('descripcio_galeria'),
-                'imatge_galeria'     => $dataUri ?? null,
-                'created_at'         => date('Y-m-d H:i:s'),
-                'categoria' => $this->request->getPost('categoria'),
+                'categoria'          => $this->request->getPost('categoria'),
+                'created_at'         => date('Y-m-d H:i:s')
             ];
-    
-            $model->insert($data);
-    
-            return redirect()->back()->with('success', 'Galeria creada correctament.');
+
+            $galeriaModel->insert($dataGaleria);
+            $idGaleria = $galeriaModel->insertID();
+            
+            $imagenes = $this->request->getFiles('imatge_galeria');
+            $imagenesGuardadas = [];
+
+            foreach ($imagenes['imatge_galeria'] as $imagen) {
+                if ($imagen->isValid() && !$imagen->hasMoved()) {
+                    // Guardar la imatge en la carpeta 'uploads/galeria'
+                    $imagen->move('uploads/galeria');
+                    $rutaImagen = 'uploads/galeria/' . $imagen->getName();
+                    
+                    // Guardar la informació de la imatge en la tabla imagenes_galeria
+                    $dataImagen = [
+                        'id_galeria' => $idGaleria,
+                        'imagen_path' => $rutaImagen,
+                        'created_at' => date('Y-m-d H:i:s'),
+                    ];
+
+                    $imagenModel->insert($dataImagen);
+                    $imagenesGuardadas[] = $rutaImagen;
+                }
+            }
+
+            if (count($imagenesGuardadas) > 0) {
+                return redirect()->back()->with('success', 'Galeria creada correctament amb ' . count($imagenesGuardadas) . ' imatges.');
+            } else {
+                return redirect()->back()->with('error', 'No s\'han pogut guardar les imatges.');
+            }
         } else {
             return redirect()->back()->withInput()->with('error', 'Validació fallida.');
         }
@@ -120,30 +140,41 @@ class GaleriaController extends BaseController
 
     public function readGaleria($id)
     {
-        $model = new GaleriaModel();
-        $galeria = $model->find($id);
+        $galeriaModel = new GaleriaModel();
+        $imagenModel = new imatgesGaleriaModel();
+
+        $galeria = $galeriaModel->find($id);
 
         if (!$galeria) {
-            return redirect()->to(base_url('/'));
+            return redirect()->to(base_url('/galeria'))->with('error', 'La galeria no existeix.');
         }
 
-        return view('galeria/readGaleria', ['galeria' => $galeria]);
+        $imagenes = $imagenModel->where('id_galeria', $id)->findAll();
+
+        return view('galeria/readGaleria', [
+            'galeria' => $galeria,
+            'imagenes' => $imagenes
+        ]);
     }
 
     public function editGaleria($id)
     {
         $model = new GaleriaModel();
+        $imagenModel = new imatgesGaleriaModel();
+        
         $galeria = $model->find($id);
+        $imagenes = $imagenModel->where('id_galeria', $id)->findAll();
 
         $categoriaModel = new CategoriesModel();
         $categories = $categoriaModel->findAll();
 
-        $data['galeria'] = $galeria;
-        $data['categories'] = $categories;
-
         if (!$galeria) {
             return redirect()->to(base_url('/galeria'));
         }
+
+        $data['galeria'] = $galeria;
+        $data['categories'] = $categories;
+        $data['imagenes'] = $imagenes;
 
         return view('galeria/editGaleria', $data);
     }
@@ -151,31 +182,57 @@ class GaleriaController extends BaseController
     public function updateGaleria($id)
     {
         $model = new GaleriaModel();
+        $imagenModel = new imatgesGaleriaModel();
 
         $validationRules = [
             'nom_galeria'        => 'required|max_length[255]',
             'descripcio_galeria' => 'permit_empty|max_length[1000]',
-            'imatge_galeria'     => 'permit_empty|max_length[255]',
-            'categoria' => 'required',
+            'categoria'          => 'required',
+            'imatge_galeria.*'   => 'permit_empty|is_image[imatge_galeria]'
         ];
 
         if (!$this->validate($validationRules)) {
-            return redirect()->to(base_url('editGaleria/' . $id))->withInput();
+            return redirect()->to(base_url('admin/galeria/editGaleria/' . $id))->withInput();
         }
-
+        
         $data = [
             'nom_galeria'        => $this->request->getPost('nom_galeria'),
             'descripcio_galeria' => $this->request->getPost('descripcio_galeria'),
-            'imatge_galeria'     => $this->request->getPost('imatge_galeria'),
-            'categoria' => $this->request->getPost('categoria'),
+            'categoria'          => $this->request->getPost('categoria'),
             'updated_at'         => date('Y-m-d H:i:s'),
         ];
+        $model->update($id, $data);
 
-        if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/admin/galeria/viewLlistatGaleria'))->with('success', 'Galeria editada correctament.');
-        } else {
-            return redirect()->to(base_url('editGaleria/' . $id));
+        $imagenesEliminar = $this->request->getPost('imagenesEliminar');
+        if (!empty($imagenesEliminar)) {
+            foreach ($imagenesEliminar as $imagenId) {
+                $imagen = $imagenModel->find($imagenId);
+                if ($imagen) {
+                    // Eliminar del servidor
+                    if (file_exists($imagen['imagen_path'])) {
+                        unlink($imagen['imagen_path']);
+                    }
+                    $imagenModel->delete($imagenId);
+                }
+            }
         }
+
+        if ($imagenes = $this->request->getFiles('imatge_galeria')) {
+            foreach ($imagenes['imatge_galeria'] as $imagen) {
+                if ($imagen->isValid() && !$imagen->hasMoved()) {
+                    $imagen->move('uploads/galeria');
+                    $rutaImagen = 'uploads/galeria/' . $imagen->getName();
+                    
+                    $imagenModel->insert([
+                        'id_galeria' => $id,
+                        'imagen_path' => $rutaImagen,
+                        'created_at' => date('Y-m-d H:i:s'),
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->to(base_url('/admin/galeria/viewLlistatGaleria'))->with('success', 'Galeria editada correctament.');
     }
 
     public function deleteGaleria($id)

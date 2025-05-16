@@ -6,36 +6,46 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 </head>
 <style>
-    a {
-        text-decoration: none;
-    }
-    .banner {
+a {
+    text-decoration: none;
+}
+
+.banner {
     position: relative;
     width: 100%;
     height: 300px;
-    background-image: url('<?= base_url('img/home.jpg') ?>'); /* Aquí pones tu imagen */
-    background-size: cover;
-    background-position: center;
-    color: white;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-family: Arial, sans-serif;
-  }
+}
 
-  .banner-content {
-    position: relative; /* Para que quede encima */
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: brightness(0.6);
+}
+
+.banner-content {
+    position: relative;
     z-index: 2;
-  }
+    color: white;
+}
 
-  .banner-content h1 {
+.banner-content h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-  }
+}
 
-  .banner-content button {
+.banner-content button {
     padding: 12px 25px;
     font-size: 1em;
     border: none;
@@ -45,20 +55,20 @@
     border-radius: 4px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     transition: background-color 0.3s ease;
-  }
+}
 
-  .banner-content button:hover {
+.banner-content button:hover {
     background-color: #218838;
-  }
+}
 
-  /* Opcional: una capa oscura para mejorar la visibilidad del texto */
-  .banner::before {
+.banner::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 1;
-  }
+}
+
 .imgNoticia {
     max-width: 100%;
     height: auto;
@@ -75,10 +85,11 @@
 <body>
 
     <div class="banner">
-    <div class="banner-content">
-        <h1>BENVINGUTS A U.E.A</h1>
-        <button><a href="<?= esc($linkBannerPrincipal) ?>">INSCRIU-TE ARA</a></button>
-    </div>
+        <img src="<?= base_url('img/home.jpeg') ?>" alt="Banner" class="banner-img">
+        <div class="banner-content">
+            <h1>BENVINGUTS A U.E.A</h1>
+            <button><a href="<?= esc($linkBannerPrincipal) ?>">INSCRIU-TE ARA</a></button>
+        </div>
     </div>
 
     <main class="w3-container" style="margin-top: 20px;">
@@ -120,7 +131,7 @@
             headerToolbar: {
                 left: 'prev,next',
                 left2: isMobile ? '' : 'today',
-                center: isMobile ? '' : 'title',
+                //center: isMobile ? '' : 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             events: <?= json_encode(array_map(function($evento) {

@@ -28,21 +28,22 @@
         <div class="w3-row-padding">
 
             <?php foreach($galeries as $galeria): ?>
-
-            <div class="w3-third w3-margin-bottom">
-                <div class="w3-card w3-padding w3-white">
-                    <h3><?= substr($galeria['nom_galeria'], 0, 20) . '...' ?></h3>
-                    <p><?= substr($galeria['descripcio_galeria'], 0, 50) . '...' ?></p>
-                    <div class="w3-center">
-                        <a href="<?= base_url('/galeria/readGaleria/' . esc($galeria['id_galeria'])) ?>">
-                            <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
-                        </a>
+                <div class="w3-third w3-margin-bottom">
+                    <div class="w3-card w3-padding w3-white">
+                        <h3><?= substr($galeria['nom_galeria'], 0, 20) . '...' ?></h3>
+                        <p><?= substr($galeria['descripcio_galeria'], 0, 50) . '...' ?></p>
+                        <div class="w3-center">
+                            <a href="<?= base_url('/galeria/readGaleria/' . esc($galeria['id_galeria'])) ?>">
+                                <img style="margin-bottom:5%; width:100%; height:200px; object-fit:cover;" 
+                                    class="imgNoticia" 
+                                    src="<?= $galeria['portada'] ?>" 
+                                    alt="Portada de la Galeria">
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
             <?php endforeach; ?>
-        
+            
         </div>
 
         <!-- Paginador -->
