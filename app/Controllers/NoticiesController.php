@@ -95,25 +95,41 @@ class NoticiesController extends BaseController
     // POST PER CREAR NOTICIES DES DEL CRUD
     public function crearNoticia()
     {
-
         $model = new NoticiesModel();
 
         $validationRules = [
             'nom' => 'required|max_length[128]',
             'contingut' => 'required',
             'categoria' => 'required',
+            'imatge' => 'permit_empty|uploaded[imatge]|is_image[imatge]|max_size[imatge,2048]',
         ];
 
         if ($this->validate($validationRules)) {
-
             $nom = $this->request->getPost('nom');
             $contingut = $this->request->getPost('contingut');
             $categoria = $this->request->getPost('categoria');
+            $rutaImagen = null;
+
+            // Gestio de la imatge
+            $imagen = $this->request->getFile('imatge');
+            if ($imagen && $imagen->isValid() && !$imagen->hasMoved()) {
+                // Crear la carpeta per data si no existeix
+                $fecha = date('Y-m-d');
+                $rutaCarpeta = 'uploads/noticies/' . $fecha;
+                if (!is_dir($rutaCarpeta)) {
+                    mkdir($rutaCarpeta, 0777, true);
+                }
+
+                $nombreImagen = $imagen->getRandomName();
+                $imagen->move($rutaCarpeta, $nombreImagen);
+                $rutaImagen = $rutaCarpeta . '/' . $nombreImagen;
+            }
 
             $id = $model->insert([
                 "nom" => $nom,
                 "contingut" => $contingut,
-                "categoria" => $this->request->getPost('categoria'),
+                "categoria" => $categoria,
+                "imagen_path" => $rutaImagen,
             ]);
             
             $model->update($id, [
@@ -163,15 +179,16 @@ class NoticiesController extends BaseController
     public function updateNoticia($id)
     {
         $model = new NoticiesModel();
-
+        
         $validationRules = [
             'nom' => 'required|max_length[128]',
             'contingut' => 'required',
             'categoria' => 'required',
+            'imatge' => 'is_image[imatge]|max_size[imatge,2048]'
         ];
 
         if (!$this->validate($validationRules)) {
-            return redirect()->to(base_url('editNoticia/').$id)->withInput();
+            return redirect()->to(base_url('admin/noticies/editNoticia/'.$id))->withInput()->with('error', 'Validació fallida.');
         }
 
         $nom = $this->request->getPost('nom');
@@ -187,11 +204,34 @@ class NoticiesController extends BaseController
             'url' => $url,
         ];
 
-        if ($model->update($id, $data)) {
-            return redirect()->to(base_url('/admin/noticies/llistatNoticies'))->with('success', 'Notícia editada correctament.');
-        } else {
-            return redirect()->to(base_url('editNoticia/').$id);
+        // Comprovar si sa pujat una nova imatge
+        $imatge = $this->request->getFile('imatge');
+        if ($imatge && $imatge->isValid() && !$imatge->hasMoved()) {
+            // Crear carpeta amb la data
+            $folder = 'uploads/noticies/' . date('Y-m-d');
+            if (!is_dir($folder)) {
+                mkdir($folder, 0755, true);
+            }
+
+            // Guardar la nova imatge
+            $imatgeName = $imatge->getRandomName();
+            $imatge->move($folder, $imatgeName);
+            $rutaImatge = $folder . '/' . $imatgeName;
+
+            // Obtenir la imatge antiga per eliminar-la
+            $noticia = $model->find($id);
+            if (!empty($noticia['imagen_path']) && file_exists($noticia['imagen_path'])) {
+                unlink($noticia['imagen_path']);
+            }
+
+            // Actualitzar la ruta de la imatge
+            $data['imagen_path'] = $rutaImatge;
         }
+
+        // Actualitzar les dades de la notícia
+        $model->update($id, $data);
+        
+        return redirect()->to(base_url('/admin/noticies/llistatNoticies'))->with('success', 'Notícia editada correctament.');
     }
 
     // ELIMINAR NOTICIA

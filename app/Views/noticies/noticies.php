@@ -39,21 +39,29 @@
     
     <!-- DIVS AMB NOTICIES -->
     <div class="w3-row-padding">
-        <?php foreach($noticies as $noticia): ?>
-
-        <div class="w3-third w3-margin-bottom">
-            <div class="w3-card w3-padding w3-white">
-                <h3><?= substr($noticia['nom'], 0, 20) . '...' ?></h3>
-                <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
-                <div class="w3-center">
-                    <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">
-                        <img style="margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
-                    </a>
+        <?php if (!empty($noticies)): ?>
+            <?php foreach($noticies as $noticia): ?>
+            <div class="w3-third w3-margin-bottom">
+                <div class="w3-card w3-padding w3-white">
+                    <h3><?= substr($noticia['nom'], 0, 20) . '...' ?></h3>
+                    <p><?= substr($noticia['contingut'], 0, 50) . '...' ?></p>
+                    <div class="w3-center">
+                        <a href="<?= base_url('noticies/readNoticia/' . esc($noticia['id'])) ?>">
+                            <?php if (!empty($noticia['imagen_path'])): ?>
+                                <img src="<?= base_url($noticia['imagen_path']) ?>" alt="Imatge de la notícia" class="w3-image" style="max-width:400px;max-height:200px;margin-bottom:5%">
+                            <?php else: ?>
+                                <img style="max-width:400px;max-height:200px;margin-bottom:5%" class="imgNoticia" src="<?= base_url('img/alpicat.png') ?>">
+                            <?php endif; ?>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+
+        <?php else: ?>
+            <p class="w3-text-dark-grey">No hi ha noticies disponibles.</p>
+        <?php endif; ?>
         
     </div>
 
