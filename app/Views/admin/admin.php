@@ -46,7 +46,7 @@
 
         <div class="stats-cards">
             <div class="card">
-                <h3><a href="<?php echo base_url('/admin/crearGaleria'); ?>"> <i class="fa fa-images"></i> Total Galeries publicades</a></h3>
+                <h3><a href="<?php echo base_url('/admin/galeria/viewLlistatGaleria'); ?>"> <i class="fa fa-images"></i> Total Galeries publicades</a></h3>
                 <p><?= esc($count_galeries) ?></p>
             </div>
         </div>

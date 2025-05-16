@@ -23,6 +23,17 @@
             <label for="descripcio_galeria" class="w3-text-dark-grey w3-margin-top">Descripció</label>
             <textarea id="descripcio_galeria" name="descripcio_galeria" class="w3-input w3-border w3-round" rows="4"><?= esc($galeria['descripcio_galeria']) ?></textarea>
 
+            <!-- Dropdown Categoria -->
+            <label for="categoria" class="w3-text-black">CATEGORIA</label>
+            <select id="categoria" name="categoria" class="w3-select w3-border w3-margin-bottom">
+                <option value="" disabled selected>Selecciona una opció</option>
+                <?php foreach($categories as $categoria): ?>
+
+                    <option value="<?= esc($categoria['name']) ?>"><?= esc($categoria['name']) ?></option>
+
+                <?php endforeach; ?>
+            </select>
+
             <label for="imatge_galeria" class="w3-text-dark-grey w3-margin-top">Imatge (nom arxiu o URL)</label>
             <input type="text" id="imatge_galeria" name="imatge_galeria" class="w3-input w3-border w3-round" value="<?= esc($galeria['imatge_galeria']) ?>">
 

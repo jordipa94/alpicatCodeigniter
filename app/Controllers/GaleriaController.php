@@ -4,18 +4,47 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\GaleriaModel;
+use App\Models\CategoriesModel;
 
 class GaleriaController extends BaseController
 {
     
     public function index()
     {
-        $galeriaModel = new GaleriaModel();
+        $model = new GaleriaModel();
+        $categoriaModel = new CategoriesModel();
 
-        $data['galeries'] = $galeriaModel->orderBy('created_at', 'DESC')->paginate(6, 'default');
-        $data['pager'] = $galeriaModel->pager;
+        $categories = $categoriaModel->findAll();
+        $categoriaSeleccionada = $this->request->getGet('categoria') ?? '';
 
-        return view('galeria', $data);
+        if (!empty($categoriaSeleccionada)) {
+            $data['galeries'] = $model
+                ->where('categoria', $categoriaSeleccionada)
+                ->orderBy('created_at', 'DESC')
+                ->paginate(9, 'default');
+        } else {
+            $data['galeries'] = $model->orderBy('created_at', 'DESC')->paginate(9, 'default');
+        }
+
+        $data['categories'] = $categories;
+        $data['categoriaSeleccionada'] = $categoriaSeleccionada;
+        $data['pager'] = $model->pager;
+
+        echo view('galeria', $data);
+    }
+
+    public function filtrar()
+    {
+
+        return redirect()->to('/galeria?categoria=' . $this->request->getGet('categoria'));
+
+    }
+
+    public function filtrarCrud()
+    {
+
+        return redirect()->to('/admin/galeria/viewLlistatGaleria?categoria=' . $this->request->getGet('categoria'));
+
     }
 
     public function viewLlistatGaleria()
@@ -30,7 +59,12 @@ class GaleriaController extends BaseController
     public function viewCrearGaleria()
     {   
         $galeriaModel = new GaleriaModel();
+
+        $categoriaModel = new CategoriesModel();
+        $categories = $categoriaModel->findAll();
+
         $data['galeries'] = $galeriaModel->paginate(6, 'default');
+        $data['categories'] = $categories;
         $data['pager'] = $galeriaModel->pager;
 
         return view('galeria/crearGaleria',$data);
@@ -44,6 +78,7 @@ class GaleriaController extends BaseController
             'nom_galeria'        => 'required|max_length[255]',
             'descripcio_galeria' => 'permit_empty|max_length[1000]',
             'imatge_galeria'     => 'permit_empty|max_length[255]',
+            'categoria' => 'required',
         ];
         //$base64_image = $this->request->getPost('imatge_galeria');
         
@@ -72,6 +107,7 @@ class GaleriaController extends BaseController
                 'descripcio_galeria' => $this->request->getPost('descripcio_galeria'),
                 'imatge_galeria'     => $dataUri ?? null,
                 'created_at'         => date('Y-m-d H:i:s'),
+                'categoria' => $this->request->getPost('categoria'),
             ];
     
             $model->insert($data);
@@ -99,11 +135,17 @@ class GaleriaController extends BaseController
         $model = new GaleriaModel();
         $galeria = $model->find($id);
 
+        $categoriaModel = new CategoriesModel();
+        $categories = $categoriaModel->findAll();
+
+        $data['galeria'] = $galeria;
+        $data['categories'] = $categories;
+
         if (!$galeria) {
             return redirect()->to(base_url('/galeria'));
         }
 
-        return view('galeria/editGaleria', ['galeria' => $galeria]);
+        return view('galeria/editGaleria', $data);
     }
 
     public function updateGaleria($id)
@@ -114,6 +156,7 @@ class GaleriaController extends BaseController
             'nom_galeria'        => 'required|max_length[255]',
             'descripcio_galeria' => 'permit_empty|max_length[1000]',
             'imatge_galeria'     => 'permit_empty|max_length[255]',
+            'categoria' => 'required',
         ];
 
         if (!$this->validate($validationRules)) {
@@ -124,6 +167,7 @@ class GaleriaController extends BaseController
             'nom_galeria'        => $this->request->getPost('nom_galeria'),
             'descripcio_galeria' => $this->request->getPost('descripcio_galeria'),
             'imatge_galeria'     => $this->request->getPost('imatge_galeria'),
+            'categoria' => $this->request->getPost('categoria'),
             'updated_at'         => date('Y-m-d H:i:s'),
         ];
 

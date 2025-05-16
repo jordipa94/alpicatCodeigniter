@@ -17,29 +17,13 @@ $routes->get('/club', 'SobreNosaltresController::club');
 $routes->get('/noticies', 'NoticiesController::index');
 $routes->get('/searchNoticia', 'NoticiesController::searchNoticia');
 
-//CLASIFICACIONS
+//CLASSIFICACIONS
 $routes->get('/programes', 'ProgramesController::index');
 $routes->get('/programes/viewClassification/(:num)', 'ProgramesController::viewClassification/$1');
 
-$routes->get('/admin/programes/llistatClassificacions', 'ProgramesController::viewLlistatClassificacio',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/programes/crearClassificacio', 'ProgramesController::viewCrearClassificacio',['filter'=>'login:admin,gestor']);
-$routes->post('/admin/programes/crearClassificacio', 'ProgramesController::crearClassificacio',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/programes/editClassificacio/(:num)', 'ProgramesController::editClassificacio/$1',['filter'=>'login:admin,gestor']);
-$routes->post('/admin/programes/updateClassificacio/(:num)', 'ProgramesController::updateClassificacio/$1',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/programes/deleteClassificacio/(:num)', 'ProgramesController::deleteClassificacio/$1',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/programes/papeleraClassificacions', 'ProgramesController::recycleBinClassificacio',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/programes/restaurarClassificacio/(:num)', 'ProgramesController::restaurarClassificacio/$1',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/programes/searchClassificacio', 'ProgramesController::searchClassificacio',['filter'=>'login:admin,gestor']);
-
 //GALERIES
 $routes->get('/galeria', 'GaleriaController::index');
-
-//CONTACTE
-$routes->get('/contacte', 'ContacteController::index');
-$routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
-$routes->get('/admin/gestionarContacte', 'ContacteController::gestionarContacte',['filter'=>'login:admin,gestor']);
-$routes->get('/admin/marcarContestat/(:num)', 'ContacteController::marcarContestat/$1');
-$routes->get('/admin/marcarPendent/(:num)', 'ContacteController::marcarPendent/$1');
+$routes->get('/galeria/readGaleria/(:num)', 'GaleriaController::readGaleria/$1');
 
 //CRUD NOTICIES
 $routes->get('/admin/noticies/llistatNoticies', 'NoticiesController::viewLlistatNoticies',['filter'=>'login:admin,gestor']);
@@ -53,6 +37,17 @@ $routes->get('/admin/noticies/restaurarNoticia/(:num)', 'NoticiesController::res
 $routes->get('noticies/readNoticia/(:num)', 'NoticiesController::readNoticia/$1');
 $routes->get('/admin/noticies/searchNoticiaCrud', 'NoticiesController::searchNoticiaCrud',['filter'=>'login:admin,gestor']);
 
+//CRUD CLASSIFICACIONS
+$routes->get('/admin/programes/llistatClassificacions', 'ProgramesController::viewLlistatClassificacio',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/programes/crearClassificacio', 'ProgramesController::viewCrearClassificacio',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/programes/crearClassificacio', 'ProgramesController::crearClassificacio',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/programes/editClassificacio/(:num)', 'ProgramesController::editClassificacio/$1',['filter'=>'login:admin,gestor']);
+$routes->post('/admin/programes/updateClassificacio/(:num)', 'ProgramesController::updateClassificacio/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/programes/deleteClassificacio/(:num)', 'ProgramesController::deleteClassificacio/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/programes/papeleraClassificacions', 'ProgramesController::recycleBinClassificacio',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/programes/restaurarClassificacio/(:num)', 'ProgramesController::restaurarClassificacio/$1',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/programes/searchClassificacio', 'ProgramesController::searchClassificacio',['filter'=>'login:admin,gestor']);
+
 //CRUD GALERIA
 $routes->get('/admin/galeria/viewLlistatGaleria', 'GaleriaController::viewLlistatGaleria',['filter'=>'login:admin,gestor']);
 $routes->get('/admin/galeria/crearGaleria', 'GaleriaController::viewCrearGaleria',['filter'=>'login:admin,gestor']);
@@ -62,11 +57,17 @@ $routes->post('/admin/galeria/updateGaleria/(:num)', 'GaleriaController::updateG
 $routes->get('/admin/galeria/deleteGaleria/(:num)', 'GaleriaController::deleteGaleria/$1',['filter'=>'login:admin,gestor']);
 $routes->get('/admin/galeria/papeleraGaleria', 'GaleriaController::recycleBinGaleria',['filter'=>'login:admin,gestor']);
 $routes->get('/admin/galeria/restaurarGaleria/(:num)', 'GaleriaController::restaurarGaleria/$1',['filter'=>'login:admin,gestor']);
-$routes->get('/galeria/readGaleria/(:num)', 'GaleriaController::readGaleria/$1');
 $routes->get('/admin/galeria/searchGaleriaCrud', 'GaleriaController::searchGaleriaCrud',['filter'=>'login:admin,gestor']);
 
+//CONTACTE
+$routes->get('/contacte', 'ContacteController::index');
+$routes->post('/enviarFormulariContacte', 'ContacteController::enviarFormulariContacte');
+$routes->get('/admin/gestionarContacte', 'ContacteController::gestionarContacte',['filter'=>'login:admin,gestor']);
+$routes->get('/admin/marcarContestat/(:num)', 'ContacteController::marcarContestat/$1');
+$routes->get('/admin/marcarPendent/(:num)', 'ContacteController::marcarPendent/$1');
+
 //CRUD CALENDARIO
-$routes->get('/calendario', 'CalendarioController::index');
+//$routes->get('/calendario', 'CalendarioController::index');
 $routes->get('/calendario/gestioEvent', 'CalendarioController::gestioEvent',['filter'=>'login:admin,gestor']);
 $routes->get('/calendario/addEvent', 'CalendarioController::viewAddEvent',['filter'=>'login:admin,gestor']);
 $routes->post('/calendario/addEvent', 'CalendarioController::addEvent',['filter'=>'login:admin,gestor']);

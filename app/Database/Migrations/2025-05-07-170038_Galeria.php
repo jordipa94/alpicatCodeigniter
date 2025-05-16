@@ -26,6 +26,10 @@ class Galeria extends Migration
                 'constraint' => '255',
                 'null'       => true,
             ],
+            'categoria'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+            ],
             'created_at' => [
                 'type'    => 'DATETIME',
                 'null'    => true,

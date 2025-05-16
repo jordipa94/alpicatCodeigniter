@@ -22,9 +22,9 @@ class CalendarioController extends BaseController
 
         if ($keyword) {
             $model->groupStart()
-                        ->like('titulo', $keyword)
-                        ->orLike('descripcion', $keyword)
-                        ->groupEnd();
+                    ->like('titulo', $keyword)
+                    ->orLike('descripcion', $keyword)
+                    ->groupEnd();
         }
 
         $data['eventos'] = $model->paginate(5);

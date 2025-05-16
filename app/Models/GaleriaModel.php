@@ -12,7 +12,7 @@ class GaleriaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nom_galeria', 'descripcio_galeria', 'imatge_galeria', 'created_at', 'updated_at','deleted_at'];
+    protected $allowedFields    = ['nom_galeria', 'descripcio_galeria', 'imatge_galeria', 'categoria', 'created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
